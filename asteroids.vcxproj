@@ -23,6 +23,7 @@
     <ClCompile Include="src\game.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\screens\menu.cpp" />
+    <ClCompile Include="src\uiComponents\button.cpp" />
     <ClCompile Include="src\utils\math.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -31,6 +32,7 @@
     <ClInclude Include="src\game.h" />
     <ClInclude Include="src\screens\menu.h" />
     <ClInclude Include="src\screens\screens.h" />
+    <ClInclude Include="src\uiComponents\button.h" />
     <ClInclude Include="src\utils\math.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

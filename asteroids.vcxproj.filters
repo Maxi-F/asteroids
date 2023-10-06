@@ -31,6 +31,12 @@
     <Filter Include="Archivos de encabezado\utils">
       <UniqueIdentifier>{d7a4e95a-4613-4e37-b4b4-60613145e8f4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de encabezado\uiComponents">
+      <UniqueIdentifier>{bd54134f-9f9b-4063-85ef-7e95f21c0838}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\uiComponents">
+      <UniqueIdentifier>{ff75f2cb-e1b8-4565-9c50-d677d16af709}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -47,6 +53,9 @@
     </ClCompile>
     <ClCompile Include="src\utils\math.cpp">
       <Filter>Archivos de origen\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\uiComponents\button.cpp">
+      <Filter>Archivos de origen\uiComponents</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -67,6 +76,9 @@
     </ClInclude>
     <ClInclude Include="src\constants\colors.h">
       <Filter>Archivos de encabezado\constants</Filter>
+    </ClInclude>
+    <ClInclude Include="src\uiComponents\button.h">
+      <Filter>Archivos de encabezado\uiComponents</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
