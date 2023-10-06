@@ -7,11 +7,11 @@
 namespace Asteroids {
 	static const float OPTION_RECTANGLE_WIDTH = 300.0f;
 	static const float OPTION_RECTANGLE_HEIGHT = 40.0f;
-	static const float OPTION_FONT_SIZE = 20.0f;
+	static const int OPTION_FONT_SIZE = 20;
 	static const float TOP_MARGIN = 120.0f;
 	static const float OPTION_RECTANGLE_MARGIN = 25.0f;
 	static const float TITLE_TOP_MARGIN = 40.0f;
-	static const float TITLE_FONT_SIZE = 50.0f;
+	static const int TITLE_FONT_SIZE = 50;
 
 	static MenuOption menuOptions[Option::OPTIONS_QUANTITY];
 
@@ -34,13 +34,16 @@ namespace Asteroids {
 	}
 
 	static void drawOptionText(float yPosition, const char* text) {
-		float textLength = MeasureText(text, OPTION_FONT_SIZE);
+		int textLength = MeasureText(text, static_cast<int>(OPTION_FONT_SIZE));
+		float screenWidth = static_cast<float>(GetScreenWidth());
+		int optionTextPosX = static_cast<int>(getHalf(screenWidth) - getHalf(static_cast<float>(textLength)));
+		int optionTextPosY = static_cast<int>(yPosition + getHalf(OPTION_RECTANGLE_HEIGHT) - getHalf(OPTION_FONT_SIZE));
 
 		DrawText(
 			text,
-			getHalf(GetScreenWidth()) - getHalf(textLength),
-			yPosition + getHalf(OPTION_RECTANGLE_HEIGHT) - getHalf(OPTION_FONT_SIZE),
-			OPTION_FONT_SIZE,
+			optionTextPosX,
+			optionTextPosY,
+			static_cast<int>(OPTION_FONT_SIZE),
 			WHITE
 		);
 	}
@@ -55,6 +58,8 @@ namespace Asteroids {
 			return "Rules";
 		case Option::READ_CREDITS:
 			return "Credits";
+		default:
+			return "";
 		}
 	}
 
@@ -78,9 +83,10 @@ namespace Asteroids {
 	void initMenu() {
 		for (int i = 0; i < Option::OPTIONS_QUANTITY; i++) {
 			float yPosition = TOP_MARGIN + (OPTION_RECTANGLE_MARGIN + OPTION_RECTANGLE_HEIGHT) * i;
+			float screenWidth = static_cast<float>(GetScreenWidth());
 
 			Rectangle optionRectangle = {
-			getHalf(GetScreenWidth()) - getHalf(OPTION_RECTANGLE_WIDTH),
+			getHalf(screenWidth) - getHalf(OPTION_RECTANGLE_WIDTH),
 			yPosition,
 			OPTION_RECTANGLE_WIDTH,
 			OPTION_RECTANGLE_HEIGHT
@@ -97,9 +103,11 @@ namespace Asteroids {
 
 	void drawMenu() {
 		const char* title = "LePong";
-		float titleLenght = MeasureText(title, TITLE_FONT_SIZE);
+		int titleLenght = MeasureText(title, TITLE_FONT_SIZE);
+		float screenWidth = static_cast<float>(GetScreenWidth());
+		int pongTitlePosX = static_cast<int>(getHalf(screenWidth) - getHalf(static_cast<float>(titleLenght)));
 
-		DrawText("LePong", getHalf(GetScreenWidth()) - getHalf(titleLenght), TITLE_TOP_MARGIN, TITLE_FONT_SIZE, WHITE);
+		DrawText("LePong", pongTitlePosX, static_cast<int>(TITLE_TOP_MARGIN), TITLE_FONT_SIZE, WHITE);
 
 		for (int i = 0; i < Option::OPTIONS_QUANTITY; i++) {
 			drawOptionBox(menuOptions[i]);

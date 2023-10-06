@@ -11,7 +11,7 @@ namespace Asteroids {
     }
 
     static void init() {
-        InitWindow(SCREEN_DIMENSIONS.x, SCREEN_DIMENSIONS.y, "LePong");
+        InitWindow(static_cast<int>(SCREEN_DIMENSIONS.x), static_cast<int>(SCREEN_DIMENSIONS.y), "LePong");
 
         initMenu();
     }
