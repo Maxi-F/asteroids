@@ -13,10 +13,60 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Archivos de origen\screens">
+      <UniqueIdentifier>{e9a67b84-36d4-4b92-b7e4-13bbcc7b8fde}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\screens">
+      <UniqueIdentifier>{68ce3c12-7d67-4705-ba83-7927729ec559}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\constants">
+      <UniqueIdentifier>{29ed4c6a-5b44-494c-9ef8-6d4d9570e417}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\constants">
+      <UniqueIdentifier>{313054b6-3dbf-4817-9a34-862eab2c9ad8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\utils">
+      <UniqueIdentifier>{dc3ed029-a7b1-4c18-b506-0afcedefe9fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\utils">
+      <UniqueIdentifier>{d7a4e95a-4613-4e37-b4b4-60613145e8f4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="src\game.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\screens\menu.cpp">
+      <Filter>Archivos de origen\screens</Filter>
+    </ClCompile>
+    <ClCompile Include="src\constants\dimensions.cpp">
+      <Filter>Archivos de origen\constants</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils\math.cpp">
+      <Filter>Archivos de origen\utils</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\game.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\screens\screens.h">
+      <Filter>Archivos de encabezado\screens</Filter>
+    </ClInclude>
+    <ClInclude Include="src\screens\menu.h">
+      <Filter>Archivos de encabezado\screens</Filter>
+    </ClInclude>
+    <ClInclude Include="src\constants\dimensions.h">
+      <Filter>Archivos de encabezado\constants</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\math.h">
+      <Filter>Archivos de encabezado\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\constants\colors.h">
+      <Filter>Archivos de encabezado\constants</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

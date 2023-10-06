@@ -19,7 +19,19 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\constants\dimensions.cpp" />
+    <ClCompile Include="src\game.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\screens\menu.cpp" />
+    <ClCompile Include="src\utils\math.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\constants\colors.h" />
+    <ClInclude Include="src\constants\dimensions.h" />
+    <ClInclude Include="src\game.h" />
+    <ClInclude Include="src\screens\menu.h" />
+    <ClInclude Include="src\screens\screens.h" />
+    <ClInclude Include="src\utils\math.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -104,7 +116,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)\lib\raylib\lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)\lib\raylib\lib\</AdditionalLibraryDirectories>
       <AdditionalDependencies>raylib.lib;winmm.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
