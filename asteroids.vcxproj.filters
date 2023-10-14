@@ -43,6 +43,12 @@
     <Filter Include="Archivos de origen\assets">
       <UniqueIdentifier>{ca6bdf7b-4895-40eb-8fa0-c0a53595e72c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de origen\entities">
+      <UniqueIdentifier>{a78e1db8-0e64-496c-b809-c92a5994845d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\entities">
+      <UniqueIdentifier>{df2c5557-3c10-44a6-a124-3c2ee24b98a3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -69,6 +75,12 @@
     <ClCompile Include="src\assets\assetManager.cpp">
       <Filter>Archivos de origen\assets</Filter>
     </ClCompile>
+    <ClCompile Include="src\screens\gameplay.cpp">
+      <Filter>Archivos de origen\screens</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entities\spaceship.cpp">
+      <Filter>Archivos de origen\entities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game.h">
@@ -94,6 +106,12 @@
     </ClInclude>
     <ClInclude Include="src\assets\assetManager.h">
       <Filter>Archivos de encabezado\assets</Filter>
+    </ClInclude>
+    <ClInclude Include="src\screens\gameplay.h">
+      <Filter>Archivos de encabezado\screens</Filter>
+    </ClInclude>
+    <ClInclude Include="src\entities\spaceship.h">
+      <Filter>Archivos de encabezado\entities</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

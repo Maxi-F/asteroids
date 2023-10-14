@@ -1,6 +1,7 @@
 #include "screenManager.h"
 
 #include "screens/menu.h"
+#include "screens/gameplay.h"
 
 namespace Asteroids {
 	namespace ScreensManager {
@@ -20,6 +21,7 @@ namespace Asteroids {
 					initMenu();
 					break;
 				case Screens::GAMEPLAY:
+					Gameplay::initGameplay();
 					break;
 				case Screens::CREDITS:
 					break;
@@ -38,6 +40,7 @@ namespace Asteroids {
 				case Screens::RULES:
 					break;
 				case Screens::GAMEPLAY:
+					Gameplay::drawGameplay();
 					break;
 			};
 		}
@@ -52,6 +55,7 @@ namespace Asteroids {
 				case Screens::RULES:
 					break;
 				case Screens::GAMEPLAY:
+					Gameplay::updateGameplay();
 					break;
 			};
 		};

@@ -12,7 +12,7 @@ namespace Asteroids {
 		static std::vector<AssetWithTexture> textures;
 
 		void init() {
-			AssetWithTexture spaceShip = { Assets::SHIP, LoadTexture("assets/ship.png") };
+			AssetWithTexture spaceShip = { Assets::SHIP, LoadTexture("assets/spaceship.png") };
 
 			textures = { spaceShip };
 		}
