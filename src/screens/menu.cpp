@@ -1,6 +1,7 @@
 #include "menu.h"
 
 #include "utils/math.h"
+#include "screens/manager.h"
 
 namespace Asteroids {
 	static const float OPTION_RECTANGLE_WIDTH = 300.0f;
@@ -32,16 +33,16 @@ namespace Asteroids {
 		}
 	}
 
-	static void actionPerMenuOption(Option option, Screens& screen, bool& shouldClose) {
+	static void actionPerMenuOption(Option option, bool& shouldClose) {
 		switch (option) {
 		case Option::PLAY:
-			screen = Screens::GAMEPLAY;
+			ScreensManager::changeScreenTo(ScreensManager::Screens::GAMEPLAY);
 			break;
 		case Option::READ_CREDITS:
-			screen = Screens::CREDITS;
+			ScreensManager::changeScreenTo(ScreensManager::Screens::GAMEPLAY);
 			break;
 		case Option::READ_RULES:
-			screen = Screens::RULES;
+			ScreensManager::changeScreenTo(ScreensManager::Screens::GAMEPLAY);
 			break;
 		case Option::EXIT:
 			shouldClose = true;
@@ -83,12 +84,12 @@ namespace Asteroids {
 		}
 	}
 
-	void checkMenuInputAndCollision(Screens& screen, bool& shouldClose) {
+	void checkMenuInputAndCollision(bool& shouldClose) {
 		for (int i = 0; i < Option::OPTIONS_QUANTITY; i++) {
 			Buttons::updateButton(menuOptions[i].optionButton);
 
 			if (menuOptions[i].optionButton.isClicked) {
-				actionPerMenuOption(menuOptions[i].option, screen, shouldClose);
+				actionPerMenuOption(menuOptions[i].option, shouldClose);
 			}
 		};
 

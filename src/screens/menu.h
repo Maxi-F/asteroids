@@ -3,7 +3,6 @@
 
 #include "raylib.h"
 
-#include "screens.h"
 #include "uiComponents/button.h"
 
 namespace Asteroids {
@@ -23,5 +22,5 @@ namespace Asteroids {
 
 	void drawMenu();
 	void initMenu();
-	void checkMenuInputAndCollision(Screens& screen, bool& shouldClose);
+	void checkMenuInputAndCollision(bool& shouldClose);
 }

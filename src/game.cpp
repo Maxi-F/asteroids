@@ -1,8 +1,7 @@
 #include "game.h"
 
 #include "raylib.h"
-#include "screens/screens.h"
-#include "screens/menu.h"
+#include "screens/manager.h"
 #include "constants/dimensions.h"
 
 namespace Asteroids {
@@ -13,55 +12,34 @@ namespace Asteroids {
     static void init() {
         InitWindow(static_cast<int>(SCREEN_DIMENSIONS.x), static_cast<int>(SCREEN_DIMENSIONS.y), "LePong");
 
-        initMenu();
+        ScreensManager::initManager();
     }
 
-    static void update(Screens& screen, bool& shouldClose) {
-        switch (screen) {
-        case Screens::MENU:
-            Asteroids::checkMenuInputAndCollision(screen, shouldClose);
-            break;
-        case Screens::CREDITS:
-            break;
-        case Screens::RULES:
-            break;
-        case Screens::GAMEPLAY:
-            break;
-        };
+    static void update(bool& shouldClose) {
+        ScreensManager::updateScreen(shouldClose);
     }
 
-    static void draw(Screens screen) {
+    static void draw() {
         BeginDrawing();
             GetFontDefault();
             ClearBackground(BLACK);
 
-            switch (screen) {
-            case Screens::MENU:
-                drawMenu();
-                break;
-            case Screens::CREDITS:
-                break;
-            case Screens::RULES:
-                break;
-            case Screens::GAMEPLAY:
-                break;
-            };
+            ScreensManager::drawScreen();
 
         EndDrawing();
     }
 
     void startGame() {
         init();
-        Screens screen = Screens::MENU;
         bool shouldClose = false;
 
         SetExitKey(0);
 
         while (!shouldClose)
         {
-            update(screen, shouldClose);
+            update(shouldClose);
 
-            draw(screen);
+            draw();
         }
 
         close();
