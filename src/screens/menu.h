@@ -4,6 +4,7 @@
 #include "raylib.h"
 
 #include "screens.h"
+#include "uiComponents/button.h"
 
 namespace Asteroids {
 	enum Option {
@@ -17,8 +18,7 @@ namespace Asteroids {
 	struct MenuOption {
 		Option option;
 		std::string text;
-		bool isHovered;
-		Rectangle optionBox;
+		Buttons::Button optionButton;
 	};
 
 	void drawMenu();

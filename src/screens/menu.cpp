@@ -1,13 +1,11 @@
 #include "menu.h"
 
-#include "constants/dimensions.h"
-#include "constants/colors.h"
 #include "utils/math.h"
 
 namespace Asteroids {
 	static const float OPTION_RECTANGLE_WIDTH = 300.0f;
 	static const float OPTION_RECTANGLE_HEIGHT = 40.0f;
-	static const int OPTION_FONT_SIZE = 20;
+
 	static const float TOP_MARGIN = 120.0f;
 	static const float OPTION_RECTANGLE_MARGIN = 25.0f;
 	static const float TITLE_TOP_MARGIN = 40.0f;
@@ -16,36 +14,7 @@ namespace Asteroids {
 	static MenuOption menuOptions[Option::OPTIONS_QUANTITY];
 
 	static void drawOptionBox(MenuOption option) {
-		if (option.isHovered) {
-			DrawRectangleRec(option.optionBox, PINK);
-
-			Rectangle insideRectangle = {
-				option.optionBox.x + BOX_BORDER_WIDTH,
-				option.optionBox.y + BOX_BORDER_WIDTH,
-				option.optionBox.width - BOX_BORDER_WIDTH * 2,
-				option.optionBox.height - BOX_BORDER_WIDTH * 2,
-			};
-
-			DrawRectangleRec(insideRectangle, IsMouseButtonDown(MOUSE_BUTTON_LEFT) ? FOCUS_COLOR : RED);
-		}
-		else {
-			DrawRectangleRec(option.optionBox, RED);
-		}
-	}
-
-	static void drawOptionText(float yPosition, const char* text) {
-		int textLength = MeasureText(text, static_cast<int>(OPTION_FONT_SIZE));
-		float screenWidth = static_cast<float>(GetScreenWidth());
-		int optionTextPosX = static_cast<int>(getHalf(screenWidth) - getHalf(static_cast<float>(textLength)));
-		int optionTextPosY = static_cast<int>(yPosition + getHalf(OPTION_RECTANGLE_HEIGHT) - getHalf(OPTION_FONT_SIZE));
-
-		DrawText(
-			text,
-			optionTextPosX,
-			optionTextPosY,
-			static_cast<int>(OPTION_FONT_SIZE),
-			WHITE
-		);
+		Buttons::drawButton(option.optionButton);
 	}
 
 	static std::string optionToText(Option option) {
@@ -95,8 +64,7 @@ namespace Asteroids {
 			menuOptions[i] = {
 				(Option)i,
 				optionToText((Option)i),
-				false,
-				optionRectangle
+				Buttons::createButton(optionRectangle)
 			};
 		}
 	}
@@ -111,23 +79,16 @@ namespace Asteroids {
 
 		for (int i = 0; i < Option::OPTIONS_QUANTITY; i++) {
 			drawOptionBox(menuOptions[i]);
-			drawOptionText(menuOptions[i].optionBox.y, menuOptions[i].text.c_str());
+			Buttons::drawCenteredTextInButton(menuOptions[i].optionButton, menuOptions[i].text.c_str());
 		}
 	}
 
 	void checkMenuInputAndCollision(Screens& screen, bool& shouldClose) {
-		Vector2 mousePosition = GetMousePosition();
-
 		for (int i = 0; i < Option::OPTIONS_QUANTITY; i++) {
-			if (checkPointToRectangleCollision(menuOptions[i].optionBox, mousePosition)) {
-				menuOptions[i].isHovered = true;
+			Buttons::updateButton(menuOptions[i].optionButton);
 
-				if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT)) {
-					actionPerMenuOption(menuOptions[i].option, screen, shouldClose);
-				}
-			}
-			else {
-				menuOptions[i].isHovered = false;
+			if (menuOptions[i].optionButton.isClicked) {
+				actionPerMenuOption(menuOptions[i].option, screen, shouldClose);
 			}
 		};
 

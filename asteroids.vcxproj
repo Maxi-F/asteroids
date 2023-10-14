@@ -22,6 +22,7 @@
     <ClCompile Include="src\constants\dimensions.cpp" />
     <ClCompile Include="src\game.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\screens\manager.cpp" />
     <ClCompile Include="src\screens\menu.cpp" />
     <ClCompile Include="src\uiComponents\button.cpp" />
     <ClCompile Include="src\utils\math.cpp" />
@@ -30,6 +31,7 @@
     <ClInclude Include="src\constants\colors.h" />
     <ClInclude Include="src\constants\dimensions.h" />
     <ClInclude Include="src\game.h" />
+    <ClInclude Include="src\screens\manager.h" />
     <ClInclude Include="src\screens\menu.h" />
     <ClInclude Include="src\screens\screens.h" />
     <ClInclude Include="src\uiComponents\button.h" />
