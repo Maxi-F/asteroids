@@ -1,7 +1,7 @@
 #include "menu.h"
 
 #include "utils/math.h"
-#include "screens/manager.h"
+#include "screens/screenManager.h"
 
 namespace Asteroids {
 	static const float OPTION_RECTANGLE_WIDTH = 300.0f;

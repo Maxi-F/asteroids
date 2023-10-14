@@ -1,7 +1,8 @@
 #include "game.h"
 
 #include "raylib.h"
-#include "screens/manager.h"
+#include "screens/screenManager.h"
+#include "assets/assetManager.h"
 #include "constants/dimensions.h"
 
 namespace Asteroids {
@@ -12,7 +13,9 @@ namespace Asteroids {
     static void init() {
         InitWindow(static_cast<int>(SCREEN_DIMENSIONS.x), static_cast<int>(SCREEN_DIMENSIONS.y), "LePong");
 
+        AssetManager::init();
         ScreensManager::initManager();
+        
     }
 
     static void update(bool& shouldClose) {

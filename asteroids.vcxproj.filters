@@ -37,6 +37,12 @@
     <Filter Include="Archivos de origen\uiComponents">
       <UniqueIdentifier>{ff75f2cb-e1b8-4565-9c50-d677d16af709}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de encabezado\assets">
+      <UniqueIdentifier>{d67135f3-b15f-4842-95b3-1233c35081c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\assets">
+      <UniqueIdentifier>{ca6bdf7b-4895-40eb-8fa0-c0a53595e72c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -57,8 +63,11 @@
     <ClCompile Include="src\uiComponents\button.cpp">
       <Filter>Archivos de origen\uiComponents</Filter>
     </ClCompile>
-    <ClCompile Include="src\screens\manager.cpp">
+    <ClCompile Include="src\screens\screenManager.cpp">
       <Filter>Archivos de origen\screens</Filter>
+    </ClCompile>
+    <ClCompile Include="src\assets\assetManager.cpp">
+      <Filter>Archivos de origen\assets</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -80,8 +89,11 @@
     <ClInclude Include="src\uiComponents\button.h">
       <Filter>Archivos de encabezado\uiComponents</Filter>
     </ClInclude>
-    <ClInclude Include="src\screens\manager.h">
+    <ClInclude Include="src\screens\screenManager.h">
       <Filter>Archivos de encabezado\screens</Filter>
+    </ClInclude>
+    <ClInclude Include="src\assets\assetManager.h">
+      <Filter>Archivos de encabezado\assets</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
