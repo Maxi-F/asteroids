@@ -5,6 +5,7 @@
 #include "assets/assetManager.h"
 #include "utils/math.h"
 
+#include <iostream>
 
 namespace Asteroids {
 	namespace Spaceship {
@@ -23,6 +24,10 @@ namespace Asteroids {
 					MAX_VELOCITY
 				);
 			}
+		}
+
+		static float getAngleByDirection(Ship spaceShip) {
+			return static_cast<float>(atan2(spaceShip.direction.y, spaceShip.direction.x)) * RAD2DEG + 90.0f;
 		}
 
 		Ship createSpaceship() {
@@ -44,7 +49,9 @@ namespace Asteroids {
 			Vector2 mousePosition = GetMousePosition();
 
 			spaceShip.direction = Vector2Normalize(Vector2Subtract(mousePosition, spaceShip.position));
-			spaceShip.rotation = static_cast<float>(atan2(spaceShip.direction.y, spaceShip.direction.x)) * RAD2DEG + 90.0f;
+
+			std::cout << spaceShip.direction.x << " " << spaceShip.direction.y << std::endl;
+			spaceShip.rotation = getAngleByDirection(spaceShip);
 
 			updatePosition(spaceShip);
 			updateVelocity(spaceShip);
