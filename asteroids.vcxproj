@@ -32,6 +32,7 @@
     <ClCompile Include="src\uiComponents\button.cpp" />
     <ClCompile Include="src\utils\math.cpp" />
     <ClCompile Include="src\utils\screen.cpp" />
+    <ClCompile Include="src\utils\timer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\assets\assetManager.h" />
@@ -47,6 +48,7 @@
     <ClInclude Include="src\uiComponents\button.h" />
     <ClInclude Include="src\utils\math.h" />
     <ClInclude Include="src\utils\screen.h" />
+    <ClInclude Include="src\utils\timer.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

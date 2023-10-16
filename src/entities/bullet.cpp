@@ -6,7 +6,7 @@
 
 namespace Asteroids {
 	namespace Bullets {
-		static const float BULLET_VELOCITY = 50.0f;
+		static const float BULLET_VELOCITY = 1000.0f;
 		static const float BULLET_RADIUS = 5.0f;
 
 		static void updateBulletByScreenCollision(Bullet& bullet) {

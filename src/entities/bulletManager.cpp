@@ -3,13 +3,23 @@
 #include <vector>
 #include <iostream>
 
+#include "utils/timer.h"
+
 namespace Asteroids {
 	namespace BulletManager {
 		static std::vector<Bullets::Bullet> bullets;
+		static Timer::Timer bulletTimer;
+		static const double TIME_BETWEEN_BULLETS = 0.3;
+
+		void initBulletManager() {
+			Timer::startTimer(&bulletTimer, TIME_BETWEEN_BULLETS);
+		}
 
 		void addBullet(Bullets::Bullet bullet) {
-			std::cout << bullets.size() << std::endl;
-			bullets.push_back(bullet);
+			if (Timer::timerDone(bulletTimer)) {
+				bullets.push_back(bullet);
+				Timer::startTimer(&bulletTimer, TIME_BETWEEN_BULLETS);
+			}
 		}
 
 		void updateBullets() {

@@ -90,6 +90,9 @@
     <ClCompile Include="src\entities\bulletManager.cpp">
       <Filter>Archivos de origen\entities</Filter>
     </ClCompile>
+    <ClCompile Include="src\utils\timer.cpp">
+      <Filter>Archivos de origen\utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game.h">
@@ -130,6 +133,9 @@
     </ClInclude>
     <ClInclude Include="src\entities\bulletManager.h">
       <Filter>Archivos de encabezado\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\timer.h">
+      <Filter>Archivos de encabezado\utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
