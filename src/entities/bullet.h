@@ -1,0 +1,19 @@
+#pragma once
+
+#include "raylib.h"
+
+namespace Asteroids {
+	namespace Bullets {
+		struct Bullet {
+			Vector2 position;
+			Vector2 direction;
+			float velocity;
+			float radius;
+			bool shouldRemove = false;
+		};
+
+		Bullet createBullet(Vector2 position, Vector2 direction);
+		void updateBullet(Bullet& bullet);
+		void drawBullet(Bullet bullet);
+	}
+}

@@ -84,6 +84,12 @@
     <ClCompile Include="src\utils\screen.cpp">
       <Filter>Archivos de origen\utils</Filter>
     </ClCompile>
+    <ClCompile Include="src\entities\bullet.cpp">
+      <Filter>Archivos de origen\entities</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entities\bulletManager.cpp">
+      <Filter>Archivos de origen\entities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game.h">
@@ -118,6 +124,12 @@
     </ClInclude>
     <ClInclude Include="src\utils\screen.h">
       <Filter>Archivos de encabezado\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\entities\bullet.h">
+      <Filter>Archivos de encabezado\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="src\entities\bulletManager.h">
+      <Filter>Archivos de encabezado\entities</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

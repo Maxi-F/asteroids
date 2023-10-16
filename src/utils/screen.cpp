@@ -19,6 +19,10 @@ namespace Asteroids {
 			return screenHeight;
 		}
 
+		float getScaleRelativeByScreen(float value) {
+			return value * screenWidth;
+		}
+
 		void checkPositionByScreenBounds(Entity& entity) {
 			Vector2 nextFramePosition = { entity.position.x + entity.velocity.x * GetFrameTime(), entity.position.y + entity.velocity.y * GetFrameTime() };
 			

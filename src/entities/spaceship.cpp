@@ -5,6 +5,7 @@
 #include "assets/assetManager.h"
 #include "utils/math.h"
 #include "utils/screen.h"
+#include "entities/bulletManager.h"
 
 #include <iostream>
 
@@ -38,9 +39,15 @@ namespace Asteroids {
 			spaceShip.position = shipEntity.position;
 		}
 
+		static void shootFrom(Ship spaceShip) {
+			if (IsMouseButtonDown(MOUSE_BUTTON_RIGHT)) {
+				BulletManager::addBullet(Bullets::createBullet(spaceShip.position, spaceShip.direction));
+			}
+		}
+
 		Ship createSpaceship() {
 			Texture2D shipTexture = AssetManager::getTexture(AssetManager::Assets::SHIP);
-			Vector2 screenDimensions = { static_cast<float>(GetScreenWidth()), static_cast<float>(GetScreenHeight()) };
+			Vector2 screenDimensions = { ScreenUtils::getScreenWidth(), ScreenUtils::getScreenHeight() };
 
 			return {
 				SHIP_RADIUS,
@@ -64,6 +71,8 @@ namespace Asteroids {
 			updateVelocity(spaceShip);
 
 			updatePositionByScreenCollitions(spaceShip);
+
+			shootFrom(spaceShip);
 		}
 
 		void drawSpaceship(Ship spaceShip) {

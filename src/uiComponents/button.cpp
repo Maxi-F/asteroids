@@ -3,6 +3,7 @@
 #include "raylib.h"
 
 #include "utils/math.h"
+#include "utils/screen.h"
 #include "constants/dimensions.h"
 #include "constants/colors.h"
 
@@ -23,7 +24,7 @@ namespace Asteroids {
 
 		void drawCenteredTextInButton(Button button, const char* text) {
 			int textLength = MeasureText(text, static_cast<int>(BUTTON_TEXT_FONT_SIZE));
-			float screenWidth = static_cast<float>(GetScreenWidth());
+			float screenWidth = ScreenUtils::getScreenWidth();
 			int optionTextPosX = static_cast<int>(getHalf(screenWidth) - getHalf(static_cast<float>(textLength)));
 			int optionTextPosY = static_cast<int>(button.outsideRectangle.y + getHalf(button.outsideRectangle.height) - getHalf(BUTTON_TEXT_FONT_SIZE));
 

@@ -21,6 +21,8 @@
   <ItemGroup>
     <ClCompile Include="src\assets\assetManager.cpp" />
     <ClCompile Include="src\constants\dimensions.cpp" />
+    <ClCompile Include="src\entities\bullet.cpp" />
+    <ClCompile Include="src\entities\bulletManager.cpp" />
     <ClCompile Include="src\entities\spaceship.cpp" />
     <ClCompile Include="src\game.cpp" />
     <ClCompile Include="src\main.cpp" />
@@ -35,6 +37,8 @@
     <ClInclude Include="src\assets\assetManager.h" />
     <ClInclude Include="src\constants\colors.h" />
     <ClInclude Include="src\constants\dimensions.h" />
+    <ClInclude Include="src\entities\bullet.h" />
+    <ClInclude Include="src\entities\bulletManager.h" />
     <ClInclude Include="src\entities\spaceship.h" />
     <ClInclude Include="src\game.h" />
     <ClInclude Include="src\screens\gameplay.h" />

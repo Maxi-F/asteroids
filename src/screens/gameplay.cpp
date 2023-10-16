@@ -1,6 +1,7 @@
 #include "gameplay.h"
 
 #include "entities/spaceship.h"
+#include "entities/bulletManager.h"
 
 namespace Asteroids {
 	namespace Gameplay {
@@ -18,10 +19,12 @@ namespace Asteroids {
 
 		void updateGameplay() {
 			Spaceship::updateSpaceship(gameplayEntities.spaceship);
+			BulletManager::updateBullets();
 		}
 
 		void drawGameplay() {
 			Spaceship::drawSpaceship(gameplayEntities.spaceship);
+			BulletManager::drawBullets();
 		}
 	}
 }

@@ -1,6 +1,7 @@
 #include "menu.h"
 
 #include "utils/math.h"
+#include "utils/screen.h"
 #include "screens/screenManager.h"
 
 namespace Asteroids {
@@ -53,7 +54,7 @@ namespace Asteroids {
 	void initMenu() {
 		for (int i = 0; i < Option::OPTIONS_QUANTITY; i++) {
 			float yPosition = TOP_MARGIN + (OPTION_RECTANGLE_MARGIN + OPTION_RECTANGLE_HEIGHT) * i;
-			float screenWidth = static_cast<float>(GetScreenWidth());
+			float screenWidth = ScreenUtils::getScreenWidth();
 
 			Rectangle optionRectangle = {
 			getHalf(screenWidth) - getHalf(OPTION_RECTANGLE_WIDTH),
@@ -73,7 +74,7 @@ namespace Asteroids {
 	void drawMenu() {
 		const char* title = "LePong";
 		int titleLenght = MeasureText(title, TITLE_FONT_SIZE);
-		float screenWidth = static_cast<float>(GetScreenWidth());
+		float screenWidth = ScreenUtils::getScreenWidth();
 		int pongTitlePosX = static_cast<int>(getHalf(screenWidth) - getHalf(static_cast<float>(titleLenght)));
 
 		DrawText("LePong", pongTitlePosX, static_cast<int>(TITLE_TOP_MARGIN), TITLE_FONT_SIZE, WHITE);

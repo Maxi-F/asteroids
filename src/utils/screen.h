@@ -9,6 +9,9 @@ namespace Asteroids {
 			Vector2 velocity;
 		};
 
+		float getScreenWidth();
+		float getScreenHeight();
+		float getScaleRelativeByScreen(float value);
 		void checkPositionByScreenBounds(Entity& entity);
 	}
 }
