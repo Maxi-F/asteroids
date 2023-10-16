@@ -4,13 +4,14 @@
 
 #include "assets/assetManager.h"
 #include "utils/math.h"
+#include "utils/screen.h"
 
 #include <iostream>
 
 namespace Asteroids {
 	namespace Spaceship {
 		static float SHIP_RADIUS = 40.0f;
-		static Vector2 MAX_VELOCITY = { 2000.0f, 2000.0f };
+		static Vector2 MAX_VELOCITY = { 300.0f, 300.0f };
 
 		static void updatePosition(Ship& spaceShip) {
 			spaceShip.position = Vector2Add(spaceShip.position, Vector2Scale(spaceShip.velocity, GetFrameTime()));
@@ -28,6 +29,13 @@ namespace Asteroids {
 
 		static float getAngleByDirection(Ship spaceShip) {
 			return static_cast<float>(atan2(spaceShip.direction.y, spaceShip.direction.x)) * RAD2DEG + 90.0f;
+		}
+
+		static void updatePositionByScreenCollitions(Ship& spaceShip) {
+			ScreenUtils::Entity shipEntity = { spaceShip.position, spaceShip.velocity };
+			ScreenUtils::checkPositionByScreenBounds(shipEntity);
+
+			spaceShip.position = shipEntity.position;
 		}
 
 		Ship createSpaceship() {
@@ -50,11 +58,12 @@ namespace Asteroids {
 
 			spaceShip.direction = Vector2Normalize(Vector2Subtract(mousePosition, spaceShip.position));
 
-			std::cout << spaceShip.direction.x << " " << spaceShip.direction.y << std::endl;
 			spaceShip.rotation = getAngleByDirection(spaceShip);
 
 			updatePosition(spaceShip);
 			updateVelocity(spaceShip);
+
+			updatePositionByScreenCollitions(spaceShip);
 		}
 
 		void drawSpaceship(Ship spaceShip) {

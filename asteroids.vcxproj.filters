@@ -81,6 +81,9 @@
     <ClCompile Include="src\entities\spaceship.cpp">
       <Filter>Archivos de origen\entities</Filter>
     </ClCompile>
+    <ClCompile Include="src\utils\screen.cpp">
+      <Filter>Archivos de origen\utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game.h">
@@ -112,6 +115,9 @@
     </ClInclude>
     <ClInclude Include="src\entities\spaceship.h">
       <Filter>Archivos de encabezado\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\screen.h">
+      <Filter>Archivos de encabezado\utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
