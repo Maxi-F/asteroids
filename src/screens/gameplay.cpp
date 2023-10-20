@@ -12,18 +12,27 @@ namespace Asteroids {
 
 		static GameplayEntities gameplayEntities;
 
+		static void initManagers() {
+			AsteroidsManager::initManager();
+			BulletManager::initManager();
+		}
+
 		void initGameplay() {
 			gameplayEntities = {
 				Spaceship::createSpaceship()
 			};
-
-			AsteroidsManager::initManager();
+			initManagers();
 		}
 
 		void updateGameplay() {
 			Spaceship::updateSpaceship(gameplayEntities.spaceship);
 			BulletManager::updateBullets();
 			AsteroidsManager::updateAsteroids();
+
+			if (AsteroidsManager::isPlayerCollidingWithAsteroid(gameplayEntities.spaceship)) {
+				initManagers();
+				Spaceship::restartSpaceship(gameplayEntities.spaceship);
+			};
 		}
 
 		void drawGameplay() {

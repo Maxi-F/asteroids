@@ -11,7 +11,7 @@
 
 namespace Asteroids {
 	namespace Spaceship {
-		static float SHIP_RADIUS = 40.0f;
+		static float SHIP_RADIUS = 20.0f;
 		static Vector2 MAX_VELOCITY = { 300.0f, 300.0f };
 
 		static void updatePosition(Ship& spaceShip) {
@@ -60,6 +60,13 @@ namespace Asteroids {
 			};
 		}
 
+		void restartSpaceship(Ship& spaceShip) {
+			Vector2 screenDimensions = { ScreenUtils::getScreenWidth(), ScreenUtils::getScreenHeight() };
+
+			spaceShip.velocity = { 0.0f, 0.0f };
+			spaceShip.position = { getHalf(screenDimensions.x), getHalf(screenDimensions.y) };
+		};
+
 		void updateSpaceship(Ship &spaceShip) {
 			Vector2 mousePosition = GetMousePosition();
 
@@ -86,14 +93,18 @@ namespace Asteroids {
 			Rectangle destRectangle = { 
 				spaceShip.position.x,
 				spaceShip.position.y,
-				spaceShip.shipRadius,
-				spaceShip.shipRadius
+				spaceShip.shipRadius * 2,
+				spaceShip.shipRadius * 2
 			};		
 
 			Vector2 origin = {
-				getHalf(static_cast<float>(spaceShip.shipRadius)),
-				getHalf(static_cast<float>(spaceShip.shipRadius))
+				static_cast<float>(spaceShip.shipRadius),
+				static_cast<float>(spaceShip.shipRadius)
 			};
+
+#ifdef _DEBUG
+			DrawCircle(static_cast<int>(spaceShip.position.x), static_cast<int>(spaceShip.position.y), spaceShip.shipRadius, YELLOW);
+#endif 
 
 			DrawTexturePro(
 				spaceShip.texture,

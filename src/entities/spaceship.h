@@ -17,6 +17,7 @@ namespace Asteroids {
 
 		Ship createSpaceship();
 		void updateSpaceship(Ship &spaceShip);
+		void restartSpaceship(Ship &spaceShip);
 		void drawSpaceship(Ship spaceShip);
 	}
 }

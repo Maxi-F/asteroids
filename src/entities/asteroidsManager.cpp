@@ -47,6 +47,7 @@ namespace Asteroids {
 		void initManager() {
 			// This will spawn asteroids at the start of the game
 			Timer::startTimer(&asteroidSpawnTimer, 0.0f);
+			asteroids.clear();
 		}
 
 		void updateAsteroids() {
@@ -66,6 +67,15 @@ namespace Asteroids {
 			}
 		}
 		
+		bool isPlayerCollidingWithAsteroid(Spaceship::Ship ship) {
+			for (size_t i = 0; i < asteroids.size(); i++) {
+				if (checkCircleCollision({ ship.position, ship.shipRadius }, { asteroids[i].position, asteroids[i].radius })) {
+					return true;
+				}
+			}
+			return false;
+		}
+
 		void drawAsteroids() {
 			for (size_t i = 0; i < asteroids.size(); i++) {
 				Asteroid::drawAsteroid(asteroids[i]);

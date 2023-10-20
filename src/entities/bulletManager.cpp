@@ -19,8 +19,9 @@ namespace Asteroids {
 			}
 		}
 
-		void initBulletManager() {
+		void initManager() {
 			Timer::startTimer(&bulletTimer, TIME_BETWEEN_BULLETS);
+			bullets.clear();
 		}
 
 		void addBullet(Bullets::Bullet bullet) {
