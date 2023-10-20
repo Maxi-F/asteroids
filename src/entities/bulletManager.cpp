@@ -1,9 +1,9 @@
 #include "bulletManager.h"
 
 #include <vector>
-#include <iostream>
 
 #include "utils/timer.h"
+#include "asteroidsManager.h"
 
 namespace Asteroids {
 	namespace BulletManager {
@@ -32,6 +32,7 @@ namespace Asteroids {
 
 		void updateBullets() {
 			for (size_t i = 0; i < bullets.size(); i++) {
+				AsteroidsManager::checkCollissionsWith(bullets[i]);
 				Bullets::updateBullet(bullets[i]);
 			}
 			removeDanglingBullets();

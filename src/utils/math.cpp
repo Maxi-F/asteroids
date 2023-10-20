@@ -1,5 +1,7 @@
 #include "math.h"
 
+#include <math.h>
+
 namespace Asteroids {
     float clamp(float value, float min, float max)
     {
@@ -40,6 +42,15 @@ namespace Asteroids {
             rectangle1BottomEdge >= rectangle2TopEdge &&
             rectangle1TopEdge <= rectangle2BottomEdge;
     };
+
+    bool checkCircleCollision(Circle circle1, Circle circle2) {
+        float distX = circle1.position.x - circle2.position.x;
+        float distY = circle1.position.y - circle2.position.y;
+
+        float distance = static_cast<float>(sqrt(distX * distX + distY * distY));
+
+        return distance <= circle1.radius + circle2.radius;
+    }
 
     bool checkPointToRectangleCollision(Rectangle rectangle, Vector2 point) {
         float rectangleLeftEdge = rectangle.x;

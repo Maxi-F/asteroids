@@ -5,6 +5,7 @@
 
 #include "entities/asteroid.h"
 #include "utils/timer.h"
+#include "utils/math.h"
 
 namespace Asteroids {
 	namespace AsteroidsManager {
@@ -14,6 +15,14 @@ namespace Asteroids {
 
 		static Timer::Timer asteroidSpawnTimer;
 		static std::vector<Asteroid::Asteroid> asteroids;
+
+		static void removeDanglingAsteroids() {
+			for (size_t i = 0; i < asteroids.size(); i++) {
+				if (asteroids[i].shouldRemove) {
+					asteroids.erase(asteroids.begin() + i);
+				}
+			}
+		}
 
 		static void createAsteroids() {
 			if (Timer::timerDone(asteroidSpawnTimer)) {
@@ -41,7 +50,17 @@ namespace Asteroids {
 			for (size_t i = 0; i < asteroids.size(); i++) {
 				Asteroid::updateAsteroid(asteroids[i]);
 			}
+			removeDanglingAsteroids();
 		};
+
+		void checkCollissionsWith(Bullets::Bullet& bullet) {
+			for (size_t i = 0; i < asteroids.size(); i++) {
+				if (checkCircleCollision({ bullet.position, bullet.radius }, { asteroids[i].position, asteroids[i].radius })) {
+					asteroids[i].shouldRemove = true;
+					bullet.shouldRemove = true;
+				}
+			}
+		}
 		
 		void drawAsteroids() {
 			for (size_t i = 0; i < asteroids.size(); i++) {

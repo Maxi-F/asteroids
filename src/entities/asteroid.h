@@ -14,7 +14,9 @@ namespace Asteroids {
 			Vector2 position;
 			Vector2 direction;
 			float velocity;
-			int radius;
+			float radius;
+			bool shouldDivide = false;
+			bool shouldRemove = false;
 		};
 
 		Asteroid createAsteroid(AsteroidType type);

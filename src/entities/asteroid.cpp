@@ -8,9 +8,9 @@
 
 namespace Asteroids {
 	namespace Asteroid {
-		static const int SMALL_ASTEROID_RADIUS = 25;
-		static const int MEDIUM_ASTEROID_RADIUS = 50;
-		static const int BIG_ASTEROID_RADIUS = 100;
+		static const float SMALL_ASTEROID_RADIUS = 25;
+		static const float MEDIUM_ASTEROID_RADIUS = 50;
+		static const float BIG_ASTEROID_RADIUS = 100;
 		static const float SMALL_ASTEROID_VELOCITY = 100.0f;
 		static const float MEDIUM_ASTEROID_VELOCITY = 50.0f;
 		static const float BIG_ASTEROID_VELOCITY = 25.0f;
@@ -22,7 +22,7 @@ namespace Asteroids {
 			BOTTOM = 3
 		};
 
-		static int getRadiusPerType(AsteroidType type) {
+		static float getRadiusPerType(AsteroidType type) {
 			switch (type) {
 				case AsteroidType::SMALL:
 					return SMALL_ASTEROID_RADIUS;
@@ -107,7 +107,7 @@ namespace Asteroids {
 		};
 
 		void drawAsteroid(Asteroid asteroid) {
-			DrawCircle(static_cast<int>(asteroid.position.x), static_cast<int>(asteroid.position.y), static_cast<float>(asteroid.radius), RED);
+			DrawCircle(static_cast<int>(asteroid.position.x), static_cast<int>(asteroid.position.y), asteroid.radius, RED);
 		};
 	}
 }
