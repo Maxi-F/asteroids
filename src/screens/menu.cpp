@@ -72,12 +72,12 @@ namespace Asteroids {
 	}
 
 	void drawMenu() {
-		const char* title = "LePong";
+		const char* title = "Asteroids";
 		int titleLenght = MeasureText(title, TITLE_FONT_SIZE);
 		float screenWidth = ScreenUtils::getScreenWidth();
 		int pongTitlePosX = static_cast<int>(getHalf(screenWidth) - getHalf(static_cast<float>(titleLenght)));
 
-		DrawText("LePong", pongTitlePosX, static_cast<int>(TITLE_TOP_MARGIN), TITLE_FONT_SIZE, WHITE);
+		DrawText(title, pongTitlePosX, static_cast<int>(TITLE_TOP_MARGIN), TITLE_FONT_SIZE, WHITE);
 
 		for (int i = 0; i < Option::OPTIONS_QUANTITY; i++) {
 			drawOptionBox(menuOptions[i]);

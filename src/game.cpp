@@ -11,7 +11,7 @@ namespace Asteroids {
     }
 
     static void init() {
-        InitWindow(static_cast<int>(SCREEN_DIMENSIONS.x), static_cast<int>(SCREEN_DIMENSIONS.y), "LePong");
+        InitWindow(static_cast<int>(SCREEN_DIMENSIONS.x), static_cast<int>(SCREEN_DIMENSIONS.y), "Asteroids");
 
         AssetManager::init();
         ScreensManager::initManager();
