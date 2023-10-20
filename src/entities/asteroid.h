@@ -14,13 +14,15 @@ namespace Asteroids {
 			Vector2 position;
 			Vector2 direction;
 			float velocity;
+			AsteroidType type;
 			float radius;
 			bool shouldDivide = false;
-			bool shouldRemove = false;
 		};
 
 		Asteroid createAsteroid(AsteroidType type);
+		Asteroid createDividedAsteroidFrom(Asteroid asteroid, bool clockWise);
 		void updateAsteroid(Asteroid& asteroid);
+		bool isIndivisible(Asteroid asteroid);
 		void drawAsteroid(Asteroid asteroid);
 	}
 }

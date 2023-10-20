@@ -50,6 +50,17 @@ namespace Asteroids {
 			}
 		}
 
+		static AsteroidType getNextType(AsteroidType type) {
+			switch (type) {
+				case AsteroidType::BIG:
+					return AsteroidType::MEDIUM;
+				case AsteroidType::MEDIUM:
+					return AsteroidType::SMALL;
+				default:
+					return AsteroidType::SMALL;
+			}
+		}
+
 		static float getVelocityByType(AsteroidType type) {
 			switch (type) {
 			case AsteroidType::SMALL:
@@ -96,14 +107,39 @@ namespace Asteroids {
 				initPosition,
 				direction,
 				velocity,
+				type,
 				getRadiusPerType(type)
 			};
 		};
+
+		Asteroid createDividedAsteroidFrom(Asteroid asteroid, bool clockWise) {
+			AsteroidType nextAsteroidType = getNextType(asteroid.type);
+			Vector2 newDirection;
+			
+			if (clockWise) {
+				newDirection = { asteroid.direction.y, -asteroid.direction.x };
+			}
+			else { 
+				newDirection = { -asteroid.direction.y, asteroid.direction.x };
+			};
+
+			return {
+				asteroid.position,
+				newDirection,
+				getVelocityByType(nextAsteroidType),
+				nextAsteroidType,
+				getRadiusPerType(nextAsteroidType)
+			};
+		}
 
 		void updateAsteroid(Asteroid& asteroid) {
 			asteroid.position = Vector2Add(asteroid.position, Vector2Scale(asteroid.direction, asteroid.velocity * GetFrameTime()));
 
 			updateAsteroidByScreenCollision(asteroid);
+		};
+
+		bool isIndivisible(Asteroid asteroid) {
+			return asteroid.type == AsteroidType::SMALL;
 		};
 
 		void drawAsteroid(Asteroid asteroid) {

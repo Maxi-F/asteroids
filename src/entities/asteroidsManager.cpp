@@ -16,9 +16,13 @@ namespace Asteroids {
 		static Timer::Timer asteroidSpawnTimer;
 		static std::vector<Asteroid::Asteroid> asteroids;
 
-		static void removeDanglingAsteroids() {
+		static void divideOrRemoveAsteroids() {
 			for (size_t i = 0; i < asteroids.size(); i++) {
-				if (asteroids[i].shouldRemove) {
+				if (asteroids[i].shouldDivide) {
+					if (!Asteroid::isIndivisible(asteroids[i])) {
+						asteroids.push_back(Asteroid::createDividedAsteroidFrom(asteroids[i], true));
+						asteroids.push_back(Asteroid::createDividedAsteroidFrom(asteroids[i], false));
+					}
 					asteroids.erase(asteroids.begin() + i);
 				}
 			}
@@ -50,13 +54,13 @@ namespace Asteroids {
 			for (size_t i = 0; i < asteroids.size(); i++) {
 				Asteroid::updateAsteroid(asteroids[i]);
 			}
-			removeDanglingAsteroids();
+			divideOrRemoveAsteroids();
 		};
 
 		void checkCollissionsWith(Bullets::Bullet& bullet) {
 			for (size_t i = 0; i < asteroids.size(); i++) {
 				if (checkCircleCollision({ bullet.position, bullet.radius }, { asteroids[i].position, asteroids[i].radius })) {
-					asteroids[i].shouldRemove = true;
+					asteroids[i].shouldDivide = true;
 					bullet.shouldRemove = true;
 				}
 			}
