@@ -93,8 +93,6 @@ namespace Asteroids {
 				actionPerMenuOption(menuOptions[i].option, shouldClose);
 			}
 		};
-
-		shouldClose = shouldClose || WindowShouldClose();
 	}
 
 }

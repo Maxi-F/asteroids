@@ -58,6 +58,8 @@ namespace Asteroids {
 					Gameplay::updateGameplay();
 					break;
 			};
+
+			shouldClose = shouldClose || WindowShouldClose();
 		};
 	}
 }
