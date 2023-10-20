@@ -22,6 +22,7 @@
     <ClCompile Include="src\assets\assetManager.cpp" />
     <ClCompile Include="src\constants\dimensions.cpp" />
     <ClCompile Include="src\entities\asteroid.cpp" />
+    <ClCompile Include="src\entities\asteroidsManager.cpp" />
     <ClCompile Include="src\entities\bullet.cpp" />
     <ClCompile Include="src\entities\bulletManager.cpp" />
     <ClCompile Include="src\entities\spaceship.cpp" />
@@ -39,6 +40,8 @@
     <ClInclude Include="src\assets\assetManager.h" />
     <ClInclude Include="src\constants\colors.h" />
     <ClInclude Include="src\constants\dimensions.h" />
+    <ClInclude Include="src\entities\asteroid.h" />
+    <ClInclude Include="src\entities\asteroidsManager.h" />
     <ClInclude Include="src\entities\bullet.h" />
     <ClInclude Include="src\entities\bulletManager.h" />
     <ClInclude Include="src\entities\spaceship.h" />

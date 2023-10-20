@@ -11,6 +11,14 @@ namespace Asteroids {
 		static Timer::Timer bulletTimer;
 		static const double TIME_BETWEEN_BULLETS = 0.3;
 
+		static void removeDanglingBullets() {
+			for (size_t i = 0; i < bullets.size(); i++) {
+				if (bullets[i].shouldRemove) {
+					bullets.erase(bullets.begin() + i);
+				}
+			}
+		}
+
 		void initBulletManager() {
 			Timer::startTimer(&bulletTimer, TIME_BETWEEN_BULLETS);
 		}
@@ -35,12 +43,5 @@ namespace Asteroids {
 			}
 		}
 
-		void removeDanglingBullets() {
-			for (size_t i = 0; i < bullets.size(); i++) {
-				if (bullets[i].shouldRemove) {
-					bullets.erase(bullets.begin() + i);
-				}
-			}
-		}
 	}
 }

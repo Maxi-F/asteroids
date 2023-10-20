@@ -96,6 +96,9 @@
     <ClCompile Include="src\entities\asteroid.cpp">
       <Filter>Archivos de origen\entities</Filter>
     </ClCompile>
+    <ClCompile Include="src\entities\asteroidsManager.cpp">
+      <Filter>Archivos de origen\entities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game.h">
@@ -139,6 +142,12 @@
     </ClInclude>
     <ClInclude Include="src\utils\timer.h">
       <Filter>Archivos de encabezado\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\entities\asteroid.h">
+      <Filter>Archivos de encabezado\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="src\entities\asteroidsManager.h">
+      <Filter>Archivos de encabezado\entities</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
