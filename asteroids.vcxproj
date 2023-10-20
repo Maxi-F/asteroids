@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="src\assets\assetManager.cpp" />
     <ClCompile Include="src\constants\dimensions.cpp" />
+    <ClCompile Include="src\entities\asteroid.cpp" />
     <ClCompile Include="src\entities\bullet.cpp" />
     <ClCompile Include="src\entities\bulletManager.cpp" />
     <ClCompile Include="src\entities\spaceship.cpp" />

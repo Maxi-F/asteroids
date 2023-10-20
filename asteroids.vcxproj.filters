@@ -93,6 +93,9 @@
     <ClCompile Include="src\utils\timer.cpp">
       <Filter>Archivos de origen\utils</Filter>
     </ClCompile>
+    <ClCompile Include="src\entities\asteroid.cpp">
+      <Filter>Archivos de origen\entities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game.h">

@@ -26,6 +26,7 @@ namespace Asteroids {
 			for (size_t i = 0; i < bullets.size(); i++) {
 				Bullets::updateBullet(bullets[i]);
 			}
+			removeDanglingBullets();
 		}
 
 		void drawBullets() {

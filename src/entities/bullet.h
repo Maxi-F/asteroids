@@ -2,6 +2,8 @@
 
 #include "raylib.h"
 
+#include "utils/timer.h"
+
 namespace Asteroids {
 	namespace Bullets {
 		struct Bullet {
@@ -9,6 +11,7 @@ namespace Asteroids {
 			Vector2 direction;
 			float velocity;
 			float radius;
+			Timer::Timer lifetimeTimer;
 			bool shouldRemove = false;
 		};
 

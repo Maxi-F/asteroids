@@ -19,7 +19,7 @@ namespace Asteroids {
 		}
 
 		static void updateVelocity(Ship& spaceShip) {
-			if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) {
+			if (IsMouseButtonDown(MOUSE_BUTTON_RIGHT)) {
 				spaceShip.velocity = Vector2Clamp(
 					Vector2Add(spaceShip.velocity, Vector2Scale(spaceShip.direction, spaceShip.acceleration * GetFrameTime())),
 					Vector2Scale(MAX_VELOCITY, -1.0f),
@@ -40,7 +40,7 @@ namespace Asteroids {
 		}
 
 		static void shootFrom(Ship spaceShip) {
-			if (IsMouseButtonDown(MOUSE_BUTTON_RIGHT)) {
+			if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) {
 				BulletManager::addBullet(Bullets::createBullet(spaceShip.position, spaceShip.direction));
 			}
 		}
