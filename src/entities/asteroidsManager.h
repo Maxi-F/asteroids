@@ -6,7 +6,7 @@
 namespace Asteroids {
 	namespace AsteroidsManager {
 		void initManager();
-		void updateAsteroids();
+		void updateAsteroids(Spaceship::Ship ship);
 		void checkCollissionsWith(Bullets::Bullet &bullet);
 		bool isPlayerCollidingWithAsteroid(Spaceship::Ship ship);
 		void drawAsteroids();

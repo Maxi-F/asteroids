@@ -3,6 +3,7 @@
 #include "entities/spaceship.h"
 #include "entities/bulletManager.h"
 #include "entities/asteroidsManager.h"
+#include "entities/pointsManager.h"
 
 namespace Asteroids {
 	namespace Gameplay {
@@ -15,6 +16,7 @@ namespace Asteroids {
 		static void initManagers() {
 			AsteroidsManager::initManager();
 			BulletManager::initManager();
+			PointsManager::init();
 		}
 
 		void initGameplay() {
@@ -27,7 +29,8 @@ namespace Asteroids {
 		void updateGameplay() {
 			Spaceship::updateSpaceship(gameplayEntities.spaceship);
 			BulletManager::updateBullets();
-			AsteroidsManager::updateAsteroids();
+			AsteroidsManager::updateAsteroids(gameplayEntities.spaceship);
+			PointsManager::updatePoints(gameplayEntities.spaceship);
 
 			if (AsteroidsManager::isPlayerCollidingWithAsteroid(gameplayEntities.spaceship)) {
 				initManagers();
@@ -39,6 +42,7 @@ namespace Asteroids {
 			Spaceship::drawSpaceship(gameplayEntities.spaceship);
 			BulletManager::drawBullets();
 			AsteroidsManager::drawAsteroids();
+			PointsManager::drawPoints();
 		}
 	}
 }

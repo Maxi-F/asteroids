@@ -4,6 +4,8 @@
 #include <vector>
 
 #include "entities/asteroid.h"
+#include "entities/spaceship.h"
+#include "entities/pointsManager.h"
 #include "utils/timer.h"
 #include "utils/math.h"
 
@@ -16,12 +18,15 @@ namespace Asteroids {
 		static Timer::Timer asteroidSpawnTimer;
 		static std::vector<Asteroid::Asteroid> asteroids;
 
-		static void divideOrRemoveAsteroids() {
+		static void divideOrRemoveAsteroids(Spaceship::Ship ship) {
 			for (size_t i = 0; i < asteroids.size(); i++) {
 				if (asteroids[i].shouldDivide) {
 					if (!Asteroid::isIndivisible(asteroids[i])) {
 						asteroids.push_back(Asteroid::createDividedAsteroidFrom(asteroids[i], true));
 						asteroids.push_back(Asteroid::createDividedAsteroidFrom(asteroids[i], false));
+					}
+					else {
+						PointsManager::addPoint(asteroids[i], ship);
 					}
 					asteroids.erase(asteroids.begin() + i);
 				}
@@ -50,12 +55,12 @@ namespace Asteroids {
 			asteroids.clear();
 		}
 
-		void updateAsteroids() {
+		void updateAsteroids(Spaceship::Ship ship) {
 			createAsteroids();
 			for (size_t i = 0; i < asteroids.size(); i++) {
 				Asteroid::updateAsteroid(asteroids[i]);
 			}
-			divideOrRemoveAsteroids();
+			divideOrRemoveAsteroids(ship);
 		};
 
 		void checkCollissionsWith(Bullets::Bullet& bullet) {

@@ -99,6 +99,12 @@
     <ClCompile Include="src\entities\asteroidsManager.cpp">
       <Filter>Archivos de origen\entities</Filter>
     </ClCompile>
+    <ClCompile Include="src\entities\point.cpp">
+      <Filter>Archivos de origen\entities</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entities\pointsManager.cpp">
+      <Filter>Archivos de origen\entities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game.h">
@@ -147,6 +153,12 @@
       <Filter>Archivos de encabezado\entities</Filter>
     </ClInclude>
     <ClInclude Include="src\entities\asteroidsManager.h">
+      <Filter>Archivos de encabezado\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="src\entities\point.h">
+      <Filter>Archivos de encabezado\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="src\entities\pointsManager.h">
       <Filter>Archivos de encabezado\entities</Filter>
     </ClInclude>
   </ItemGroup>

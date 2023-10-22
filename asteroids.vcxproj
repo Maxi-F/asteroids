@@ -25,6 +25,8 @@
     <ClCompile Include="src\entities\asteroidsManager.cpp" />
     <ClCompile Include="src\entities\bullet.cpp" />
     <ClCompile Include="src\entities\bulletManager.cpp" />
+    <ClCompile Include="src\entities\point.cpp" />
+    <ClCompile Include="src\entities\pointsManager.cpp" />
     <ClCompile Include="src\entities\spaceship.cpp" />
     <ClCompile Include="src\game.cpp" />
     <ClCompile Include="src\main.cpp" />
@@ -44,6 +46,8 @@
     <ClInclude Include="src\entities\asteroidsManager.h" />
     <ClInclude Include="src\entities\bullet.h" />
     <ClInclude Include="src\entities\bulletManager.h" />
+    <ClInclude Include="src\entities\point.h" />
+    <ClInclude Include="src\entities\pointsManager.h" />
     <ClInclude Include="src\entities\spaceship.h" />
     <ClInclude Include="src\game.h" />
     <ClInclude Include="src\screens\gameplay.h" />
