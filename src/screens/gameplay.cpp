@@ -4,11 +4,14 @@
 #include "managers/bulletManager.h"
 #include "managers/asteroidsManager.h"
 #include "managers/pointsManager.h"
+#include "managers/uiManager.h"
 
 namespace Asteroids {
 	namespace Gameplay {
 		struct GameplayEntities {
 			Spaceship::Ship spaceship;
+			int totalPoints = 0;
+			int lives = 3;
 		};
 
 		static GameplayEntities gameplayEntities;
@@ -43,6 +46,7 @@ namespace Asteroids {
 			BulletManager::drawBullets();
 			AsteroidsManager::drawAsteroids();
 			PointsManager::drawPoints();
+			UiManager::drawUI(gameplayEntities.totalPoints, gameplayEntities.lives);
 		}
 	}
 }
