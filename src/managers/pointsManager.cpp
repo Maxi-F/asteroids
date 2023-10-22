@@ -17,9 +17,10 @@ namespace Asteroids {
 			points.push_back(Point::createPointFrom(asteroid.position, ship.position, asteroid.points));
 		};
 
-		void updatePoints(Spaceship::Ship ship) {
+		void updatePoints(Spaceship::Ship ship, int &totalPoints) {
 			for (size_t i = 0; i < points.size(); i++) {
 				if (checkCircleCollision({ ship.position, ship.shipRadius }, { points[i].position, points[i].radius })) {
+					totalPoints += points[i].points;
 					points.erase(points.begin() + i);
 				}
 				else {
