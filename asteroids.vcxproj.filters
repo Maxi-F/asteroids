@@ -49,6 +49,12 @@
     <Filter Include="Archivos de encabezado\entities">
       <UniqueIdentifier>{df2c5557-3c10-44a6-a124-3c2ee24b98a3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de encabezado\managers">
+      <UniqueIdentifier>{f7d26987-d605-47a4-b27e-313f7a4cd5fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\managers">
+      <UniqueIdentifier>{a00bfd94-88ef-4565-9a39-34992c7a9581}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -69,9 +75,6 @@
     <ClCompile Include="src\uiComponents\button.cpp">
       <Filter>Archivos de origen\uiComponents</Filter>
     </ClCompile>
-    <ClCompile Include="src\screens\screenManager.cpp">
-      <Filter>Archivos de origen\screens</Filter>
-    </ClCompile>
     <ClCompile Include="src\assets\assetManager.cpp">
       <Filter>Archivos de origen\assets</Filter>
     </ClCompile>
@@ -87,23 +90,26 @@
     <ClCompile Include="src\entities\bullet.cpp">
       <Filter>Archivos de origen\entities</Filter>
     </ClCompile>
-    <ClCompile Include="src\entities\bulletManager.cpp">
-      <Filter>Archivos de origen\entities</Filter>
-    </ClCompile>
     <ClCompile Include="src\utils\timer.cpp">
       <Filter>Archivos de origen\utils</Filter>
     </ClCompile>
     <ClCompile Include="src\entities\asteroid.cpp">
       <Filter>Archivos de origen\entities</Filter>
     </ClCompile>
-    <ClCompile Include="src\entities\asteroidsManager.cpp">
-      <Filter>Archivos de origen\entities</Filter>
-    </ClCompile>
     <ClCompile Include="src\entities\point.cpp">
       <Filter>Archivos de origen\entities</Filter>
     </ClCompile>
-    <ClCompile Include="src\entities\pointsManager.cpp">
-      <Filter>Archivos de origen\entities</Filter>
+    <ClCompile Include="src\managers\asteroidsManager.cpp">
+      <Filter>Archivos de origen\managers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\managers\bulletManager.cpp">
+      <Filter>Archivos de origen\managers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\managers\pointsManager.cpp">
+      <Filter>Archivos de origen\managers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\managers\screenManager.cpp">
+      <Filter>Archivos de origen\managers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -125,9 +131,6 @@
     <ClInclude Include="src\uiComponents\button.h">
       <Filter>Archivos de encabezado\uiComponents</Filter>
     </ClInclude>
-    <ClInclude Include="src\screens\screenManager.h">
-      <Filter>Archivos de encabezado\screens</Filter>
-    </ClInclude>
     <ClInclude Include="src\assets\assetManager.h">
       <Filter>Archivos de encabezado\assets</Filter>
     </ClInclude>
@@ -143,23 +146,26 @@
     <ClInclude Include="src\entities\bullet.h">
       <Filter>Archivos de encabezado\entities</Filter>
     </ClInclude>
-    <ClInclude Include="src\entities\bulletManager.h">
-      <Filter>Archivos de encabezado\entities</Filter>
-    </ClInclude>
     <ClInclude Include="src\utils\timer.h">
       <Filter>Archivos de encabezado\utils</Filter>
     </ClInclude>
     <ClInclude Include="src\entities\asteroid.h">
       <Filter>Archivos de encabezado\entities</Filter>
     </ClInclude>
-    <ClInclude Include="src\entities\asteroidsManager.h">
-      <Filter>Archivos de encabezado\entities</Filter>
-    </ClInclude>
     <ClInclude Include="src\entities\point.h">
       <Filter>Archivos de encabezado\entities</Filter>
     </ClInclude>
-    <ClInclude Include="src\entities\pointsManager.h">
-      <Filter>Archivos de encabezado\entities</Filter>
+    <ClInclude Include="src\managers\asteroidsManager.h">
+      <Filter>Archivos de encabezado\managers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\managers\bulletManager.h">
+      <Filter>Archivos de encabezado\managers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\managers\pointsManager.h">
+      <Filter>Archivos de encabezado\managers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\managers\screenManager.h">
+      <Filter>Archivos de encabezado\managers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

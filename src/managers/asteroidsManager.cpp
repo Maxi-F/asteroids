@@ -5,7 +5,7 @@
 
 #include "entities/asteroid.h"
 #include "entities/spaceship.h"
-#include "entities/pointsManager.h"
+#include "managers/pointsManager.h"
 #include "utils/timer.h"
 #include "utils/math.h"
 

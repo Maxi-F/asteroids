@@ -1,6 +1,6 @@
 #pragma once
 
-#include "bullet.h"
+#include "entities/bullet.h"
 
 namespace Asteroids {
 	namespace BulletManager {

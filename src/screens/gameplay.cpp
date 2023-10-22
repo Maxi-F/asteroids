@@ -1,9 +1,9 @@
 #include "gameplay.h"
 
 #include "entities/spaceship.h"
-#include "entities/bulletManager.h"
-#include "entities/asteroidsManager.h"
-#include "entities/pointsManager.h"
+#include "managers/bulletManager.h"
+#include "managers/asteroidsManager.h"
+#include "managers/pointsManager.h"
 
 namespace Asteroids {
 	namespace Gameplay {

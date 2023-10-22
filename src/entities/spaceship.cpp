@@ -5,7 +5,7 @@
 #include "assets/assetManager.h"
 #include "utils/math.h"
 #include "utils/screen.h"
-#include "entities/bulletManager.h"
+#include "managers/bulletManager.h"
 
 #include <iostream>
 
