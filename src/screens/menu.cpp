@@ -40,10 +40,10 @@ namespace Asteroids {
 			ScreensManager::changeScreenTo(ScreensManager::Screens::GAMEPLAY);
 			break;
 		case Option::READ_CREDITS:
-			ScreensManager::changeScreenTo(ScreensManager::Screens::GAMEPLAY);
+			ScreensManager::changeScreenTo(ScreensManager::Screens::CREDITS);
 			break;
 		case Option::READ_RULES:
-			ScreensManager::changeScreenTo(ScreensManager::Screens::GAMEPLAY);
+			ScreensManager::changeScreenTo(ScreensManager::Screens::RULES);
 			break;
 		case Option::EXIT:
 			shouldClose = true;
