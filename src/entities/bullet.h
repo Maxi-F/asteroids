@@ -18,5 +18,6 @@ namespace Asteroids {
 		Bullet createBullet(Vector2 position, Vector2 direction);
 		void updateBullet(Bullet& bullet);
 		void drawBullet(Bullet bullet);
+		Bullet copyBulletByAngle(Bullet bullet, float angle);
 	}
 }

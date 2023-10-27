@@ -45,7 +45,7 @@ namespace Asteroids {
 				PointsManager::updatePoints(gameplayEntities.spaceship, gameplayEntities.totalPoints);
 				PowerupsManager::updatePowerups(gameplayEntities.spaceship);
 
-				if (AsteroidsManager::isPlayerCollidingWithAsteroid(gameplayEntities.spaceship)) {
+				if (AsteroidsManager::isPlayerCollidingWithAsteroid(gameplayEntities.spaceship) && !PowerupsManager::isPowerUpActive(PowerUp::SHIELD)) {
 					gameplayEntities.lives -= 1;
 				
 					if (gameplayEntities.lives <= 0) {

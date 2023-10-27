@@ -51,6 +51,14 @@ namespace Asteroids {
 			}
 		};
 
+		static void checkShipCollisions(Spaceship::Ship ship) {
+			for (size_t i = 0; i < asteroids.size(); i++) {
+				if (checkCircleCollision({ ship.position, ship.shipRadius }, { asteroids[i].position, asteroids[i].radius })) {
+					asteroids[i].shouldDivide = true;
+				}
+			}
+		}
+
 		void initManager() {
 			// This will spawn asteroids at the start of the game
 			Timer::startTimer(&asteroidSpawnTimer, 0.0f);
@@ -59,9 +67,15 @@ namespace Asteroids {
 
 		void updateAsteroids(Spaceship::Ship ship) {
 			createAsteroids();
+			
+			if (PowerupsManager::isPowerUpActive(PowerUp::SHIELD)) {
+				checkShipCollisions(ship);
+			}
+
 			for (size_t i = 0; i < asteroids.size(); i++) {
 				Asteroid::updateAsteroid(asteroids[i]);
 			}
+
 			divideOrRemoveAsteroids(ship);
 		};
 

@@ -36,5 +36,15 @@ namespace Asteroids {
 				static_cast<int>(bullet.position.x), static_cast<int>(bullet.position.y), bullet.radius, WHITE
 			);
 		}
+
+		Bullet copyBulletByAngle(Bullet bullet, float angle) {
+			return {
+				bullet.position,
+				Vector2Rotate(bullet.direction, angle),
+				bullet.velocity,
+				bullet.radius,
+				bullet.lifetimeTimer
+			};
+		}
 	}
 }

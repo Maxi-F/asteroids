@@ -4,6 +4,7 @@
 
 #include "entities/point.h"
 #include "utils/math.h"
+#include "managers/powerupsManager.h"
 
 namespace Asteroids {
 	namespace PointsManager {
@@ -20,7 +21,12 @@ namespace Asteroids {
 		void updatePoints(Spaceship::Ship ship, int &totalPoints) {
 			for (size_t i = 0; i < points.size(); i++) {
 				if (checkCircleCollision({ ship.position, ship.shipRadius }, { points[i].position, points[i].radius })) {
-					totalPoints += points[i].points;
+					if (PowerupsManager::isPowerUpActive(PowerUp::MORE_POINTS)) {
+						totalPoints += points[i].points * 2;
+					}
+					else {
+						totalPoints += points[i].points;
+					}
 					points.erase(points.begin() + i);
 				}
 				else {

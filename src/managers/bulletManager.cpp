@@ -3,7 +3,8 @@
 #include <vector>
 
 #include "utils/timer.h"
-#include "asteroidsManager.h"
+#include "managers/asteroidsManager.h"
+#include "managers/powerupsManager.h"
 
 namespace Asteroids {
 	namespace BulletManager {
@@ -26,7 +27,16 @@ namespace Asteroids {
 
 		void addBullet(Bullets::Bullet bullet) {
 			if (Timer::timerDone(bulletTimer)) {
-				bullets.push_back(bullet);
+				if (PowerupsManager::isPowerUpActive(PowerUp::PowerUpType::MULTI_BULLET)) {
+					const float BULLET_SPREAD = 15.0f;
+
+					bullets.push_back(bullet);
+					bullets.push_back(Bullets::copyBulletByAngle(bullet, BULLET_SPREAD * DEG2RAD));
+					bullets.push_back(Bullets::copyBulletByAngle(bullet, -BULLET_SPREAD * DEG2RAD));
+				}
+				else {
+					bullets.push_back(bullet);
+				}
 				Timer::startTimer(&bulletTimer, TIME_BETWEEN_BULLETS);
 			}
 		}
