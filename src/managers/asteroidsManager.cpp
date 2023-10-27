@@ -6,6 +6,7 @@
 #include "entities/asteroid.h"
 #include "entities/spaceship.h"
 #include "managers/pointsManager.h"
+#include "managers/powerupsManager.h"
 #include "utils/timer.h"
 #include "utils/math.h"
 
@@ -27,6 +28,7 @@ namespace Asteroids {
 					}
 					else {
 						PointsManager::addPoint(asteroids[i], ship);
+						PowerupsManager::addPowerUp(asteroids[i]);
 					}
 					asteroids.erase(asteroids.begin() + i);
 				}
