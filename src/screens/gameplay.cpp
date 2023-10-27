@@ -13,6 +13,7 @@ namespace Asteroids {
 			Spaceship::Ship spaceship;
 			int totalPoints = 0;
 			int lives = 3;
+			bool isPaused = false;
 		};
 
 		static GameplayEntities gameplayEntities;
@@ -21,6 +22,7 @@ namespace Asteroids {
 			AsteroidsManager::initManager();
 			BulletManager::initManager();
 			PointsManager::init();
+			UiManager::initUI();
 		}
 
 		void initGameplay() {
@@ -33,6 +35,7 @@ namespace Asteroids {
 		}
 
 		void updateGameplay() {
+			UiManager::updateUI(gameplayEntities.isPaused);
 			Spaceship::updateSpaceship(gameplayEntities.spaceship);
 			BulletManager::updateBullets();
 			AsteroidsManager::updateAsteroids(gameplayEntities.spaceship);
