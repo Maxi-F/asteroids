@@ -114,6 +114,12 @@
     <ClCompile Include="src\managers\uiManager.cpp">
       <Filter>Archivos de origen\managers</Filter>
     </ClCompile>
+    <ClCompile Include="src\entities\powerUp.cpp">
+      <Filter>Archivos de origen\entities</Filter>
+    </ClCompile>
+    <ClCompile Include="src\managers\powerupsManager.cpp">
+      <Filter>Archivos de origen\managers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game.h">
@@ -171,6 +177,12 @@
       <Filter>Archivos de encabezado\managers</Filter>
     </ClInclude>
     <ClInclude Include="src\managers\uiManager.h">
+      <Filter>Archivos de encabezado\managers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\entities\powerUp.h">
+      <Filter>Archivos de encabezado\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="src\managers\powerupsManager.h">
       <Filter>Archivos de encabezado\managers</Filter>
     </ClInclude>
   </ItemGroup>

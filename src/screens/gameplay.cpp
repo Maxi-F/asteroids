@@ -6,6 +6,7 @@
 #include "managers/pointsManager.h"
 #include "managers/screenManager.h"
 #include "managers/uiManager.h"
+#include "managers/powerupsManager.h"
 
 namespace Asteroids {
 	namespace Gameplay {
@@ -23,6 +24,7 @@ namespace Asteroids {
 			BulletManager::initManager();
 			PointsManager::init();
 			UiManager::initUI();
+			PowerupsManager::initManager();
 		}
 
 		void initGameplay() {
@@ -41,6 +43,7 @@ namespace Asteroids {
 				BulletManager::updateBullets();
 				AsteroidsManager::updateAsteroids(gameplayEntities.spaceship);
 				PointsManager::updatePoints(gameplayEntities.spaceship, gameplayEntities.totalPoints);
+				PowerupsManager::updatePowerups(gameplayEntities.spaceship);
 
 				if (AsteroidsManager::isPlayerCollidingWithAsteroid(gameplayEntities.spaceship)) {
 					gameplayEntities.lives -= 1;
@@ -57,6 +60,7 @@ namespace Asteroids {
 		}
 
 		void drawGameplay() {
+			PowerupsManager::drawPowerups();
 			Spaceship::drawSpaceship(gameplayEntities.spaceship);
 			BulletManager::drawBullets();
 			AsteroidsManager::drawAsteroids();
