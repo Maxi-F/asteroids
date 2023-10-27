@@ -36,22 +36,24 @@ namespace Asteroids {
 
 		void updateGameplay() {
 			UiManager::updateUI(gameplayEntities.isPaused);
-			Spaceship::updateSpaceship(gameplayEntities.spaceship);
-			BulletManager::updateBullets();
-			AsteroidsManager::updateAsteroids(gameplayEntities.spaceship);
-			PointsManager::updatePoints(gameplayEntities.spaceship, gameplayEntities.totalPoints);
+			if (!gameplayEntities.isPaused) {
+				Spaceship::updateSpaceship(gameplayEntities.spaceship);
+				BulletManager::updateBullets();
+				AsteroidsManager::updateAsteroids(gameplayEntities.spaceship);
+				PointsManager::updatePoints(gameplayEntities.spaceship, gameplayEntities.totalPoints);
 
-			if (AsteroidsManager::isPlayerCollidingWithAsteroid(gameplayEntities.spaceship)) {
-				gameplayEntities.lives -= 1;
+				if (AsteroidsManager::isPlayerCollidingWithAsteroid(gameplayEntities.spaceship)) {
+					gameplayEntities.lives -= 1;
 				
-				if (gameplayEntities.lives <= 0) {
-					ScreensManager::changeScreenTo(ScreensManager::Screens::MENU);
-				}
-				else {
-					initManagers();
-					Spaceship::restartSpaceship(gameplayEntities.spaceship);
-				}
-			};
+					if (gameplayEntities.lives <= 0) {
+						ScreensManager::changeScreenTo(ScreensManager::Screens::MENU);
+					}
+					else {
+						initManagers();
+						Spaceship::restartSpaceship(gameplayEntities.spaceship);
+					}
+				};
+			}
 		}
 
 		void drawGameplay() {
@@ -59,7 +61,7 @@ namespace Asteroids {
 			BulletManager::drawBullets();
 			AsteroidsManager::drawAsteroids();
 			PointsManager::drawPoints();
-			UiManager::drawUI(gameplayEntities.totalPoints, gameplayEntities.lives);
+			UiManager::drawUI(gameplayEntities.totalPoints, gameplayEntities.lives, gameplayEntities.isPaused);
 		}
 	}
 }
