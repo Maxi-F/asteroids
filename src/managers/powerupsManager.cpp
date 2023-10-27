@@ -15,6 +15,12 @@ namespace Asteroids {
 		static std::vector<PowerUp::PowerUp> powerUpsInMap;
 		static ActivePowerUp activePowerUps[POWER_UPS_COUNT];
 
+		static bool shouldAddPowerUp() {
+			const float POWER_UP_SPAWN_PROBABILITY = 0.1f;
+
+			return GetRandomValue(1, static_cast<int>(1 / POWER_UP_SPAWN_PROBABILITY)) == 1;
+		}
+
 		static void activatePowerup(PowerUp::PowerUp powerUp) {
 			for (int i = 0; i < POWER_UPS_COUNT; i++) {
 				if (activePowerUps[i].powerUpType == powerUp.powerUpType) {
@@ -33,7 +39,9 @@ namespace Asteroids {
 		};
 
 		void addPowerUp(Asteroid::Asteroid asteroid) {
-			powerUpsInMap.push_back(PowerUp::createPowerUp(asteroid.position));
+			if (shouldAddPowerUp()) {
+				powerUpsInMap.push_back(PowerUp::createPowerUp(asteroid.position));
+			}
 		}
 
 		void updatePowerups(Spaceship::Ship& ship) {
