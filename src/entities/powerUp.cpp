@@ -6,6 +6,7 @@ namespace Asteroids {
 		static const double MULTI_BULLET_LIFETIME = 15.0;
 		static const double MORE_POINTS_LIFETIME = 15.0;
 		static const double SHIELD_LIFETIME = 10.0;
+		static const double LIFETIME_IN_MAP = 5.0;
 
 		static Color getColorPerType(PowerUpType powerUpType) {
 			switch (powerUpType) {
@@ -42,11 +43,14 @@ namespace Asteroids {
 
 		PowerUp createPowerUp(Vector2 position) {
 			PowerUpType powerUpType = getRandomPowerUpType();
+			Timer::Timer lifetimeInMapTimer;
+			Timer::startTimer(&lifetimeInMapTimer, LIFETIME_IN_MAP);
 
 			return {
 				position,
 				POWER_UP_RADIUS,
 				getLifetimePerType(powerUpType),
+				lifetimeInMapTimer,
 				powerUpType
 			};
 		};

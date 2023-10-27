@@ -49,6 +49,8 @@ namespace Asteroids {
 				if (checkCircleCollision({ ship.position, ship.shipRadius }, { powerUpsInMap[i].position, powerUpsInMap[i].radius })) {
 					activatePowerup(powerUpsInMap[i]);
 					powerUpsInMap.erase(powerUpsInMap.begin() + i);
+				} else if (Timer::timerDone(powerUpsInMap[i].lifetimeInMapTimer)) {
+					powerUpsInMap.erase(powerUpsInMap.begin() + i);
 				}
 			}
 		};

@@ -15,6 +15,7 @@ namespace Asteroids {
 			Vector2 position;
 			float radius;
 			double lifetime;
+			Timer::Timer lifetimeInMapTimer;
 			PowerUpType powerUpType;
 		};
 
