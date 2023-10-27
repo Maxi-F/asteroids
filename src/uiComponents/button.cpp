@@ -11,6 +11,15 @@ namespace Asteroids {
 	namespace Buttons {
 		static const int BUTTON_TEXT_FONT_SIZE = 20;
 
+		static Rectangle getInsideRectangle(Rectangle rectangle) {
+			return {
+				rectangle.x + BOX_BORDER_WIDTH,
+				rectangle.y + BOX_BORDER_WIDTH,
+				rectangle.width - BOX_BORDER_WIDTH * 2,
+				rectangle.height - BOX_BORDER_WIDTH * 2,
+			};
+		}
+
 		void drawButton(Button button) {
 			if (button.isHovered) {
 				DrawRectangleRec(button.outsideRectangle, button.outsideColor);
@@ -40,32 +49,44 @@ namespace Asteroids {
 		void updateButton(Button& button) {
 			Vector2 mousePosition = GetMousePosition();
 
-			if (checkPointToRectangleCollision(button.outsideRectangle, mousePosition)) {
-				button.isHovered = true;
+			bool isMouseCollisioningWithButton = checkPointToRectangleCollision(button.outsideRectangle, mousePosition);
 
-				if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT)) {
+			bool isClicking = IsMouseButtonPressed(MOUSE_BUTTON_LEFT);
+			bool isReleased = IsMouseButtonReleased(MOUSE_BUTTON_LEFT);
+
+			if (isMouseCollisioningWithButton && IsMouseButtonDown(MOUSE_BUTTON_LEFT) && !isClicking) return;
+
+			if (isMouseCollisioningWithButton) {
+				if (isReleased && button.isHovered) {
 					button.isClicked = true;
 				}
+
+				button.isHovered = true;
+
 			}
 			else {
+				button.isClicked = false;
 				button.isHovered = false;
 			}
 		}
 
 		Button createButton(Rectangle rectangle) {
-			Rectangle insideRectangle = {
-				rectangle.x + BOX_BORDER_WIDTH,
-				rectangle.y + BOX_BORDER_WIDTH,
-				rectangle.width - BOX_BORDER_WIDTH * 2,
-				rectangle.height - BOX_BORDER_WIDTH * 2,
-			};
-
 			return {
-				insideRectangle,
+				getInsideRectangle(rectangle),
 				rectangle,
 				RED,
 				FOCUS_COLOR,
 				PINK
+			};
+		}
+
+		Button createButtonWithColors(Rectangle rectangle, Color insideColor, Color outsideColor, Color focusColor) {
+			return {
+				getInsideRectangle(rectangle),
+				rectangle,
+				insideColor,
+				outsideColor,
+				focusColor
 			};
 		}
 	}

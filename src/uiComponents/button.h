@@ -17,5 +17,6 @@ namespace Asteroids {
 		void drawCenteredTextInButton(Button button, const char* text);
 		void updateButton(Button &button);
 		Button createButton(Rectangle rectangle);
+		Button createButtonWithColors(Rectangle rectangle, Color insideColor, Color outsideColor, Color focusColor);
 	}
 }
