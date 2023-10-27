@@ -6,6 +6,7 @@
 #include "utils/math.h"
 #include "utils/screen.h"
 #include "managers/bulletManager.h"
+#include "managers/powerupsManager.h"
 
 #include <iostream>
 
@@ -106,13 +107,22 @@ namespace Asteroids {
 			DrawCircle(static_cast<int>(spaceShip.position.x), static_cast<int>(spaceShip.position.y), spaceShip.shipRadius, YELLOW);
 #endif 
 
+			Color textureColor;
+
+			if (PowerupsManager::isPowerUpActive(PowerUp::SHIELD)) {
+				textureColor = RED;
+			}
+			else {
+				textureColor = WHITE;
+			}
+
 			DrawTexturePro(
 				spaceShip.texture,
 				srcRectangle,
 				destRectangle,
 				origin,
 				spaceShip.rotation,
-				WHITE
+				textureColor
 			);
 		}
 	}

@@ -4,8 +4,8 @@ namespace Asteroids {
 	namespace PowerUp {
 		static const float POWER_UP_RADIUS = 10.0f;
 		static const double MULTI_BULLET_LIFETIME = 15.0;
-		static const double MORE_POINTS_LIFETIME = 30.0;
-		static const double SHIELD_LIFETIME = 20.0;
+		static const double MORE_POINTS_LIFETIME = 15.0;
+		static const double SHIELD_LIFETIME = 10.0;
 
 		static Color getColorPerType(PowerUpType powerUpType) {
 			switch (powerUpType) {
