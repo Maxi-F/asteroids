@@ -13,6 +13,7 @@ namespace Asteroids {
 			Vector2 direction;
 			Vector2 velocity;
 			Texture2D texture;
+			bool isPropulsing = false;
 		};
 
 		Ship createSpaceship();

@@ -16,6 +16,7 @@ namespace Asteroids {
 			float velocity;
 			AsteroidType type;
 			float radius;
+			Texture2D texture;
 			int points = 50;
 			bool shouldDivide = false;
 		};

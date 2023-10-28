@@ -13,8 +13,20 @@ namespace Asteroids {
 
 		void init() {
 			AssetWithTexture spaceShip = { Assets::SHIP, LoadTexture("assets/spaceship.png") };
+			AssetWithTexture propulsingSpaceship = { Assets::PROPULSING_SHIP, LoadTexture("assets/propulsingShip.png") };
+			AssetWithTexture bigAsteroid = { Assets::BIG_ASTEROID, LoadTexture("assets/bigAsteroid.png") };
+			AssetWithTexture mediumAsteroid1 = { Assets::MEDIUM_ASTEROID_1, LoadTexture("assets/mediumAsteroid.png") };
+			AssetWithTexture mediumAsteroid2 = { Assets::MEDIUM_ASTEROID_2, LoadTexture("assets/mediumAsteroid2.png") };
+			AssetWithTexture smallAsteroid = { Assets::SMALL_ASTEROID, LoadTexture("assets/smallAsteroid.png") };
 
-			textures = { spaceShip };
+			textures = { 
+				spaceShip,
+				propulsingSpaceship,
+				bigAsteroid,
+				mediumAsteroid1,
+				mediumAsteroid2,
+				smallAsteroid
+			};
 		}
 
 		Texture2D getTexture(Assets asset) {

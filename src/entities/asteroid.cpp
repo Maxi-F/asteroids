@@ -5,6 +5,7 @@
 #include "constants/dimensions.h"
 #include "utils/math.h"
 #include "utils/screen.h"
+#include "assets/assetManager.h"
 
 namespace Asteroids {
 	namespace Asteroid {
@@ -32,6 +33,19 @@ namespace Asteroids {
 					return BIG_ASTEROID_RADIUS;
 				default:
 					return 0;
+			}
+		}
+
+		static Texture2D getTexturePerType(AsteroidType type) {
+			switch (type) {
+			case AsteroidType::SMALL:
+				return AssetManager::getTexture(AssetManager::SMALL_ASTEROID);
+			case AsteroidType::MEDIUM:
+				return AssetManager::getTexture(GetRandomValue(1, 2) == 1 ? AssetManager::MEDIUM_ASTEROID_1 : AssetManager::MEDIUM_ASTEROID_2);
+			case AsteroidType::BIG:
+				return AssetManager::getTexture(AssetManager::BIG_ASTEROID);
+			default:
+				return AssetManager::getTexture(AssetManager::SMALL_ASTEROID);
 			}
 		}
 
@@ -108,7 +122,8 @@ namespace Asteroids {
 				direction,
 				velocity,
 				type,
-				getRadiusPerType(type)
+				getRadiusPerType(type),
+				getTexturePerType(type)
 			};
 		};
 
@@ -128,7 +143,8 @@ namespace Asteroids {
 				newDirection,
 				getVelocityByType(nextAsteroidType),
 				nextAsteroidType,
-				getRadiusPerType(nextAsteroidType)
+				getRadiusPerType(nextAsteroidType),
+				getTexturePerType(nextAsteroidType)
 			};
 		}
 
@@ -143,7 +159,39 @@ namespace Asteroids {
 		};
 
 		void drawAsteroid(Asteroid asteroid) {
+			Texture2D texture = asteroid.texture;
+
+#ifdef _DEBUG
 			DrawCircle(static_cast<int>(asteroid.position.x), static_cast<int>(asteroid.position.y), asteroid.radius, RED);
+#endif
+
+			Rectangle srcRectangle = {
+				0,
+				0,
+				static_cast<float>(texture.width),
+				static_cast<float>(texture.height)
+			};
+
+			Rectangle destRectangle = {
+				asteroid.position.x,
+				asteroid.position.y,
+				asteroid.radius * 2,
+				asteroid.radius * 2
+			};
+
+			Vector2 origin = {
+				static_cast<float>(asteroid.radius),
+				static_cast<float>(asteroid.radius)
+			};
+
+			DrawTexturePro(
+				texture,
+				srcRectangle,
+				destRectangle,
+				origin,
+				0,
+				WHITE
+			);
 		};
 	}
 }

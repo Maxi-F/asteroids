@@ -6,6 +6,11 @@ namespace Asteroids {
 	namespace AssetManager {
 		enum Assets {
 			SHIP = 0,
+			PROPULSING_SHIP,
+			BIG_ASTEROID,
+			MEDIUM_ASTEROID_1,
+			MEDIUM_ASTEROID_2,
+			SMALL_ASTEROID,
 			ASSETS_COUNT
 		};
 

@@ -12,7 +12,7 @@
 
 namespace Asteroids {
 	namespace Spaceship {
-		static float SHIP_RADIUS = 20.0f;
+		static float SHIP_RADIUS = 30.0f;
 		static Vector2 MAX_VELOCITY = { 300.0f, 300.0f };
 
 		static void updatePosition(Ship& spaceShip) {
@@ -21,11 +21,16 @@ namespace Asteroids {
 
 		static void updateVelocity(Ship& spaceShip) {
 			if (IsMouseButtonDown(MOUSE_BUTTON_RIGHT)) {
+				spaceShip.isPropulsing = true;
+
 				spaceShip.velocity = Vector2Clamp(
 					Vector2Add(spaceShip.velocity, Vector2Scale(spaceShip.direction, spaceShip.acceleration * GetFrameTime())),
 					Vector2Scale(MAX_VELOCITY, -1.0f),
 					MAX_VELOCITY
 				);
+			}
+			else {
+				spaceShip.isPropulsing = false;
 			}
 		}
 
@@ -47,7 +52,6 @@ namespace Asteroids {
 		}
 
 		Ship createSpaceship() {
-			Texture2D shipTexture = AssetManager::getTexture(AssetManager::Assets::SHIP);
 			Vector2 screenDimensions = { ScreenUtils::getScreenWidth(), ScreenUtils::getScreenHeight() };
 
 			return {
@@ -56,8 +60,7 @@ namespace Asteroids {
 				400.0f,
 				{ getHalf(screenDimensions.x), getHalf(screenDimensions.y) },
 				{ 0.0f, 0.0f },
-				{ 0.0f, 0.0f },
-				shipTexture
+				{ 0.0f, 0.0f }
 			};
 		}
 
@@ -84,11 +87,16 @@ namespace Asteroids {
 		}
 
 		void drawSpaceship(Ship spaceShip) {
+			Texture2D shipTexture = AssetManager::getTexture(AssetManager::Assets::SHIP);
+			Texture2D propulsingShipTexture = AssetManager::getTexture(AssetManager::Assets::PROPULSING_SHIP);
+
+			Texture2D usingTexture = spaceShip.isPropulsing ? propulsingShipTexture : shipTexture;
+
 			Rectangle srcRectangle = {
 				0,
 				0,
-				static_cast<float>(spaceShip.texture.width),
-				static_cast<float>(spaceShip.texture.height)
+				static_cast<float>(usingTexture.width),
+				static_cast<float>(usingTexture.height)
 			};
 
 			Rectangle destRectangle = { 
@@ -117,7 +125,7 @@ namespace Asteroids {
 			}
 
 			DrawTexturePro(
-				spaceShip.texture,
+				usingTexture,
 				srcRectangle,
 				destRectangle,
 				origin,
