@@ -2,6 +2,7 @@
 
 #include "entities/spaceship.h"
 #include "assets/sfxManager.h"
+#include "assets/assetManager.h"
 #include "managers/bulletManager.h"
 #include "managers/asteroidsManager.h"
 #include "managers/pointsManager.h"
@@ -75,6 +76,8 @@ namespace Asteroids {
 		}
 
 		void drawGameplay() {
+			DrawTextureEx(AssetManager::getTexture(AssetManager::BACKGROUND), { 0, 0 }, 0, 2, WHITE);
+
 			PowerupsManager::drawPowerups();
 			BulletManager::drawBullets();
 			AsteroidsManager::drawAsteroids();

@@ -12,6 +12,8 @@ namespace Asteroids {
 		static std::vector<AssetWithTexture> textures;
 
 		void init() {
+			AssetWithTexture background = { Assets::BACKGROUND, LoadTexture("res/images/background.png") };
+
 			AssetWithTexture spaceShip = { Assets::SHIP, LoadTexture("res/images/spaceship.png") };
 			AssetWithTexture propulsingSpaceship = { Assets::PROPULSING_SHIP, LoadTexture("res/images/propulsingShip.png") };
 			AssetWithTexture explodedShip = { Assets::EXPLODED_SHIP, LoadTexture("res/images/explodedShip.png") };
@@ -33,6 +35,7 @@ namespace Asteroids {
 			AssetWithTexture life = { Assets::LIFE, LoadTexture("res/images/life.png") };
 
 			textures = { 
+				background,
 				spaceShip,
 				propulsingSpaceship,
 				explodedShip,

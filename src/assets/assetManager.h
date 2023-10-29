@@ -20,6 +20,7 @@ namespace Asteroids {
 			SHIELD_POWER_UP,
 			MULTI_BULLET,
 			LIFE,
+			BACKGROUND,
 			ASSETS_COUNT
 		};
 
