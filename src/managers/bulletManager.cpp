@@ -29,7 +29,7 @@ namespace Asteroids {
 		void addBullet(Bullets::Bullet bullet) {
 			if (Timer::timerDone(bulletTimer)) {
 				if (PowerupsManager::isPowerUpActive(PowerUp::PowerUpType::MULTI_BULLET)) {
-					SfxManager::playSound(SfxManager::SHOOT_1);
+					SfxManager::playSound(SfxManager::SHOOT_1, true);
 
 					const float BULLET_SPREAD = 15.0f;
 
@@ -39,7 +39,7 @@ namespace Asteroids {
 					bullets.push_back(Bullets::copyBulletByAngle(bullet, -BULLET_SPREAD * DEG2RAD));
 				}
 				else {
-					SfxManager::playSound(SfxManager::SHOOT_2);
+					SfxManager::playSound(SfxManager::SHOOT_2, true);
 					bullets.push_back(bullet);
 				}
 				Timer::startTimer(&bulletTimer, TIME_BETWEEN_BULLETS);

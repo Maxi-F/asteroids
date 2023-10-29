@@ -3,6 +3,7 @@
 #include "raymath.h"
 
 #include "assets/assetManager.h"
+#include "assets/sfxManager.h"
 #include "utils/math.h"
 #include "utils/screen.h"
 #include "managers/bulletManager.h"
@@ -21,6 +22,8 @@ namespace Asteroids {
 
 		static void updateVelocity(Ship& spaceShip) {
 			if (IsMouseButtonDown(MOUSE_BUTTON_RIGHT)) {
+				SfxManager::playSound(SfxManager::PROPULSION, false);
+
 				spaceShip.isPropulsing = true;
 
 				spaceShip.velocity = Vector2Clamp(

@@ -125,7 +125,7 @@ namespace Asteroids {
 		void checkCollissionsWith(Bullets::Bullet& bullet) {
 			for (size_t i = 0; i < asteroids.size(); i++) {
 				if (checkCircleCollision({ bullet.position, bullet.radius }, { asteroids[i].position, asteroids[i].radius })) {
-					SfxManager::playSound(getRandomCollisionSound());
+					SfxManager::playSound(getRandomCollisionSound(), true);
 					asteroids[i].shouldDivide = true;
 					bullet.shouldRemove = true;
 				}

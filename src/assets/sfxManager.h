@@ -23,6 +23,7 @@ namespace Asteroids {
 		};
 
 		void init();
-		void playSound(SfxName name);
+		void stopAllSounds();
+		void playSound(SfxName name, bool shouldOverlap);
 	}
 }

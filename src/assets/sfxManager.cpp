@@ -47,10 +47,16 @@ namespace Asteroids {
 				propulsion
 			};
 		};
-		
-		void playSound(SfxName sfxName) {
+
+		void stopAllSounds() {
 			for (size_t i = 0; i < sfxs.size(); i++) {
-				if (sfxName == sfxs[i].name) {
+				StopSound(sfxs[i].sound);
+			}
+		}
+		
+		void playSound(SfxName sfxName, bool shouldOverlap) {
+			for (size_t i = 0; i < sfxs.size(); i++) {
+				if (sfxName == sfxs[i].name && (shouldOverlap || !IsSoundPlaying(sfxs[i].sound))) {
 					PlaySound(sfxs[i].sound);
 				}
 			}

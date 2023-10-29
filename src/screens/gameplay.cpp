@@ -1,6 +1,7 @@
 #include "gameplay.h"
 
 #include "entities/spaceship.h"
+#include "assets/sfxManager.h"
 #include "managers/bulletManager.h"
 #include "managers/asteroidsManager.h"
 #include "managers/pointsManager.h"
@@ -50,6 +51,9 @@ namespace Asteroids {
 
 				if (AsteroidsManager::isPlayerCollidingWithAsteroid(gameplayEntities.spaceship) && !PowerupsManager::isPowerUpActive(PowerUp::SHIELD)) {
 					gameplayEntities.lives -= 1;
+					SfxManager::stopAllSounds();
+					SfxManager::playSound(SfxManager::SHIP_COLLISION, true);
+
 					Timer::startTimer(&deathTimer, DEATH_ANIM_LIFETIME);
 					gameplayEntities.isDeathPlaying = true;
 				};
