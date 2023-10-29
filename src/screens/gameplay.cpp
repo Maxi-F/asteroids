@@ -71,9 +71,9 @@ namespace Asteroids {
 
 		void drawGameplay() {
 			PowerupsManager::drawPowerups();
-			Spaceship::drawSpaceship(gameplayEntities.spaceship, gameplayEntities.isDeathPlaying, deathTimer);
 			BulletManager::drawBullets();
 			AsteroidsManager::drawAsteroids();
+			Spaceship::drawSpaceship(gameplayEntities.spaceship, gameplayEntities.isDeathPlaying, deathTimer);
 			PointsManager::drawPoints();
 			UiManager::drawUI(gameplayEntities.totalPoints, gameplayEntities.lives, gameplayEntities.isPaused);
 		}
