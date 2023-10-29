@@ -28,6 +28,9 @@ namespace Asteroids {
 			SfxWithName shipCollision = { SHIP_COLLISION, LoadSound("res/sounds/shipCollision.wav") };
 			SfxWithName propulsion = { PROPULSION,  LoadSound("res/sounds/propulsion.wav") };
 
+			SetSoundVolume(shoot1.sound, 0.5);
+			SetSoundVolume(shoot2.sound, 0.5);
+
 			sfxs = {
 				bulletCollision1,
 				bulletCollision2,
@@ -45,13 +48,12 @@ namespace Asteroids {
 			};
 		};
 		
-		Sound getSound(SfxName sfxName) {
+		void playSound(SfxName sfxName) {
 			for (size_t i = 0; i < sfxs.size(); i++) {
 				if (sfxName == sfxs[i].name) {
-					return sfxs[i].sound;
+					PlaySound(sfxs[i].sound);
 				}
 			}
-			return {};
 		};
 	}
 }

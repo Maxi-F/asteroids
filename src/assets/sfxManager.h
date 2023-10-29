@@ -23,6 +23,6 @@ namespace Asteroids {
 		};
 
 		void init();
-		Sound getSound(SfxName name);
+		void playSound(SfxName name);
 	}
 }

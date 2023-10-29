@@ -3,6 +3,7 @@
 #include <vector>
 
 #include "utils/timer.h"
+#include "assets/sfxManager.h"
 #include "managers/asteroidsManager.h"
 #include "managers/powerupsManager.h"
 
@@ -28,6 +29,8 @@ namespace Asteroids {
 		void addBullet(Bullets::Bullet bullet) {
 			if (Timer::timerDone(bulletTimer)) {
 				if (PowerupsManager::isPowerUpActive(PowerUp::PowerUpType::MULTI_BULLET)) {
+					SfxManager::playSound(SfxManager::SHOOT_1);
+
 					const float BULLET_SPREAD = 15.0f;
 
 					Bullets::changeTextureToMulti(bullet);
@@ -36,6 +39,7 @@ namespace Asteroids {
 					bullets.push_back(Bullets::copyBulletByAngle(bullet, -BULLET_SPREAD * DEG2RAD));
 				}
 				else {
+					SfxManager::playSound(SfxManager::SHOOT_2);
 					bullets.push_back(bullet);
 				}
 				Timer::startTimer(&bulletTimer, TIME_BETWEEN_BULLETS);

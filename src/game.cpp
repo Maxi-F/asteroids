@@ -14,6 +14,7 @@ namespace Asteroids {
     static void init() {
         InitWindow(static_cast<int>(SCREEN_DIMENSIONS.x), static_cast<int>(SCREEN_DIMENSIONS.y), "Asteroids");
 
+        InitAudioDevice();
         AssetManager::init();
         SfxManager::init();
         ScreensManager::initManager();
