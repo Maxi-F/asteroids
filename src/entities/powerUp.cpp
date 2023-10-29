@@ -54,7 +54,7 @@ namespace Asteroids {
 				powerUpType
 			};
 		};
-		
+
 		void drawPowerUp(PowerUp powerUp) {
 			DrawCircle(
 				static_cast<int>(powerUp.position.x),
@@ -63,5 +63,13 @@ namespace Asteroids {
 				getColorPerType(powerUp.powerUpType)
 			);
 		};
+
+		void pauseTimer(PowerUp& powerUp) {
+			Timer::pauseTimer(&powerUp.lifetimeInMapTimer);
+		}
+
+		void unpauseTimer(PowerUp& powerUp) {
+			Timer::unPauseTimer(&powerUp.lifetimeInMapTimer);
+		}
 	}
 }

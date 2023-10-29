@@ -10,5 +10,7 @@ namespace Asteroids {
 		void checkCollissionsWith(Bullets::Bullet &bullet);
 		bool isPlayerCollidingWithAsteroid(Spaceship::Ship ship);
 		void drawAsteroids();
+		void pauseTimers();
+		void unpauseTimers();
 	}
 }

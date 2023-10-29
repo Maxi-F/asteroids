@@ -55,5 +55,20 @@ namespace Asteroids {
 			}
 		}
 
+		void pauseTimers() {
+			Timer::pauseTimer(&bulletTimer);
+
+			for (size_t i = 0; i < bullets.size(); i++) {
+				Bullets::pauseTimer(bullets[i]);
+			}
+		};
+		
+		void unpauseTimers() {
+			Timer::unPauseTimer(&bulletTimer);
+
+			for (size_t i = 0; i < bullets.size(); i++) {
+				Bullets::unpauseTimer(bullets[i]);
+			}
+		};
 	}
 }

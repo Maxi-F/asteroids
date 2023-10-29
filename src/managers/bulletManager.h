@@ -8,5 +8,7 @@ namespace Asteroids {
 		void addBullet(Bullets::Bullet bullet);
 		void updateBullets();
 		void drawBullets();
+		void pauseTimers();
+		void unpauseTimers();
 	}
 }

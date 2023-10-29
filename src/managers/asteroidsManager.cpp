@@ -130,5 +130,13 @@ namespace Asteroids {
 				Asteroid::drawAsteroid(asteroids[i]);
 			}
 		};
+
+		void pauseTimers() {
+			Timer::pauseTimer(&asteroidSpawnTimer);
+		}
+
+		void unpauseTimers() {
+			Timer::unPauseTimer(&asteroidSpawnTimer);
+		}
 	}
 }

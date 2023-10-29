@@ -21,5 +21,7 @@ namespace Asteroids {
 
 		PowerUp createPowerUp(Vector2 position);
 		void drawPowerUp(PowerUp powerUp);
+		void pauseTimer(PowerUp& powerUp);
+		void unpauseTimer(PowerUp& powerUp);
 	}
 }

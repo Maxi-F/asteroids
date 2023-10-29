@@ -5,6 +5,9 @@
 
 #include "uiComponents/button.h"
 #include "utils/math.h"
+#include "managers/asteroidsManager.h"
+#include "managers/bulletManager.h"
+#include "managers/powerupsManager.h"
 
 namespace Asteroids {
 	namespace UiManager {
@@ -72,6 +75,10 @@ namespace Asteroids {
 
 				if (resumeButton.isClicked) {
 					isPaused = false;
+
+					AsteroidsManager::unpauseTimers();
+					BulletManager::unpauseTimers();
+					PowerupsManager::unpauseTimers();
 				}
 			}
 			else {
@@ -79,6 +86,10 @@ namespace Asteroids {
 
 				if (pauseButton.isClicked) {
 					isPaused = true;
+					
+					AsteroidsManager::pauseTimers();
+					BulletManager::pauseTimers();
+					PowerupsManager::pauseTimers();
 				}
 			}
 		}

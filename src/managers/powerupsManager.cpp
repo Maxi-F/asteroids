@@ -64,10 +64,30 @@ namespace Asteroids {
 		bool isPowerUpActive(PowerUp::PowerUpType powerUpType) {
 			for (int i = 0; i < POWER_UPS_COUNT; i++) {
 				if (activePowerUps[i].powerUpType == powerUpType) {
-					return !Timer::timerDone(activePowerUps[i].lifetimeTimer);
+					return !activePowerUps[i].lifetimeTimer.paused && !Timer::timerDone(activePowerUps[i].lifetimeTimer);
 				}
 			}
 			return false;
+		};
+
+		void pauseTimers() {
+			for (int i = 0; i < POWER_UPS_COUNT; i++) {
+				Timer::pauseTimer(&activePowerUps[i].lifetimeTimer);
+			}
+
+			for (size_t i = 0; i < powerUpsInMap.size(); i++) {
+				PowerUp::pauseTimer(powerUpsInMap[i]);
+			}
+		};
+
+		void unpauseTimers() {
+			for (int i = 0; i < POWER_UPS_COUNT; i++) {
+				Timer::unPauseTimer(&activePowerUps[i].lifetimeTimer);
+			}
+
+			for (size_t i = 0; i < powerUpsInMap.size(); i++) {
+				PowerUp::unpauseTimer(powerUpsInMap[i]);
+			}
 		};
 	}
 }

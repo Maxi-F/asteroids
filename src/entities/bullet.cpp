@@ -46,5 +46,13 @@ namespace Asteroids {
 				bullet.lifetimeTimer
 			};
 		}
+
+		void pauseTimer(Bullet& bullet) {
+			Timer::pauseTimer(&bullet.lifetimeTimer);
+		}
+
+		void unpauseTimer(Bullet& bullet) {
+			Timer::unPauseTimer(&bullet.lifetimeTimer);
+		}
 	}
 }
