@@ -3,6 +3,7 @@
 #include "raylib.h"
 #include <vector>
 
+#include "assets/sfxManager.h"
 #include "entities/asteroid.h"
 #include "entities/spaceship.h"
 #include "managers/pointsManager.h"
@@ -39,6 +40,20 @@ namespace Asteroids {
 					}
 					asteroids.erase(asteroids.begin() + i);
 				}
+			}
+		}
+
+		static SfxManager::SfxName getRandomCollisionSound() {
+			const int COLLISION_SOUNDS_COUNT = 2;
+			int collisionSound = GetRandomValue(1, COLLISION_SOUNDS_COUNT);
+
+			switch (collisionSound) {
+				case 1:
+					return SfxManager::BULLET_COLLISION_1;
+				case 2:
+					return SfxManager::BULLET_COLLISION_2;
+				default:
+					return SfxManager::BULLET_COLLISION_1;
 			}
 		}
 
@@ -110,6 +125,7 @@ namespace Asteroids {
 		void checkCollissionsWith(Bullets::Bullet& bullet) {
 			for (size_t i = 0; i < asteroids.size(); i++) {
 				if (checkCircleCollision({ bullet.position, bullet.radius }, { asteroids[i].position, asteroids[i].radius })) {
+					SfxManager::playSound(getRandomCollisionSound());
 					asteroids[i].shouldDivide = true;
 					bullet.shouldRemove = true;
 				}

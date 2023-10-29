@@ -26,10 +26,10 @@ namespace Asteroids {
 			SfxWithName shoot1 = { SHOOT_1, LoadSound("res/sounds/shoot1.wav") };
 			SfxWithName shoot2 = { SHOOT_2, LoadSound("res/sounds/shoot2.wav") };
 			SfxWithName shipCollision = { SHIP_COLLISION, LoadSound("res/sounds/shipCollision.wav") };
-			SfxWithName propulsion = { PROPULSION,  LoadSound("res/sounds/propulsion.wav") };
+			SfxWithName propulsion = { PROPULSION, LoadSound("res/sounds/propulsion.wav") };
 
-			SetSoundVolume(shoot1.sound, 0.5);
-			SetSoundVolume(shoot2.sound, 0.5);
+			SetSoundVolume(shoot1.sound, 1);
+			SetSoundVolume(shoot2.sound, 1);
 
 			sfxs = {
 				bulletCollision1,
