@@ -2,6 +2,8 @@
 
 #include "raylib.h"
 
+#include "utils/timer.h"
+
 namespace Asteroids {
 	namespace Spaceship {
 		struct Ship {
@@ -19,6 +21,6 @@ namespace Asteroids {
 		Ship createSpaceship();
 		void updateSpaceship(Ship &spaceShip);
 		void restartSpaceship(Ship &spaceShip);
-		void drawSpaceship(Ship spaceShip);
+		void drawSpaceship(Ship spaceShip, bool isDeathPlaying, Timer::Timer deathTimer);
 	}
 }

@@ -15,8 +15,11 @@ namespace Asteroids {
 			int totalPoints = 0;
 			int lives = 3;
 			bool isPaused = false;
+			bool isDeathPlaying = false;
 		};
+		static const double DEATH_ANIM_LIFETIME = 2.0;
 
+		Timer::Timer deathTimer;
 		static GameplayEntities gameplayEntities;
 
 		static void initManagers() {
@@ -38,7 +41,7 @@ namespace Asteroids {
 
 		void updateGameplay() {
 			UiManager::updateUI(gameplayEntities.isPaused);
-			if (!gameplayEntities.isPaused) {
+			if (!gameplayEntities.isPaused && !gameplayEntities.isDeathPlaying) {
 				Spaceship::updateSpaceship(gameplayEntities.spaceship);
 				BulletManager::updateBullets();
 				AsteroidsManager::updateAsteroids(gameplayEntities.spaceship);
@@ -47,21 +50,28 @@ namespace Asteroids {
 
 				if (AsteroidsManager::isPlayerCollidingWithAsteroid(gameplayEntities.spaceship) && !PowerupsManager::isPowerUpActive(PowerUp::SHIELD)) {
 					gameplayEntities.lives -= 1;
-				
+					Timer::startTimer(&deathTimer, DEATH_ANIM_LIFETIME);
+					gameplayEntities.isDeathPlaying = true;
+				};
+			}
+
+			else if (gameplayEntities.isDeathPlaying) {
+				if (Timer::timerDone(deathTimer)) {
+					
 					if (gameplayEntities.lives <= 0) {
 						ScreensManager::changeScreenTo(ScreensManager::Screens::MENU);
 					}
-					else {
-						initManagers();
-						Spaceship::restartSpaceship(gameplayEntities.spaceship);
-					}
-				};
+
+					gameplayEntities.isDeathPlaying = false;
+					initManagers();
+					Spaceship::restartSpaceship(gameplayEntities.spaceship);
+				}
 			}
 		}
 
 		void drawGameplay() {
 			PowerupsManager::drawPowerups();
-			Spaceship::drawSpaceship(gameplayEntities.spaceship);
+			Spaceship::drawSpaceship(gameplayEntities.spaceship, gameplayEntities.isDeathPlaying, deathTimer);
 			BulletManager::drawBullets();
 			AsteroidsManager::drawAsteroids();
 			PointsManager::drawPoints();

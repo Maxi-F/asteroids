@@ -86,15 +86,29 @@ namespace Asteroids {
 			shootFrom(spaceShip);
 		}
 
-		void drawSpaceship(Ship spaceShip) {
+		void drawSpaceship(Ship spaceShip, bool isDeathPlaying, Timer::Timer deathTimer) {
+#ifdef _DEBUG
+			DrawCircle(static_cast<int>(spaceShip.position.x), static_cast<int>(spaceShip.position.y), spaceShip.shipRadius, YELLOW);
+#endif 
+
+			const double EXPLODED_SHIP_SECONDS = 1.0;
+
 			Texture2D shipTexture = AssetManager::getTexture(AssetManager::Assets::SHIP);
 			Texture2D propulsingShipTexture = AssetManager::getTexture(AssetManager::Assets::PROPULSING_SHIP);
 			Texture2D shieldedShipTexture = AssetManager::getTexture(AssetManager::Assets::SHIELDED_SHIP);
 			Texture2D shieldedPropulsingShipTexture = AssetManager::getTexture(AssetManager::Assets::SHIELDED_PROPULSING_SHIP);
+			Texture2D explodedShipTexture = AssetManager::getTexture(AssetManager::Assets::EXPLODED_SHIP);
 
 			Texture2D usingTexture;
 
-			if (PowerupsManager::isPowerUpActive(PowerUp::SHIELD)) {
+			if (isDeathPlaying) {
+				if (!Timer::isTimeLeftLessThan(deathTimer, EXPLODED_SHIP_SECONDS)) {
+					usingTexture = explodedShipTexture;
+				}
+				else {
+					return;
+				}
+			} else if (PowerupsManager::isPowerUpActive(PowerUp::SHIELD)) {
 				if (spaceShip.isPropulsing) {
 					usingTexture = shieldedPropulsingShipTexture;
 				}
@@ -127,10 +141,6 @@ namespace Asteroids {
 				static_cast<float>(spaceShip.shipRadius),
 				static_cast<float>(spaceShip.shipRadius)
 			};
-
-#ifdef _DEBUG
-			DrawCircle(static_cast<int>(spaceShip.position.x), static_cast<int>(spaceShip.position.y), spaceShip.shipRadius, YELLOW);
-#endif 
 
 			DrawTexturePro(
 				usingTexture,
