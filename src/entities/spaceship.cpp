@@ -89,8 +89,25 @@ namespace Asteroids {
 		void drawSpaceship(Ship spaceShip) {
 			Texture2D shipTexture = AssetManager::getTexture(AssetManager::Assets::SHIP);
 			Texture2D propulsingShipTexture = AssetManager::getTexture(AssetManager::Assets::PROPULSING_SHIP);
+			Texture2D shieldedShipTexture = AssetManager::getTexture(AssetManager::Assets::SHIELDED_SHIP);
+			Texture2D shieldedPropulsingShipTexture = AssetManager::getTexture(AssetManager::Assets::SHIELDED_PROPULSING_SHIP);
 
-			Texture2D usingTexture = spaceShip.isPropulsing ? propulsingShipTexture : shipTexture;
+			Texture2D usingTexture;
+
+			if (PowerupsManager::isPowerUpActive(PowerUp::SHIELD)) {
+				if (spaceShip.isPropulsing) {
+					usingTexture = shieldedPropulsingShipTexture;
+				}
+				else {
+					usingTexture = shieldedShipTexture;
+				}
+			}
+			else if (spaceShip.isPropulsing) {
+				usingTexture = propulsingShipTexture;
+			}
+			else {
+				usingTexture = shipTexture;
+			}
 
 			Rectangle srcRectangle = {
 				0,
@@ -115,22 +132,13 @@ namespace Asteroids {
 			DrawCircle(static_cast<int>(spaceShip.position.x), static_cast<int>(spaceShip.position.y), spaceShip.shipRadius, YELLOW);
 #endif 
 
-			Color textureColor;
-
-			if (PowerupsManager::isPowerUpActive(PowerUp::SHIELD)) {
-				textureColor = RED;
-			}
-			else {
-				textureColor = WHITE;
-			}
-
 			DrawTexturePro(
 				usingTexture,
 				srcRectangle,
 				destRectangle,
 				origin,
 				spaceShip.rotation,
-				textureColor
+				WHITE
 			);
 		}
 	}
