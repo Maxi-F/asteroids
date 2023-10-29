@@ -1,8 +1,10 @@
 #include "powerUp.h"
 
+#include "assets/assetManager.h"
+
 namespace Asteroids {
 	namespace PowerUp {
-		static const float POWER_UP_RADIUS = 10.0f;
+		static const float POWER_UP_RADIUS = 20.0f;
 		static const double MULTI_BULLET_LIFETIME = 15.0;
 		static const double MORE_POINTS_LIFETIME = 15.0;
 		static const double SHIELD_LIFETIME = 10.0;
@@ -18,6 +20,19 @@ namespace Asteroids {
 					return BLUE;
 				default:
 					return BLACK;
+			}
+		}
+
+		static Texture2D getTexturePerType(PowerUpType powerUpType) {
+			switch (powerUpType) {
+			case PowerUpType::MULTI_BULLET:
+				return AssetManager::getTexture(AssetManager::BULLETS_POWER_UP);
+			case PowerUpType::SHIELD:
+				return AssetManager::getTexture(AssetManager::SHIELD_POWER_UP);
+			case PowerUpType::MORE_POINTS:
+				return AssetManager::getTexture(AssetManager::POINTS_POWER_UP);
+			default:
+				return AssetManager::getTexture(AssetManager::POINTS_POWER_UP);
 			}
 		}
 
@@ -51,16 +66,48 @@ namespace Asteroids {
 				POWER_UP_RADIUS,
 				getLifetimePerType(powerUpType),
 				lifetimeInMapTimer,
-				powerUpType
+				powerUpType,
 			};
 		};
 
 		void drawPowerUp(PowerUp powerUp) {
+#ifdef _DEBUG
 			DrawCircle(
 				static_cast<int>(powerUp.position.x),
 				static_cast<int>(powerUp.position.y),
 				POWER_UP_RADIUS,
 				getColorPerType(powerUp.powerUpType)
+			);
+#endif
+
+			Texture2D texture = getTexturePerType(powerUp.powerUpType);
+
+			Rectangle srcRectangle = {
+				0,
+				0,
+				static_cast<float>(texture.width),
+				static_cast<float>(texture.height)
+			};
+
+			Rectangle destRectangle = {
+				powerUp.position.x,
+				powerUp.position.y,
+				powerUp.radius * 2,
+				powerUp.radius * 2
+			};
+
+			Vector2 origin = {
+				static_cast<float>(powerUp.radius),
+				static_cast<float>(powerUp.radius)
+			};
+
+			DrawTexturePro(
+				texture,
+				srcRectangle,
+				destRectangle,
+				origin,
+				0,
+				WHITE
 			);
 		};
 
