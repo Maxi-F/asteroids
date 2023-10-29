@@ -18,6 +18,7 @@ namespace Asteroids {
 			float radius;
 			Texture2D texture;
 			int points = 50;
+			float angle = 0;
 			bool shouldDivide = false;
 		};
 

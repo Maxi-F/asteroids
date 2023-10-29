@@ -15,6 +15,9 @@ namespace Asteroids {
 		static const float SMALL_ASTEROID_VELOCITY = 100.0f;
 		static const float MEDIUM_ASTEROID_VELOCITY = 50.0f;
 		static const float BIG_ASTEROID_VELOCITY = 25.0f;
+		static const float SMALL_PLUS_ANGLE = 20.0f;
+		static const float MEDIUM_PLUS_ANGLE = 10.0f;
+		static const float BIG_PLUS_ANGLE = 5.0f;
 
 		enum ScreenPartPerValue {
 			TOP = 0,
@@ -33,6 +36,19 @@ namespace Asteroids {
 					return BIG_ASTEROID_RADIUS;
 				default:
 					return 0;
+			}
+		}
+
+		static float getPlusAnglePerType(AsteroidType type) {
+			switch (type) {
+			case AsteroidType::SMALL:
+				return SMALL_PLUS_ANGLE;
+			case AsteroidType::MEDIUM:
+				return MEDIUM_PLUS_ANGLE;
+			case AsteroidType::BIG:
+				return BIG_PLUS_ANGLE;
+			default:
+				return 0;
 			}
 		}
 
@@ -150,6 +166,7 @@ namespace Asteroids {
 
 		void updateAsteroid(Asteroid& asteroid) {
 			asteroid.position = Vector2Add(asteroid.position, Vector2Scale(asteroid.direction, asteroid.velocity * GetFrameTime()));
+			asteroid.angle += getPlusAnglePerType(asteroid.type) * GetFrameTime();
 
 			updateAsteroidByScreenCollision(asteroid);
 		};
@@ -189,7 +206,7 @@ namespace Asteroids {
 				srcRectangle,
 				destRectangle,
 				origin,
-				0,
+				asteroid.angle,
 				WHITE
 			);
 		};
