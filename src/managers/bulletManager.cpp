@@ -30,6 +30,7 @@ namespace Asteroids {
 				if (PowerupsManager::isPowerUpActive(PowerUp::PowerUpType::MULTI_BULLET)) {
 					const float BULLET_SPREAD = 15.0f;
 
+					Bullets::changeTextureToMulti(bullet);
 					bullets.push_back(bullet);
 					bullets.push_back(Bullets::copyBulletByAngle(bullet, BULLET_SPREAD * DEG2RAD));
 					bullets.push_back(Bullets::copyBulletByAngle(bullet, -BULLET_SPREAD * DEG2RAD));

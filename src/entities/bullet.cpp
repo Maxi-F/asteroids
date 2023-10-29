@@ -3,6 +3,7 @@
 #include "raymath.h"
 
 #include "utils/screen.h"
+#include "assets/assetManager.h"
 
 namespace Asteroids {
 	namespace Bullets {
@@ -10,7 +11,7 @@ namespace Asteroids {
 		static const float BULLET_RADIUS = 5.0f;
 		static const double BULLET_LIFETIME = 1.0;
 
-		Bullet createBullet(Vector2 position, Vector2 direction) {
+		Bullet createBullet(Vector2 position, Vector2 direction, float angle) {
 			Timer::Timer timer;
 			Timer::startTimer(&timer, BULLET_LIFETIME);
 
@@ -19,7 +20,9 @@ namespace Asteroids {
 				direction,
 				BULLET_VELOCITY,
 				BULLET_RADIUS,
-				timer
+				timer,
+				angle,
+				AssetManager::getTexture(AssetManager::BULLET),
 			};
 		}
 
@@ -32,8 +35,37 @@ namespace Asteroids {
 		}
 
 		void drawBullet(Bullet bullet) {
+#ifdef _DEBUG
 			DrawCircle(
 				static_cast<int>(bullet.position.x), static_cast<int>(bullet.position.y), bullet.radius, WHITE
+			);
+#endif
+			Rectangle srcRectangle = {
+				0,
+				0,
+				static_cast<float>(bullet.texture.width),
+				static_cast<float>(bullet.texture.height)
+			};
+
+			Rectangle destRectangle = {
+				bullet.position.x,
+				bullet.position.y,
+				bullet.radius * 2,
+				bullet.radius * 2
+			};
+
+			Vector2 origin = {
+				static_cast<float>(bullet.radius),
+				static_cast<float>(bullet.radius)
+			};
+
+			DrawTexturePro(
+				bullet.texture,
+				srcRectangle,
+				destRectangle,
+				origin,
+				bullet.angle,
+				WHITE
 			);
 		}
 
@@ -43,8 +75,14 @@ namespace Asteroids {
 				Vector2Rotate(bullet.direction, angle),
 				bullet.velocity,
 				bullet.radius,
-				bullet.lifetimeTimer
+				bullet.lifetimeTimer,
+				bullet.angle,
+				bullet.texture
 			};
+		}
+
+		void changeTextureToMulti(Bullet& bullet) {
+			bullet.texture = AssetManager::getTexture(AssetManager::MULTI_BULLET);
 		}
 
 		void pauseTimer(Bullet& bullet) {

@@ -47,7 +47,7 @@ namespace Asteroids {
 
 		static void shootFrom(Ship spaceShip) {
 			if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) {
-				BulletManager::addBullet(Bullets::createBullet(spaceShip.position, spaceShip.direction));
+				BulletManager::addBullet(Bullets::createBullet(spaceShip.position, spaceShip.direction, spaceShip.rotation));
 			}
 		}
 
