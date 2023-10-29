@@ -120,6 +120,9 @@
     <ClCompile Include="src\managers\powerupsManager.cpp">
       <Filter>Archivos de origen\managers</Filter>
     </ClCompile>
+    <ClCompile Include="src\assets\sfxManager.cpp">
+      <Filter>Archivos de origen\assets</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game.h">
@@ -184,6 +187,9 @@
     </ClInclude>
     <ClInclude Include="src\managers\powerupsManager.h">
       <Filter>Archivos de encabezado\managers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\assets\sfxManager.h">
+      <Filter>Archivos de encabezado\assets</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

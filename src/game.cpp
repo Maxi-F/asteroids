@@ -3,6 +3,7 @@
 #include "raylib.h"
 #include "managers/screenManager.h"
 #include "assets/assetManager.h"
+#include "assets/sfxManager.h"
 #include "constants/dimensions.h"
 
 namespace Asteroids {
@@ -14,6 +15,7 @@ namespace Asteroids {
         InitWindow(static_cast<int>(SCREEN_DIMENSIONS.x), static_cast<int>(SCREEN_DIMENSIONS.y), "Asteroids");
 
         AssetManager::init();
+        SfxManager::init();
         ScreensManager::initManager();
         
     }
