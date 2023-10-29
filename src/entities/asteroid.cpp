@@ -65,19 +65,32 @@ namespace Asteroids {
 			}
 		}
 
-		static Vector2 getRandomStartPositionPerValue(ScreenPartPerValue value) {
+		static Vector2 getRandomStartPositionPerValue(ScreenPartPerValue value, Circle prohibitedInitRadius, float asteroidRadius) {
+			Vector2 initPosition;
+
 			switch (value) {
 				case ScreenPartPerValue::TOP:
-					return { static_cast<float>(GetRandomValue(0, static_cast<int>(SCREEN_DIMENSIONS.x))), 0 };
+					initPosition = { static_cast<float>(GetRandomValue(0, static_cast<int>(SCREEN_DIMENSIONS.x))), 0 };
+					break;
 				case ScreenPartPerValue::BOTTOM:
-					return { static_cast<float>(GetRandomValue(0, static_cast<int>(SCREEN_DIMENSIONS.x))), SCREEN_DIMENSIONS.y };
+					initPosition = { static_cast<float>(GetRandomValue(0, static_cast<int>(SCREEN_DIMENSIONS.x))), SCREEN_DIMENSIONS.y };
+					break;
 				case ScreenPartPerValue::LEFT:
-					return { 0, static_cast<float>(GetRandomValue(0, static_cast<int>(SCREEN_DIMENSIONS.y))) };
+					initPosition = { 0, static_cast<float>(GetRandomValue(0, static_cast<int>(SCREEN_DIMENSIONS.y))) };
+					break;
 				case ScreenPartPerValue::RIGHT:
-					return { SCREEN_DIMENSIONS.x, static_cast<float>(GetRandomValue(0, static_cast<int>(SCREEN_DIMENSIONS.y))) };
+					initPosition = { SCREEN_DIMENSIONS.x, static_cast<float>(GetRandomValue(0, static_cast<int>(SCREEN_DIMENSIONS.y))) };
+					break;
 				default:
-					return { 0, 0 };
+					initPosition = { 0, 0 };
+					break;
 			}
+
+			if (checkCircleCollision({ initPosition, asteroidRadius }, prohibitedInitRadius)) {
+				initPosition = getRandomStartPositionPerValue(value, prohibitedInitRadius, asteroidRadius);
+			}
+
+			return initPosition;
 		}
 
 		static AsteroidType getNextType(AsteroidType type) {
@@ -106,6 +119,7 @@ namespace Asteroids {
 
 		static Vector2 getDirectionPerStartPosition(ScreenPartPerValue value) {
 			Vector2 normalizedDirection = Vector2Normalize({ static_cast<float>(GetRandomValue(1, 5)), static_cast<float>(GetRandomValue(1, 5)) });
+			
 			switch (value) {
 			case ScreenPartPerValue::TOP:
 				return { getRandomNegativeOrPositive() * normalizedDirection.x, normalizedDirection.y };
@@ -127,9 +141,11 @@ namespace Asteroids {
 			asteroid.position = asteroidEntity.position;
 		}
 
-		Asteroid createAsteroid(AsteroidType type) {
+		Asteroid createAsteroid(AsteroidType type, Circle prohibitedInitRadius) {
 			ScreenPartPerValue screenPartInitPart = static_cast<ScreenPartPerValue>(GetRandomValue(0, 3));
-			Vector2 initPosition = getRandomStartPositionPerValue(screenPartInitPart);
+			float radius = getRadiusPerType(type);
+			
+			Vector2 initPosition = getRandomStartPositionPerValue(screenPartInitPart, prohibitedInitRadius, radius);
 			Vector2 direction = getDirectionPerStartPosition(screenPartInitPart);
 			float velocity = getVelocityByType(type);
 
@@ -138,7 +154,7 @@ namespace Asteroids {
 				direction,
 				velocity,
 				type,
-				getRadiusPerType(type),
+				radius,
 				getTexturePerType(type)
 			};
 		};

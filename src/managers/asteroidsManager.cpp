@@ -57,16 +57,16 @@ namespace Asteroids {
 			}
 		}
 
-		static void createAsteroids() {
+		static void createAsteroids(Spaceship::Ship ship) {
 			if (Timer::timerDone(asteroidSpawnTimer)) {
 				int asteroidsToSpawn = GetRandomValue(minAsteroidSpawns, maxAsteroidSpawns);
 
 				for (int i = 0; i < asteroidsToSpawn; i++) {
 					Asteroid::AsteroidType type = static_cast<Asteroid::AsteroidType>(
-						GetRandomValue(0, static_cast<int>(Asteroid::AsteroidType::TYPES_QUANTITY))
+						GetRandomValue(1, static_cast<int>(Asteroid::AsteroidType::TYPES_QUANTITY)) - 1
 						);
 
-					asteroids.push_back(Asteroid::createAsteroid(type));
+					asteroids.push_back(Asteroid::createAsteroid(type, { ship.position, ship.shipRadius * 3 }));
 				}
 
 				minAsteroidSpawns = static_cast<int>(
@@ -110,7 +110,7 @@ namespace Asteroids {
 		}
 
 		void updateAsteroids(Spaceship::Ship ship) {
-			createAsteroids();
+			createAsteroids(ship);
 			
 			if (PowerupsManager::isPowerUpActive(PowerUp::SHIELD)) {
 				checkShipCollisions(ship);

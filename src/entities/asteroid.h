@@ -1,6 +1,8 @@
 #pragma once
 #include "raylib.h"
 
+#include "utils/math.h"
+
 namespace Asteroids {
 	namespace Asteroid {
 		enum AsteroidType {
@@ -22,7 +24,7 @@ namespace Asteroids {
 			bool shouldDivide = false;
 		};
 
-		Asteroid createAsteroid(AsteroidType type);
+		Asteroid createAsteroid(AsteroidType type, Circle prohibitedInitRadius);
 		Asteroid createDividedAsteroidFrom(Asteroid asteroid, bool clockWise);
 		void updateAsteroid(Asteroid& asteroid);
 		bool isIndivisible(Asteroid asteroid);
