@@ -4,11 +4,28 @@
 
 #include "entities/point.h"
 #include "utils/math.h"
+#include "assets/sfxManager.h"
 #include "managers/powerupsManager.h"
 
 namespace Asteroids {
 	namespace PointsManager {
 		static std::vector<Point::Point> points;
+
+		static SfxManager::SfxName getRandomPointSound() {
+			const int POINTS_SOUNDS_COUNT = 3;
+			int collisionSound = GetRandomValue(1, POINTS_SOUNDS_COUNT);
+
+			switch (collisionSound) {
+			case 1:
+				return SfxManager::POINTS_1;
+			case 2:
+				return SfxManager::POINTS_2;
+			case 3:
+				return SfxManager::POINTS_3;
+			default:
+				return SfxManager::POINTS_1;
+			}
+		}
 
 		void init() {
 			points.clear();
@@ -21,6 +38,8 @@ namespace Asteroids {
 		void updatePoints(Spaceship::Ship ship, int &totalPoints) {
 			for (size_t i = 0; i < points.size(); i++) {
 				if (checkCircleCollision({ ship.position, ship.shipRadius }, { points[i].position, points[i].radius })) {
+					SfxManager::playSound(getRandomPointSound(), true);
+
 					if (PowerupsManager::isPowerUpActive(PowerUp::MORE_POINTS)) {
 						totalPoints += points[i].points * 2;
 					}
