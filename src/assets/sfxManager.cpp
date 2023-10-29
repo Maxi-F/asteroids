@@ -28,8 +28,8 @@ namespace Asteroids {
 			SfxWithName shipCollision = { SHIP_COLLISION, LoadSound("res/sounds/shipCollision.wav") };
 			SfxWithName propulsion = { PROPULSION, LoadSound("res/sounds/propulsion.wav") };
 
-			SetSoundVolume(shoot1.sound, 1);
-			SetSoundVolume(shoot2.sound, 1);
+			SetSoundVolume(shoot1.sound, 0.5);
+			SetSoundVolume(shoot2.sound, 0.5);
 
 			sfxs = {
 				bulletCollision1,
@@ -38,6 +38,8 @@ namespace Asteroids {
 				bulletsDeactivation,
 				pointsActivation,
 				pointsDeactivation,
+				shieldActivation,
+				shieldDeactivation,
 				points1,
 				points2,
 				points3,

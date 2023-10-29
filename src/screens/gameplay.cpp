@@ -18,6 +18,7 @@ namespace Asteroids {
 			bool isPaused = false;
 			bool isDeathPlaying = false;
 		};
+
 		static const double DEATH_ANIM_LIFETIME = 2.0;
 
 		Timer::Timer deathTimer;
