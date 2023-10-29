@@ -11,6 +11,7 @@ namespace Asteroids {
 		void updatePowerups(Spaceship::Ship &ship);
 		void drawPowerups();
 		bool isPowerUpActive(PowerUp::PowerUpType powerUpType);
+		bool isPowerUpDisappearing(PowerUp::PowerUpType powerUpType);
 		void pauseTimers();
 		void unpauseTimers();
 	}

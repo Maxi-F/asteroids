@@ -12,6 +12,7 @@ namespace Asteroids {
 		};
 
 		static const int POWER_UPS_COUNT = 3;
+		static const double POWER_UP_DISAPPEARING_IN_SECONDS = 2.0;
 		static std::vector<PowerUp::PowerUp> powerUpsInMap;
 		static ActivePowerUp activePowerUps[POWER_UPS_COUNT];
 
@@ -65,6 +66,15 @@ namespace Asteroids {
 			for (int i = 0; i < POWER_UPS_COUNT; i++) {
 				if (activePowerUps[i].powerUpType == powerUpType) {
 					return !activePowerUps[i].lifetimeTimer.paused && !Timer::timerDone(activePowerUps[i].lifetimeTimer);
+				}
+			}
+			return false;
+		};
+
+		bool isPowerUpDisappearing(PowerUp::PowerUpType powerUpType) {
+			for (int i = 0; i < POWER_UPS_COUNT; i++) {
+				if (activePowerUps[i].powerUpType == powerUpType) {
+					return Timer::isTimeLeftLessThan(activePowerUps[i].lifetimeTimer, POWER_UP_DISAPPEARING_IN_SECONDS);
 				}
 			}
 			return false;

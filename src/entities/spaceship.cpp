@@ -100,6 +100,7 @@ namespace Asteroids {
 			Texture2D explodedShipTexture = AssetManager::getTexture(AssetManager::Assets::EXPLODED_SHIP);
 
 			Texture2D usingTexture;
+			Color usingColor = WHITE;
 
 			if (isDeathPlaying) {
 				if (!Timer::isTimeLeftLessThan(deathTimer, EXPLODED_SHIP_SECONDS)) {
@@ -109,6 +110,10 @@ namespace Asteroids {
 					return;
 				}
 			} else if (PowerupsManager::isPowerUpActive(PowerUp::SHIELD)) {
+				if (PowerupsManager::isPowerUpDisappearing(PowerUp::SHIELD)) {
+					usingColor = PINK;
+				}
+				
 				if (spaceShip.isPropulsing) {
 					usingTexture = shieldedPropulsingShipTexture;
 				}
@@ -148,7 +153,7 @@ namespace Asteroids {
 				destRectangle,
 				origin,
 				spaceShip.rotation,
-				WHITE
+				usingColor
 			);
 		}
 	}
