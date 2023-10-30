@@ -8,6 +8,8 @@
 
 namespace Asteroids {
     static void close() {
+        CloseAudioDevice();
+
         CloseWindow();
     }
 

@@ -40,10 +40,13 @@ namespace Asteroids {
 				3
 			};
 			initManagers();
+
+			SfxManager::playMusic(SfxManager::GAMEPLAY);
 		}
 
 		void updateGameplay() {
 			UiManager::updateUI(gameplayEntities.isPaused);
+			SfxManager::updateMusic(SfxManager::GAMEPLAY);
 			if (!gameplayEntities.isPaused && !gameplayEntities.isDeathPlaying) {
 				Spaceship::updateSpaceship(gameplayEntities.spaceship);
 				BulletManager::updateBullets();

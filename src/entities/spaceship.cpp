@@ -22,7 +22,7 @@ namespace Asteroids {
 
 		static void updateVelocity(Ship& spaceShip) {
 			if (IsMouseButtonDown(MOUSE_BUTTON_RIGHT)) {
-				SfxManager::playSound(SfxManager::PROPULSION, true);
+				SfxManager::playSound(SfxManager::PROPULSION, false);
 
 				spaceShip.isPropulsing = true;
 

@@ -9,7 +9,15 @@ namespace Asteroids {
 			Sound sound;
 		};
 
-		static std::vector<SfxWithName> sfxs;
+		struct MusicWithName {
+			MusicName name;
+			Music music;
+			float volume;
+		};
+
+		static SfxWithName sfxs[SFX_COUNT];
+		static MusicWithName musics[MUSIC_COUNT];
+
 
 		void init() {
 			SfxWithName bulletCollision1 = { BULLET_COLLISION_1, LoadSound("res/sounds/bulletCollision1.wav") };
@@ -31,7 +39,7 @@ namespace Asteroids {
 			SetSoundVolume(shoot1.sound, 0.5);
 			SetSoundVolume(shoot2.sound, 0.5);
 
-			sfxs = {
+			SfxWithName auxSfxs[SFX_COUNT] = {
 				bulletCollision1,
 				bulletCollision2,
 				bulletsActivation,
@@ -48,20 +56,56 @@ namespace Asteroids {
 				shipCollision,
 				propulsion
 			};
+
+			for (int i = 0; i < SFX_COUNT; i++) {
+				sfxs[i] = auxSfxs[i];
+			}
+
+			MusicWithName gameplay = { GAMEPLAY, LoadMusicStream("res/sounds/gameplay.mp3"), 0.3f };
+			gameplay.music.looping = true;
+
+			MusicWithName auxMusics[MUSIC_COUNT] = { gameplay };
+
+			for (int i = 0; i < MUSIC_COUNT; i++) {
+				musics[i] = auxMusics[i];
+			}
 		};
 
 		void stopAllSounds() {
-			for (size_t i = 0; i < sfxs.size(); i++) {
+			for (int i = 0; i < SFX_COUNT; i++) {
 				StopSound(sfxs[i].sound);
 			}
 		}
 		
 		void playSound(SfxName sfxName, bool shouldOverlap) {
-			for (size_t i = 0; i < sfxs.size(); i++) {
+			for (int i = 0; i < SFX_COUNT; i++) {
 				if (sfxName == sfxs[i].name && (shouldOverlap || !IsSoundPlaying(sfxs[i].sound))) {
 					PlaySound(sfxs[i].sound);
 				}
 			}
 		};
+
+		void playMusic(MusicName musicName) {
+			for (int i = 0; i < MUSIC_COUNT; i++) {
+				if (musicName == musics[i].name) {
+					PlayMusicStream(musics[i].music);
+				}
+			}
+		};
+
+		void updateMusic(MusicName musicName) {
+			for (int i = 0; i < MUSIC_COUNT; i++) {
+				if (musicName == musics[i].name) {
+					SetMusicVolume(musics[i].music, musics[i].volume);
+					UpdateMusicStream(musics[i].music);
+				}
+			}
+		}
+
+		void stopAllMusic() {
+			for (int i = 0; i < MUSIC_COUNT; i++) {
+				StopMusicStream(musics[i].music);
+			}
+		}
 	}
 }

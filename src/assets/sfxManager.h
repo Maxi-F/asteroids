@@ -19,11 +19,20 @@ namespace Asteroids {
 			SHOOT_1,
 			SHOOT_2,
 			SHIP_COLLISION,
-			PROPULSION
+			PROPULSION,
+			SFX_COUNT
+		};
+
+		enum MusicName {
+			GAMEPLAY = 0,
+			MUSIC_COUNT
 		};
 
 		void init();
 		void stopAllSounds();
 		void playSound(SfxName name, bool shouldOverlap);
+		void playMusic(MusicName name);
+		void updateMusic(MusicName musicName);
+		void stopAllMusic();
 	}
 }
