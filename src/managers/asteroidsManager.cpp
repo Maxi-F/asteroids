@@ -93,7 +93,7 @@ namespace Asteroids {
 		static void checkShipCollisions(Spaceship::Ship ship) {
 			for (size_t i = 0; i < asteroids.size(); i++) {
 				if (checkCircleCollision({ ship.position, ship.shipRadius }, { asteroids[i].position, asteroids[i].radius })) {
-					SfxManager::playSound(getRandomCollisionSound(), true);
+					SfxManager::playSound(SfxManager::SHIELD_ASTEROID_COLLISION, true);
 					asteroids[i].shouldDivide = true;
 				}
 			}

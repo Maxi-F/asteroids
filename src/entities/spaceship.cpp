@@ -34,6 +34,7 @@ namespace Asteroids {
 			}
 			else {
 				spaceShip.isPropulsing = false;
+				SfxManager::stopSound(SfxManager::PROPULSION);
 			}
 		}
 

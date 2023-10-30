@@ -34,6 +34,7 @@ namespace Asteroids {
 			SfxWithName shoot1 = { SHOOT_1, LoadSound("res/sounds/shoot1.wav") };
 			SfxWithName shoot2 = { SHOOT_2, LoadSound("res/sounds/shoot2.wav") };
 			SfxWithName shipCollision = { SHIP_COLLISION, LoadSound("res/sounds/shipCollision.wav") };
+			SfxWithName shieldCollision = { SHIELD_ASTEROID_COLLISION, LoadSound("res/sounds/shieldAsteroidCollision.wav") };
 			SfxWithName propulsion = { PROPULSION, LoadSound("res/sounds/propulsion.wav") };
 
 			SetSoundVolume(shoot1.sound, 0.5);
@@ -54,6 +55,7 @@ namespace Asteroids {
 				shoot1,
 				shoot2,
 				shipCollision,
+				shieldCollision,
 				propulsion
 			};
 
@@ -84,6 +86,14 @@ namespace Asteroids {
 				}
 			}
 		};
+
+		void stopSound(SfxName sfxName) {
+			for (int i = 0; i < SFX_COUNT; i++) {
+				if (sfxName == sfxs[i].name) {
+					StopSound(sfxs[i].sound);
+				}
+			}
+		}
 
 		void playMusic(MusicName musicName) {
 			for (int i = 0; i < MUSIC_COUNT; i++) {

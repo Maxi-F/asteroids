@@ -19,6 +19,7 @@ namespace Asteroids {
 			SHOOT_1,
 			SHOOT_2,
 			SHIP_COLLISION,
+			SHIELD_ASTEROID_COLLISION,
 			PROPULSION,
 			SFX_COUNT
 		};
@@ -31,6 +32,7 @@ namespace Asteroids {
 		void init();
 		void stopAllSounds();
 		void playSound(SfxName name, bool shouldOverlap);
+		void stopSound(SfxName sfxName);
 		void playMusic(MusicName name);
 		void updateMusic(MusicName musicName);
 		void stopAllMusic();
