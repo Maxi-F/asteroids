@@ -3,6 +3,7 @@
 #include "screens/menu.h"
 #include "screens/gameplay.h"
 #include "screens/rules.h"
+#include "screens/credits.h"
 #include "assets/sfxManager.h"
 
 namespace Asteroids {
@@ -34,6 +35,7 @@ namespace Asteroids {
 					SfxManager::playMusic(SfxManager::GAMEPLAY);
 					break;
 				case Screens::CREDITS:
+					Credits::initCredits();
 					break;
 				case Screens::RULES:
 					Rules::initRules();
@@ -47,6 +49,7 @@ namespace Asteroids {
 					drawMenu();
 					break;
 				case Screens::CREDITS:
+					Credits::drawCredits();
 					break;
 				case Screens::RULES:
 					Rules::drawRules();
@@ -64,6 +67,7 @@ namespace Asteroids {
 					SfxManager::updateMusic(SfxManager::MENU);
 					break;
 				case Screens::CREDITS:
+					Credits::checkCreditsInputAndCollision();
 					SfxManager::updateMusic(SfxManager::MENU);
 					break;
 				case Screens::RULES:

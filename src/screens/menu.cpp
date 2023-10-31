@@ -3,6 +3,7 @@
 #include "utils/math.h"
 #include "utils/screen.h"
 #include "managers/screenManager.h"
+#include "assets/assetManager.h"
 
 namespace Asteroids {
 	static const float OPTION_RECTANGLE_WIDTH = 300.0f;
@@ -76,6 +77,14 @@ namespace Asteroids {
 		int titleLenght = MeasureText(title, TITLE_FONT_SIZE);
 		float screenWidth = ScreenUtils::getScreenWidth();
 		int pongTitlePosX = static_cast<int>(getHalf(screenWidth) - getHalf(static_cast<float>(titleLenght)));
+
+		DrawTextureEx(
+			AssetManager::getTexture(AssetManager::BACKGROUND),
+			{ 0.0f, 0.0f },
+			0,
+			2,
+			WHITE
+		);
 
 		DrawText(title, pongTitlePosX, static_cast<int>(TITLE_TOP_MARGIN), TITLE_FONT_SIZE, WHITE);
 

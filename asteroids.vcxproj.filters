@@ -126,6 +126,9 @@
     <ClCompile Include="src\screens\rules.cpp">
       <Filter>Archivos de origen\screens</Filter>
     </ClCompile>
+    <ClCompile Include="src\screens\credits.cpp">
+      <Filter>Archivos de origen\screens</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game.h">
@@ -195,6 +198,9 @@
       <Filter>Archivos de encabezado\assets</Filter>
     </ClInclude>
     <ClInclude Include="src\screens\rules.h">
+      <Filter>Archivos de encabezado\screens</Filter>
+    </ClInclude>
+    <ClInclude Include="src\screens\credits.h">
       <Filter>Archivos de encabezado\screens</Filter>
     </ClInclude>
   </ItemGroup>

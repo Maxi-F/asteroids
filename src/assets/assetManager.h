@@ -23,6 +23,7 @@ namespace Asteroids {
 			EMPTY_POWER_UP,
 			BACKGROUND,
 			RULES,
+			CREDITS,
 			ASSETS_COUNT
 		};
 
