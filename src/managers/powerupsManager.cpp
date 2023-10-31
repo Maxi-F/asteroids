@@ -66,6 +66,7 @@ namespace Asteroids {
 			for (int i = 0; i < POWER_UPS_COUNT; i++) {
 				activePowerUps[i].powerUpType = static_cast<PowerUp::PowerUpType>(i);
 				Timer::startTimer(&activePowerUps[i].lifetimeTimer, 0.0);
+				activePowerUps[i].isActive = false;
 			}
 		};
 
@@ -114,7 +115,7 @@ namespace Asteroids {
 		bool isPowerUpActive(PowerUp::PowerUpType powerUpType) {
 			for (int i = 0; i < POWER_UPS_COUNT; i++) {
 				if (activePowerUps[i].powerUpType == powerUpType) {
-					return !activePowerUps[i].lifetimeTimer.paused && !Timer::timerDone(activePowerUps[i].lifetimeTimer);
+					return activePowerUps[i].isActive;
 				}
 			}
 			return false;
