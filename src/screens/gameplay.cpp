@@ -85,5 +85,13 @@ namespace Asteroids {
 			PointsManager::drawPoints();
 			UiManager::drawUI(gameplayEntities.totalPoints, gameplayEntities.lives, gameplayEntities.isPaused);
 		}
+
+		void pauseTimers() {
+			Timer::pauseTimer(&deathTimer);
+		}
+
+		void unpauseTimers() {
+			Timer::unPauseTimer(&deathTimer);
+		}
 	}
 }

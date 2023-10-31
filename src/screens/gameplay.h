@@ -6,5 +6,7 @@ namespace Asteroids {
 		void initGameplay();
 		void drawGameplay();
 		void updateGameplay();
+		void pauseTimers();
+		void unpauseTimers();
 	}
 }

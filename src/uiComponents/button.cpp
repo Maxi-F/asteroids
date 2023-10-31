@@ -35,7 +35,6 @@ namespace Asteroids {
 
 		void drawCenteredTextInButton(Button button, const char* text) {
 			Vector2 textSize = FontManager::measureText(text, BUTTON_TEXT_FONT_SIZE, BUTTON_TEXT_SPACING);
-			float screenWidth = ScreenUtils::getScreenWidth();
 			float optionTextPosX = button.outsideRectangle.x + getHalf(button.outsideRectangle.width) - getHalf(textSize.x);
 			float optionTextPosY = button.outsideRectangle.y + getHalf(button.outsideRectangle.height) - getHalf(BUTTON_TEXT_FONT_SIZE);
 

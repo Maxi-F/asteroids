@@ -18,7 +18,7 @@ namespace Asteroids {
         }
 
         bool isTimeLeftLessThan(Timer timer, double lifetimeLeft) {
-            return GetTime() - timer.startTime >= timer.lifeTime - lifetimeLeft;
+            return !timer.paused && GetTime() - timer.startTime >= timer.lifeTime - lifetimeLeft;
         }
 
         void pauseTimer(Timer* timer) {

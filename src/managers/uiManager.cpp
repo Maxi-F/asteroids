@@ -11,6 +11,7 @@
 #include "managers/bulletManager.h"
 #include "managers/powerupsManager.h"
 #include "managers/screenManager.h"
+#include "screens/gameplay.h"
 
 namespace Asteroids {
 	namespace UiManager {
@@ -168,6 +169,7 @@ namespace Asteroids {
 				if (resumeButton.isClicked) {
 					isPaused = false;
 
+					Gameplay::unpauseTimers();
 					AsteroidsManager::unpauseTimers();
 					BulletManager::unpauseTimers();
 					PowerupsManager::unpauseTimers();
@@ -182,6 +184,7 @@ namespace Asteroids {
 				if (pauseButton.isClicked) {
 					isPaused = true;
 					
+					Gameplay::pauseTimers();
 					AsteroidsManager::pauseTimers();
 					BulletManager::pauseTimers();
 					PowerupsManager::pauseTimers();
