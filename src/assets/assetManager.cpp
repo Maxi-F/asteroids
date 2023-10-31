@@ -17,7 +17,7 @@ namespace Asteroids {
 			AssetWithTexture spaceShip = { Assets::SHIP, LoadTexture("res/images/spaceship.png") };
 			AssetWithTexture propulsingSpaceship = { Assets::PROPULSING_SHIP, LoadTexture("res/images/propulsingShip.png") };
 			AssetWithTexture explodedShip = { Assets::EXPLODED_SHIP, LoadTexture("res/images/explodedShip.png") };
-			AssetWithTexture shieldedShip = { Assets::SHIELDED_SHIP, LoadTexture("res/images/shieldedShip.png") };
+			AssetWithTexture shieldedShip = { Assets::SHIELDED_SHIP, LoadTexture("res/images/notPropulsingShieldedShip.png") };
 			AssetWithTexture shieldedPropulsingShip = { Assets::SHIELDED_PROPULSING_SHIP, LoadTexture("res/images/shieldedShip.png") };
 
 			AssetWithTexture bigAsteroid = { Assets::BIG_ASTEROID, LoadTexture("res/images/bigAsteroid.png") };
