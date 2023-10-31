@@ -65,7 +65,7 @@ namespace Asteroids {
 				if (Timer::timerDone(deathTimer)) {
 					
 					if (gameplayEntities.lives <= 0) {
-						ScreensManager::changeScreenTo(ScreensManager::Screens::MENU);
+						ScreensManager::changeScreenTo(ScreensManager::Screens::MENU, true);
 					}
 
 					gameplayEntities.isDeathPlaying = false;

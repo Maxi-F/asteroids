@@ -123,6 +123,9 @@
     <ClCompile Include="src\assets\sfxManager.cpp">
       <Filter>Archivos de origen\assets</Filter>
     </ClCompile>
+    <ClCompile Include="src\screens\rules.cpp">
+      <Filter>Archivos de origen\screens</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game.h">
@@ -190,6 +193,9 @@
     </ClInclude>
     <ClInclude Include="src\assets\sfxManager.h">
       <Filter>Archivos de encabezado\assets</Filter>
+    </ClInclude>
+    <ClInclude Include="src\screens\rules.h">
+      <Filter>Archivos de encabezado\screens</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

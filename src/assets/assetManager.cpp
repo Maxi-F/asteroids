@@ -13,6 +13,7 @@ namespace Asteroids {
 
 		void init() {
 			AssetWithTexture background = { Assets::BACKGROUND, LoadTexture("res/images/background.png") };
+			AssetWithTexture rules = { Assets::RULES, LoadTexture("res/images/rules.png") };
 
 			AssetWithTexture spaceShip = { Assets::SHIP, LoadTexture("res/images/spaceship.png") };
 			AssetWithTexture propulsingSpaceship = { Assets::PROPULSING_SHIP, LoadTexture("res/images/propulsingShip.png") };
@@ -37,6 +38,7 @@ namespace Asteroids {
 
 			textures = { 
 				background,
+				rules,
 				spaceShip,
 				propulsingSpaceship,
 				explodedShip,

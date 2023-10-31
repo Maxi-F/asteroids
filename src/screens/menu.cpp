@@ -37,13 +37,13 @@ namespace Asteroids {
 	static void actionPerMenuOption(Option option, bool& shouldClose) {
 		switch (option) {
 		case Option::PLAY:
-			ScreensManager::changeScreenTo(ScreensManager::Screens::GAMEPLAY);
+			ScreensManager::changeScreenTo(ScreensManager::Screens::GAMEPLAY, true);
 			break;
 		case Option::READ_CREDITS:
-			ScreensManager::changeScreenTo(ScreensManager::Screens::CREDITS);
+			ScreensManager::changeScreenTo(ScreensManager::Screens::CREDITS, false);
 			break;
 		case Option::READ_RULES:
-			ScreensManager::changeScreenTo(ScreensManager::Screens::RULES);
+			ScreensManager::changeScreenTo(ScreensManager::Screens::RULES, false);
 			break;
 		case Option::EXIT:
 			shouldClose = true;

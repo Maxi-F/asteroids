@@ -10,7 +10,7 @@ namespace Asteroids {
         };
 
         void initManager();
-        void changeScreenTo(Screens screen);
+        void changeScreenTo(Screens screen, bool shouldStopMusic);
         void drawScreen();
         void updateScreen(bool& shouldClose);
 	}
