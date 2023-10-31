@@ -31,6 +31,7 @@ namespace Asteroids {
 			AssetWithTexture bulletsPowerUp = { Assets::BULLETS_POWER_UP, LoadTexture("res/images/bulletsPowerup.png") };
 			AssetWithTexture pointsPowerUp = { Assets::POINTS_POWER_UP, LoadTexture("res/images/pointsPowerup.png") };
 			AssetWithTexture shieldPowerUp = { Assets::SHIELD_POWER_UP, LoadTexture("res/images/shieldPowerup.png") };
+			AssetWithTexture emptyPowerUp = { Assets::EMPTY_POWER_UP, LoadTexture("res/images/emptyPowerUp.png") };
 
 			AssetWithTexture life = { Assets::LIFE, LoadTexture("res/images/life.png") };
 
@@ -50,6 +51,7 @@ namespace Asteroids {
 				bulletsPowerUp,
 				pointsPowerUp,
 				shieldPowerUp,
+				emptyPowerUp,
 				life
 			};
 		}

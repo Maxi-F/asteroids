@@ -5,6 +5,7 @@
 
 #include "uiComponents/button.h"
 #include "utils/math.h"
+#include "assets/assetManager.h"
 #include "managers/asteroidsManager.h"
 #include "managers/bulletManager.h"
 #include "managers/powerupsManager.h"
@@ -24,6 +25,69 @@ namespace Asteroids {
 
 		static void drawPause() {
 			Buttons::drawButton(resumeButton);
+		}
+
+		static void drawPoints(int totalPoints) {
+			std::string totalPointsString = "Total points: " + std::to_string(totalPoints);
+
+			DrawText(totalPointsString.c_str(), SCREEN_MARGIN, GetScreenHeight() - SCREEN_MARGIN - FONT_SIZE, FONT_SIZE, WHITE);
+		}
+
+		static void drawPowerUps() {
+			const int POWER_UPS_COUNT = 3;
+			const float SCALE = 0.2f;
+			const float SPACING = 20.0f;
+
+			Texture2D emptyPowerTexture = AssetManager::getTexture(AssetManager::EMPTY_POWER_UP);
+
+			PowerUp::PowerUpType powerUps[POWER_UPS_COUNT] = {
+				PowerUp::MORE_POINTS,
+				PowerUp::MULTI_BULLET,
+				PowerUp::SHIELD
+			};
+			
+			for (int i = 0; i < POWER_UPS_COUNT; i++) {
+				Vector2 position = { 
+					getHalf(static_cast<float>(GetScreenWidth())) - getHalf(emptyPowerTexture.width * SCALE) + (emptyPowerTexture.width * SCALE + SPACING) * (i - 1),
+					SCREEN_MARGIN
+				};
+				
+				if (PowerupsManager::isPowerUpActive(powerUps[i])) {
+					DrawTextureEx(
+						PowerUp::getTexturePerType(powerUps[i]),
+						position,
+						0,
+						SCALE,
+						WHITE
+					);
+				}
+				else {
+					DrawTextureEx(
+						emptyPowerTexture,
+						position,
+						0,
+						SCALE,
+						WHITE
+					);
+				}
+			}
+
+			
+		};
+
+		static void drawLives(int lives) {
+			static const float SCALE = 0.2f;
+			Texture2D liveTexture = AssetManager::getTexture(AssetManager::LIFE);
+
+			for (int i = 0; i < lives; i++) {
+				DrawTextureEx(
+					liveTexture,
+					{ static_cast<float>(SCREEN_MARGIN + (liveTexture.width * SCALE + SPACING_MARGIN) * i), static_cast<float>(SCREEN_MARGIN) },
+					0,
+					SCALE,
+					WHITE
+				);
+			}
 		}
 
 		void initUI() {
@@ -53,11 +117,9 @@ namespace Asteroids {
 		}
 
 		void drawUI(int totalPoints, int lives, bool isPaused) {
-			std::string totalPointsString = "Total points: " + std::to_string(totalPoints);
-			std::string livesString = "Lives: " + std::to_string(lives);
-
-			DrawText(totalPointsString.c_str(), SCREEN_MARGIN, SCREEN_MARGIN, FONT_SIZE, WHITE);
-			DrawText(livesString.c_str(), SCREEN_MARGIN, SCREEN_MARGIN + FONT_SIZE + SPACING_MARGIN, FONT_SIZE, WHITE);
+			drawPoints(totalPoints);
+			drawLives(lives);
+			drawPowerUps();
 
 			Buttons::drawButton(pauseButton);
 

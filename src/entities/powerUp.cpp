@@ -23,19 +23,6 @@ namespace Asteroids {
 			}
 		}
 
-		static Texture2D getTexturePerType(PowerUpType powerUpType) {
-			switch (powerUpType) {
-			case PowerUpType::MULTI_BULLET:
-				return AssetManager::getTexture(AssetManager::BULLETS_POWER_UP);
-			case PowerUpType::SHIELD:
-				return AssetManager::getTexture(AssetManager::SHIELD_POWER_UP);
-			case PowerUpType::MORE_POINTS:
-				return AssetManager::getTexture(AssetManager::POINTS_POWER_UP);
-			default:
-				return AssetManager::getTexture(AssetManager::POINTS_POWER_UP);
-			}
-		}
-
 		static double getLifetimePerType(PowerUpType powerUpType) {
 			switch (powerUpType) {
 			case PowerUpType::MULTI_BULLET:
@@ -54,6 +41,19 @@ namespace Asteroids {
 				static_cast<int>(PowerUpType::MULTI_BULLET),
 				static_cast<int>(PowerUpType::MORE_POINTS)
 			));
+		}
+
+		Texture2D getTexturePerType(PowerUpType powerUpType) {
+			switch (powerUpType) {
+			case PowerUpType::MULTI_BULLET:
+				return AssetManager::getTexture(AssetManager::BULLETS_POWER_UP);
+			case PowerUpType::SHIELD:
+				return AssetManager::getTexture(AssetManager::SHIELD_POWER_UP);
+			case PowerUpType::MORE_POINTS:
+				return AssetManager::getTexture(AssetManager::POINTS_POWER_UP);
+			default:
+				return AssetManager::getTexture(AssetManager::POINTS_POWER_UP);
+			}
 		}
 
 		PowerUp createPowerUp(Vector2 position) {

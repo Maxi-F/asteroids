@@ -19,6 +19,7 @@ namespace Asteroids {
 			PowerUpType powerUpType;
 		};
 
+		Texture2D getTexturePerType(PowerUpType powerUpType);
 		PowerUp createPowerUp(Vector2 position);
 		void drawPowerUp(PowerUp powerUp);
 		void pauseTimer(PowerUp& powerUp);

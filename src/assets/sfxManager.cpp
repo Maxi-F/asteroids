@@ -75,13 +75,15 @@ namespace Asteroids {
 
 		void stopAllSounds() {
 			for (int i = 0; i < SFX_COUNT; i++) {
-				StopSound(sfxs[i].sound);
+				if (IsAudioDeviceReady()) {
+					StopSound(sfxs[i].sound);
+				}
 			}
 		}
 		
 		void playSound(SfxName sfxName, bool shouldOverlap) {
 			for (int i = 0; i < SFX_COUNT; i++) {
-				if (sfxName == sfxs[i].name && (shouldOverlap || !IsSoundPlaying(sfxs[i].sound))) {
+				if (IsAudioDeviceReady() && sfxName == sfxs[i].name && (shouldOverlap || !IsSoundPlaying(sfxs[i].sound))) {
 					PlaySound(sfxs[i].sound);
 				}
 			}
@@ -89,7 +91,7 @@ namespace Asteroids {
 
 		void stopSound(SfxName sfxName) {
 			for (int i = 0; i < SFX_COUNT; i++) {
-				if (sfxName == sfxs[i].name) {
+				if (IsAudioDeviceReady() && sfxName == sfxs[i].name) {
 					StopSound(sfxs[i].sound);
 				}
 			}
@@ -97,7 +99,7 @@ namespace Asteroids {
 
 		void playMusic(MusicName musicName) {
 			for (int i = 0; i < MUSIC_COUNT; i++) {
-				if (musicName == musics[i].name) {
+				if (IsAudioDeviceReady() && musicName == musics[i].name) {
 					PlayMusicStream(musics[i].music);
 				}
 			}
@@ -105,7 +107,7 @@ namespace Asteroids {
 
 		void updateMusic(MusicName musicName) {
 			for (int i = 0; i < MUSIC_COUNT; i++) {
-				if (musicName == musics[i].name) {
+				if (IsAudioDeviceReady() && musicName == musics[i].name) {
 					SetMusicVolume(musics[i].music, musics[i].volume);
 					UpdateMusicStream(musics[i].music);
 				}
@@ -114,7 +116,9 @@ namespace Asteroids {
 
 		void stopAllMusic() {
 			for (int i = 0; i < MUSIC_COUNT; i++) {
-				StopMusicStream(musics[i].music);
+				if (IsAudioDeviceReady()) {
+					StopMusicStream(musics[i].music);
+				} 
 			}
 		}
 	}
