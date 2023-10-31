@@ -64,9 +64,11 @@ namespace Asteroids {
 			}
 
 			MusicWithName gameplay = { GAMEPLAY, LoadMusicStream("res/sounds/gameplay.mp3"), 0.3f };
+			MusicWithName menu = { MENU, LoadMusicStream("res/sounds/menu.mp3"), 0.3f };
 			gameplay.music.looping = true;
+			menu.music.looping = true;
 
-			MusicWithName auxMusics[MUSIC_COUNT] = { gameplay };
+			MusicWithName auxMusics[MUSIC_COUNT] = { gameplay, menu };
 
 			for (int i = 0; i < MUSIC_COUNT; i++) {
 				musics[i] = auxMusics[i];

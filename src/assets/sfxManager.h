@@ -26,6 +26,7 @@ namespace Asteroids {
 
 		enum MusicName {
 			GAMEPLAY = 0,
+			MENU,
 			MUSIC_COUNT
 		};
 

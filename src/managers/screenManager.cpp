@@ -2,6 +2,7 @@
 
 #include "screens/menu.h"
 #include "screens/gameplay.h"
+#include "assets/sfxManager.h"
 
 namespace Asteroids {
 	namespace ScreensManager {
@@ -10,18 +11,22 @@ namespace Asteroids {
 		void initManager() {
 			actualScreen = Screens::MENU;
 
+			SfxManager::playMusic(SfxManager::MENU);
 			initMenu();
 		}
 
 		void changeScreenTo(Screens screen) {
 			actualScreen = screen;
+			SfxManager::stopAllMusic();
 
 			switch (actualScreen) {
 				case Screens::MENU:
 					initMenu();
+					SfxManager::playMusic(SfxManager::MENU);
 					break;
 				case Screens::GAMEPLAY:
 					Gameplay::initGameplay();
+					SfxManager::playMusic(SfxManager::GAMEPLAY);
 					break;
 				case Screens::CREDITS:
 					break;
@@ -49,6 +54,7 @@ namespace Asteroids {
 			switch (actualScreen) {
 				case Screens::MENU:
 					checkMenuInputAndCollision(shouldClose);
+					SfxManager::updateMusic(SfxManager::MENU);
 					break;
 				case Screens::CREDITS:
 					break;
@@ -56,6 +62,7 @@ namespace Asteroids {
 					break;
 				case Screens::GAMEPLAY:
 					Gameplay::updateGameplay();
+					SfxManager::updateMusic(SfxManager::GAMEPLAY);
 					break;
 			};
 
