@@ -4,6 +4,7 @@
 #include "managers/screenManager.h"
 #include "assets/assetManager.h"
 #include "assets/sfxManager.h"
+#include "assets/fontManager.h"
 #include "constants/dimensions.h"
 
 namespace Asteroids {
@@ -14,13 +15,17 @@ namespace Asteroids {
     }
 
     static void init() {
-        InitWindow(static_cast<int>(SCREEN_DIMENSIONS.x), static_cast<int>(SCREEN_DIMENSIONS.y), "Asteroids");
+        InitWindow(static_cast<int>(SCREEN_DIMENSIONS.x), static_cast<int>(SCREEN_DIMENSIONS.y), "Ashhteroids");
+#ifdef _DEBUG
+        // SetTargetFPS(60)
+#endif // _DEBUG
 
         InitAudioDevice();
+        
+        FontManager::init();
         AssetManager::init();
         SfxManager::init();
         ScreensManager::initManager();
-        
     }
 
     static void update(bool& shouldClose) {

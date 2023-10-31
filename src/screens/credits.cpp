@@ -40,18 +40,24 @@ namespace Asteroids {
 		static LinkRectangle linkRectangles[LINKS_COUNT];
 
 		void drawCredits() {
-			DrawTexture(AssetManager::getTexture(AssetManager::CREDITS), 0, 0, WHITE);
+			DrawTextureEx(AssetManager::getTexture(AssetManager::CREDITS), { 0.0f, 0.0f }, 0, 1, WHITE);
 
 			Buttons::drawButton(goBackButton);
+
+#ifdef _DEBUG
+			for (int i = 0; i < LINKS_COUNT; i++) {
+				DrawRectangleRec(linkRectangles[i].rectangle, RED);
+			};
+#endif // _DEBUG
 		};
 
 		void initCredits() {
 			const int DEVELOPER_LINK_WIDTH = 250;
-			const int ASSETS_LINK_WIDTH = 170;
+			const int ASSETS_LINK_WIDTH = 250;
 			const int SFX_LINK_WIDTH = 190;
 			const int FONT_LINK_WIDTH = 420;
 			const int START_LINK_Y_POSITION = 140;
-			const int MARGIN_LINK_Y_POSITION = 120;
+			const int MARGIN_LINK_Y_POSITION = 100;
 
 			goBackButton = Buttons::createButton(
 				{
@@ -105,7 +111,7 @@ namespace Asteroids {
 				},
 				{
 					fontLinkRectangle,
-					L"https://fonts.google.com/specimen/Pixelify+Sans"
+					L"https://fonts.google.com/specimen/VT323"
 				}
 			};
 

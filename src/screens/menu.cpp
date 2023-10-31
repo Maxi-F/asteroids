@@ -4,6 +4,7 @@
 #include "utils/screen.h"
 #include "managers/screenManager.h"
 #include "assets/assetManager.h"
+#include "assets/fontManager.h"
 
 namespace Asteroids {
 	static const float OPTION_RECTANGLE_WIDTH = 300.0f;
@@ -12,7 +13,8 @@ namespace Asteroids {
 	static const float TOP_MARGIN = 120.0f;
 	static const float OPTION_RECTANGLE_MARGIN = 25.0f;
 	static const float TITLE_TOP_MARGIN = 40.0f;
-	static const int TITLE_FONT_SIZE = 50;
+	static const float TITLE_FONT_SIZE = 50.0f;
+	static const float TITLE_SPACING = 3.0f;
 
 	static MenuOption menuOptions[Option::OPTIONS_QUANTITY];
 
@@ -73,10 +75,10 @@ namespace Asteroids {
 	}
 
 	void drawMenu() {
-		const char* title = "Asteroids";
-		int titleLenght = MeasureText(title, TITLE_FONT_SIZE);
+		const char* title = "ASHHTEROIDS";
+		Vector2 titleSize = FontManager::measureText(title, TITLE_FONT_SIZE, TITLE_SPACING);
 		float screenWidth = ScreenUtils::getScreenWidth();
-		int pongTitlePosX = static_cast<int>(getHalf(screenWidth) - getHalf(static_cast<float>(titleLenght)));
+		float asteroidsTitlePosX = getHalf(screenWidth) - getHalf(titleSize.x);
 
 		DrawTextureEx(
 			AssetManager::getTexture(AssetManager::BACKGROUND),
@@ -86,7 +88,8 @@ namespace Asteroids {
 			WHITE
 		);
 
-		DrawText(title, pongTitlePosX, static_cast<int>(TITLE_TOP_MARGIN), TITLE_FONT_SIZE, WHITE);
+		FontManager::drawText(
+			title, { asteroidsTitlePosX, TITLE_TOP_MARGIN }, TITLE_FONT_SIZE, TITLE_SPACING, WHITE);
 
 		for (int i = 0; i < Option::OPTIONS_QUANTITY; i++) {
 			drawOptionBox(menuOptions[i]);

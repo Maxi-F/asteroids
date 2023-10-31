@@ -19,7 +19,7 @@ namespace Asteroids {
 			AsteroidType type;
 			float radius;
 			Texture2D texture;
-			int points = 50;
+			int points = 200;
 			float angle = 0;
 			bool shouldDivide = false;
 		};

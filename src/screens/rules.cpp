@@ -15,7 +15,7 @@ namespace Asteroids {
 		static Buttons::Button goBackButton;
 
 		void drawRules() {
-			DrawTexture(AssetManager::getTexture(AssetManager::RULES), 0, 0, WHITE);
+			DrawTextureEx(AssetManager::getTexture(AssetManager::RULES), { 0.0f, 0.0f }, 0, 1, WHITE);
 			Buttons::drawButton(goBackButton);
 		};
 

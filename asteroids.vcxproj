@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\assets\assetManager.cpp" />
+    <ClCompile Include="src\assets\fontManager.cpp" />
     <ClCompile Include="src\assets\sfxManager.cpp" />
     <ClCompile Include="src\constants\dimensions.cpp" />
     <ClCompile Include="src\entities\asteroid.cpp" />
@@ -46,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\assets\assetManager.h" />
+    <ClInclude Include="src\assets\fontManager.h" />
     <ClInclude Include="src\assets\sfxManager.h" />
     <ClInclude Include="src\constants\colors.h" />
     <ClInclude Include="src\constants\dimensions.h" />

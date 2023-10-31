@@ -6,10 +6,12 @@
 #include "utils/screen.h"
 #include "constants/dimensions.h"
 #include "constants/colors.h"
+#include "assets/fontManager.h"
 
 namespace Asteroids {
 	namespace Buttons {
-		static const int BUTTON_TEXT_FONT_SIZE = 20;
+		static const float BUTTON_TEXT_FONT_SIZE = 40.0f;
+		static const float BUTTON_TEXT_SPACING = 3.0f;
 
 		static Rectangle getInsideRectangle(Rectangle rectangle) {
 			return {
@@ -32,16 +34,16 @@ namespace Asteroids {
 		}
 
 		void drawCenteredTextInButton(Button button, const char* text) {
-			int textLength = MeasureText(text, static_cast<int>(BUTTON_TEXT_FONT_SIZE));
+			Vector2 textSize = FontManager::measureText(text, BUTTON_TEXT_FONT_SIZE, BUTTON_TEXT_SPACING);
 			float screenWidth = ScreenUtils::getScreenWidth();
-			int optionTextPosX = static_cast<int>(getHalf(screenWidth) - getHalf(static_cast<float>(textLength)));
-			int optionTextPosY = static_cast<int>(button.outsideRectangle.y + getHalf(button.outsideRectangle.height) - getHalf(BUTTON_TEXT_FONT_SIZE));
+			float optionTextPosX = getHalf(screenWidth) - getHalf(textSize.x);
+			float optionTextPosY = button.outsideRectangle.y + getHalf(button.outsideRectangle.height) - getHalf(BUTTON_TEXT_FONT_SIZE);
 
-			DrawText(
+			FontManager::drawText(
 				text,
-				optionTextPosX,
-				optionTextPosY,
-				static_cast<int>(BUTTON_TEXT_FONT_SIZE),
+				{ optionTextPosX, optionTextPosY },
+				BUTTON_TEXT_FONT_SIZE,
+				BUTTON_TEXT_SPACING,
 				WHITE
 			);
 		}

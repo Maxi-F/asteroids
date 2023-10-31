@@ -36,7 +36,7 @@ namespace Asteroids {
 					Bullets::changeTextureToMulti(bullet);
 					bullets.push_back(bullet);
 					bullets.push_back(Bullets::copyBulletByAngle(bullet, BULLET_SPREAD * DEG2RAD));
-					bullets.push_back(Bullets::copyBulletByAngle(bullet, -BULLET_SPREAD * DEG2RAD));
+					bullets.push_back(Bullets::copyBulletByAngle(bullet, 360.0f - BULLET_SPREAD * DEG2RAD));
 				}
 				else {
 					SfxManager::playSound(SfxManager::SHOOT_2, true);

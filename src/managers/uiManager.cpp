@@ -6,6 +6,7 @@
 #include "uiComponents/button.h"
 #include "utils/math.h"
 #include "assets/assetManager.h"
+#include "assets/fontManager.h"
 #include "managers/asteroidsManager.h"
 #include "managers/bulletManager.h"
 #include "managers/powerupsManager.h"
@@ -21,6 +22,7 @@ namespace Asteroids {
 		static const int RESUME_BUTTON_WIDTH = 200;
 		static const int RESUME_BUTTON_HEIGHT = 50;
 		static const int MENU_BUTTONS_MARGIN = 25;
+		static const float SCORE_SPACING = 3.0f;
 
 		static Buttons::Button pauseButton;
 		static Buttons::Button resumeButton;
@@ -32,9 +34,15 @@ namespace Asteroids {
 		}
 
 		static void drawPoints(int totalPoints) {
-			std::string totalPointsString = "Total points: " + std::to_string(totalPoints);
+			std::string totalPointsString = "Points: " + std::to_string(totalPoints);
 
-			DrawText(totalPointsString.c_str(), SCREEN_MARGIN, GetScreenHeight() - SCREEN_MARGIN - FONT_SIZE, FONT_SIZE, WHITE);
+		    FontManager::drawText(
+				totalPointsString.c_str(),
+				{ static_cast<float>(SCREEN_MARGIN), static_cast<float>(GetScreenHeight() - SCREEN_MARGIN - FONT_SIZE) },
+				FONT_SIZE,
+				SCORE_SPACING,
+				WHITE
+			);
 		}
 
 		static void drawPowerUps() {
