@@ -12,6 +12,7 @@ namespace Asteroids {
 		void drawPowerups();
 		bool isPowerUpActive(PowerUp::PowerUpType powerUpType);
 		bool isPowerUpDisappearing(PowerUp::PowerUpType powerUpType);
+		bool isPowerUpTimerMsLessThanMs(PowerUp::PowerUpType powerUpType, double ms);
 		void pauseTimers();
 		void unpauseTimers();
 	}

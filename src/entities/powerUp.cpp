@@ -43,34 +43,7 @@ namespace Asteroids {
 			));
 		}
 
-		Texture2D getTexturePerType(PowerUpType powerUpType) {
-			switch (powerUpType) {
-			case PowerUpType::MULTI_BULLET:
-				return AssetManager::getTexture(AssetManager::BULLETS_POWER_UP);
-			case PowerUpType::SHIELD:
-				return AssetManager::getTexture(AssetManager::SHIELD_POWER_UP);
-			case PowerUpType::MORE_POINTS:
-				return AssetManager::getTexture(AssetManager::POINTS_POWER_UP);
-			default:
-				return AssetManager::getTexture(AssetManager::POINTS_POWER_UP);
-			}
-		}
-
-		PowerUp createPowerUp(Vector2 position) {
-			PowerUpType powerUpType = getRandomPowerUpType();
-			Timer::Timer lifetimeInMapTimer;
-			Timer::startTimer(&lifetimeInMapTimer, LIFETIME_IN_MAP);
-
-			return {
-				position,
-				POWER_UP_RADIUS,
-				getLifetimePerType(powerUpType),
-				lifetimeInMapTimer,
-				powerUpType,
-			};
-		};
-
-		void drawPowerUp(PowerUp powerUp) {
+		static void drawPowerUpInMap(PowerUp powerUp, Color color) {
 #ifdef _DEBUG
 			DrawCircle(
 				static_cast<int>(powerUp.position.x),
@@ -107,9 +80,44 @@ namespace Asteroids {
 				destRectangle,
 				origin,
 				0,
-				WHITE
+				color
 			);
+		}
+
+		Texture2D getTexturePerType(PowerUpType powerUpType) {
+			switch (powerUpType) {
+			case PowerUpType::MULTI_BULLET:
+				return AssetManager::getTexture(AssetManager::BULLETS_POWER_UP);
+			case PowerUpType::SHIELD:
+				return AssetManager::getTexture(AssetManager::SHIELD_POWER_UP);
+			case PowerUpType::MORE_POINTS:
+				return AssetManager::getTexture(AssetManager::POINTS_POWER_UP);
+			default:
+				return AssetManager::getTexture(AssetManager::POINTS_POWER_UP);
+			}
+		}
+
+		PowerUp createPowerUp(Vector2 position) {
+			PowerUpType powerUpType = getRandomPowerUpType();
+			Timer::Timer lifetimeInMapTimer;
+			Timer::startTimer(&lifetimeInMapTimer, LIFETIME_IN_MAP);
+
+			return {
+				position,
+				POWER_UP_RADIUS,
+				getLifetimePerType(powerUpType),
+				lifetimeInMapTimer,
+				powerUpType,
+			};
 		};
+
+		void drawPowerUp(PowerUp powerUp) {
+			drawPowerUpInMap(powerUp, WHITE);
+		};
+
+		void drawPowerUp(PowerUp powerUp, Color color) {
+			drawPowerUpInMap(powerUp, color);
+		}
 
 		void pauseTimer(PowerUp& powerUp) {
 			Timer::pauseTimer(&powerUp.lifetimeInMapTimer);

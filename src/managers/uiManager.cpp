@@ -24,6 +24,7 @@ namespace Asteroids {
 		static const int RESUME_BUTTON_HEIGHT = 50;
 		static const int MENU_BUTTONS_MARGIN = 25;
 		static const float SCORE_SPACING = 3.0f;
+		static const double POWER_UP_TWINKLE_MS = 500.0;
 
 		static Buttons::Button pauseButton;
 		static Buttons::Button resumeButton;
@@ -69,13 +70,35 @@ namespace Asteroids {
 				};
 				
 				if (PowerupsManager::isPowerUpActive(powerUps[i])) {
-					DrawTextureEx(
-						PowerUp::getTexturePerType(powerUps[i]),
-						position,
-						0,
-						SCALE,
-						WHITE
-					);
+					if (PowerupsManager::isPowerUpDisappearing(powerUps[i])) {
+						if (PowerupsManager::isPowerUpTimerMsLessThanMs(powerUps[i], POWER_UP_TWINKLE_MS)) {
+							DrawTextureEx(
+								emptyPowerTexture,
+								position,
+								0,
+								SCALE,
+								WHITE
+							);
+						}
+						else {
+							DrawTextureEx(
+								PowerUp::getTexturePerType(powerUps[i]),
+								position,
+								0,
+								SCALE,
+								WHITE
+							);
+						}
+					}
+					else {
+						DrawTextureEx(
+							PowerUp::getTexturePerType(powerUps[i]),
+							position,
+							0,
+							SCALE,
+							WHITE
+						);
+					}
 				}
 				else {
 					DrawTextureEx(

@@ -15,5 +15,6 @@ namespace Asteroids {
 		void pauseTimer(Timer* timer);
 		void unPauseTimer(Timer* timer);
 		bool isTimeLeftLessThan(Timer timer, double lifetimeLeft);
+		bool isMillisecondLessThan(Timer timer, double ms);
 	}
 }

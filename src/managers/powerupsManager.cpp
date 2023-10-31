@@ -14,7 +14,7 @@ namespace Asteroids {
 		};
 
 		static const int POWER_UPS_COUNT = 3;
-		static const double POWER_UP_DISAPPEARING_IN_SECONDS = 2.0;
+		static const double POWER_UP_DISAPPEARING_IN_SECONDS = 4.0;
 		static std::vector<PowerUp::PowerUp> powerUpsInMap;
 		static ActivePowerUp activePowerUps[POWER_UPS_COUNT];
 
@@ -94,8 +94,20 @@ namespace Asteroids {
 		};
 
 		void drawPowerups() {
+			const double POWER_UP_TWINKLE_LIFETIME = 2.0;
+			const double POWER_UP_TWINKLE_MS = 500.0;
+			const Color TRANSPARENT_WHITE = { 255, 255, 255, 100 };
+
 			for (size_t i = 0; i < powerUpsInMap.size(); i++) {
-				PowerUp::drawPowerUp(powerUpsInMap[i]);
+				if (
+					Timer::isTimeLeftLessThan(powerUpsInMap[i].lifetimeInMapTimer, POWER_UP_TWINKLE_LIFETIME) && 
+					Timer::isMillisecondLessThan(powerUpsInMap[i].lifetimeInMapTimer, POWER_UP_TWINKLE_MS)
+				) {
+					PowerUp::drawPowerUp(powerUpsInMap[i], TRANSPARENT_WHITE);
+				}
+				else {
+					PowerUp::drawPowerUp(powerUpsInMap[i]);
+				}
 			}
 		};
 		
@@ -112,6 +124,15 @@ namespace Asteroids {
 			for (int i = 0; i < POWER_UPS_COUNT; i++) {
 				if (activePowerUps[i].powerUpType == powerUpType) {
 					return Timer::isTimeLeftLessThan(activePowerUps[i].lifetimeTimer, POWER_UP_DISAPPEARING_IN_SECONDS);
+				}
+			}
+			return false;
+		};
+
+		bool isPowerUpTimerMsLessThanMs(PowerUp::PowerUpType powerUpType, double ms) {
+			for (int i = 0; i < POWER_UPS_COUNT; i++) {
+				if (activePowerUps[i].powerUpType == powerUpType) {
+					return Timer::isMillisecondLessThan(activePowerUps[i].lifetimeTimer, ms);
 				}
 			}
 			return false;
