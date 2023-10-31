@@ -30,7 +30,7 @@ namespace Asteroids {
 		};
 		
 		static const float SCREEN_MARGIN = 50.0f;
-		static const int BUTTON_WIDTH = 100;
+		static const int BUTTON_WIDTH = 200;
 		static const int BUTTON_HEIGHT = 50;
 
 		static const int LINK_RECTANGLE_HEIGHT = 65;
@@ -43,6 +43,7 @@ namespace Asteroids {
 			DrawTextureEx(AssetManager::getTexture(AssetManager::CREDITS), { 0.0f, 0.0f }, 0, 1, WHITE);
 
 			Buttons::drawButton(goBackButton);
+			Buttons::drawCenteredTextInButton(goBackButton, "GO BACK");
 
 #ifdef _DEBUG
 			for (int i = 0; i < LINKS_COUNT; i++) {

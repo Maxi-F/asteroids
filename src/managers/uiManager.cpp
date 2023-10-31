@@ -19,7 +19,7 @@ namespace Asteroids {
 		static const int SPACING_MARGIN = 20;
 		static const int PAUSE_BUTTON_WIDTH = 50;
 		static const int PAUSE_BUTTON_HEIGHT = 50;
-		static const int RESUME_BUTTON_WIDTH = 200;
+		static const int RESUME_BUTTON_WIDTH = 300;
 		static const int RESUME_BUTTON_HEIGHT = 50;
 		static const int MENU_BUTTONS_MARGIN = 25;
 		static const float SCORE_SPACING = 3.0f;
@@ -30,7 +30,10 @@ namespace Asteroids {
 
 		static void drawPause() {
 			Buttons::drawButton(resumeButton);
+			Buttons::drawCenteredTextInButton(resumeButton, "RESUME");
+
 			Buttons::drawButton(backToMenuButton);
+			Buttons::drawCenteredTextInButton(backToMenuButton, "BACK TO MENU");
 		}
 
 		static void drawPoints(int totalPoints) {
@@ -103,6 +106,8 @@ namespace Asteroids {
 		}
 
 		void initUI() {
+			const Color HARDGRAY = { 71, 71, 71, 255 };
+
 			pauseButton = Buttons::createButtonWithColors(
 				{
 					static_cast<float>(GetScreenWidth() - SCREEN_MARGIN - PAUSE_BUTTON_WIDTH),
@@ -110,7 +115,7 @@ namespace Asteroids {
 					PAUSE_BUTTON_WIDTH,
 					PAUSE_BUTTON_HEIGHT
 				},
-				LIGHTGRAY,
+				HARDGRAY,
 				GRAY,
 				DARKGRAY
 			);
@@ -122,7 +127,7 @@ namespace Asteroids {
 					RESUME_BUTTON_WIDTH,
 					RESUME_BUTTON_HEIGHT
 				},
-				LIGHTGRAY,
+				HARDGRAY,
 				GRAY,
 				DARKGRAY
 			);
@@ -134,7 +139,7 @@ namespace Asteroids {
 					RESUME_BUTTON_WIDTH,
 					RESUME_BUTTON_HEIGHT
 				},
-				LIGHTGRAY,
+				HARDGRAY,
 				GRAY,
 				DARKGRAY
 			);

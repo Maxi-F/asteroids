@@ -9,7 +9,7 @@
 namespace Asteroids {
 	namespace Rules {
 		static const float SCREEN_MARGIN = 50.0f;
-		static const int BUTTON_WIDTH = 100;
+		static const int BUTTON_WIDTH = 200;
 		static const int BUTTON_HEIGHT = 50;
 
 		static Buttons::Button goBackButton;
@@ -17,6 +17,7 @@ namespace Asteroids {
 		void drawRules() {
 			DrawTextureEx(AssetManager::getTexture(AssetManager::RULES), { 0.0f, 0.0f }, 0, 1, WHITE);
 			Buttons::drawButton(goBackButton);
+			Buttons::drawCenteredTextInButton(goBackButton, "GO BACK");
 		};
 
 		void initRules() {
