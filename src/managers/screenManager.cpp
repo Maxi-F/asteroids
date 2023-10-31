@@ -14,7 +14,7 @@ namespace Asteroids {
 			actualScreen = Screens::MENU;
 
 			SfxManager::playMusic(SfxManager::MENU);
-			initMenu();
+			Menu::initMenu();
 		}
 
 		void changeScreenTo(Screens screen, bool shouldStopMusic) {
@@ -25,7 +25,7 @@ namespace Asteroids {
 
 			switch (actualScreen) {
 				case Screens::MENU:
-					initMenu();
+					Menu::initMenu();
 					if (shouldStopMusic) {
 						SfxManager::playMusic(SfxManager::MENU);
 					}
@@ -46,7 +46,7 @@ namespace Asteroids {
 		void drawScreen() {
 			switch (actualScreen) {
 				case Screens::MENU:
-					drawMenu();
+					Menu::drawMenu();
 					break;
 				case Screens::CREDITS:
 					Credits::drawCredits();
@@ -63,7 +63,7 @@ namespace Asteroids {
 		void updateScreen(bool& shouldClose) {
 			switch (actualScreen) {
 				case Screens::MENU:
-					checkMenuInputAndCollision(shouldClose);
+					Menu::checkMenuInputAndCollision(shouldClose);
 					SfxManager::updateMusic(SfxManager::MENU);
 					break;
 				case Screens::CREDITS:

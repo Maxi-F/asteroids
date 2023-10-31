@@ -7,104 +7,127 @@
 #include "assets/fontManager.h"
 
 namespace Asteroids {
-	static const float OPTION_RECTANGLE_WIDTH = 300.0f;
-	static const float OPTION_RECTANGLE_HEIGHT = 40.0f;
+	namespace Menu {
+		static const float OPTION_RECTANGLE_WIDTH = 300.0f;
+		static const float OPTION_RECTANGLE_HEIGHT = 40.0f;
 
-	static const float TOP_MARGIN = 120.0f;
-	static const float OPTION_RECTANGLE_MARGIN = 25.0f;
-	static const float TITLE_TOP_MARGIN = 40.0f;
-	static const float TITLE_FONT_SIZE = 50.0f;
-	static const float TITLE_SPACING = 3.0f;
+		static const float TOP_MARGIN = 120.0f;
+		static const float OPTION_RECTANGLE_MARGIN = 25.0f;
+		static const float TITLE_TOP_MARGIN = 40.0f;
+		static const float TITLE_FONT_SIZE = 50.0f;
+		static const float TITLE_SPACING = 3.0f;
 
-	static MenuOption menuOptions[Option::OPTIONS_QUANTITY];
+		static int highScore = 0;
 
-	static void drawOptionBox(MenuOption option) {
-		Buttons::drawButton(option.optionButton);
-	}
+		static MenuOption menuOptions[Option::OPTIONS_QUANTITY];
 
-	static std::string optionToText(Option option) {
-		switch (option) {
-		case Option::PLAY:
-			return "Play";
-		case Option::EXIT:
-			return "Exit";
-		case Option::READ_RULES:
-			return "Rules";
-		case Option::READ_CREDITS:
-			return "Credits";
-		default:
-			return "";
+		static void drawOptionBox(MenuOption option) {
+			Buttons::drawButton(option.optionButton);
 		}
-	}
 
-	static void actionPerMenuOption(Option option, bool& shouldClose) {
-		switch (option) {
-		case Option::PLAY:
-			ScreensManager::changeScreenTo(ScreensManager::Screens::GAMEPLAY, true);
-			break;
-		case Option::READ_CREDITS:
-			ScreensManager::changeScreenTo(ScreensManager::Screens::CREDITS, false);
-			break;
-		case Option::READ_RULES:
-			ScreensManager::changeScreenTo(ScreensManager::Screens::RULES, false);
-			break;
-		case Option::EXIT:
-			shouldClose = true;
-			break;
+		static std::string optionToText(Option option) {
+			switch (option) {
+			case Option::PLAY:
+				return "Play";
+			case Option::EXIT:
+				return "Exit";
+			case Option::READ_RULES:
+				return "Rules";
+			case Option::READ_CREDITS:
+				return "Credits";
+			default:
+				return "";
+			}
 		}
-	}
 
-	void initMenu() {
-		for (int i = 0; i < Option::OPTIONS_QUANTITY; i++) {
-			float yPosition = TOP_MARGIN + (OPTION_RECTANGLE_MARGIN + OPTION_RECTANGLE_HEIGHT) * i;
+		static void actionPerMenuOption(Option option, bool& shouldClose) {
+			switch (option) {
+			case Option::PLAY:
+				ScreensManager::changeScreenTo(ScreensManager::Screens::GAMEPLAY, true);
+				break;
+			case Option::READ_CREDITS:
+				ScreensManager::changeScreenTo(ScreensManager::Screens::CREDITS, false);
+				break;
+			case Option::READ_RULES:
+				ScreensManager::changeScreenTo(ScreensManager::Screens::RULES, false);
+				break;
+			case Option::EXIT:
+				shouldClose = true;
+				break;
+			}
+		}
+
+		void initMenu() {
+			for (int i = 0; i < Option::OPTIONS_QUANTITY; i++) {
+				float yPosition = TOP_MARGIN + (OPTION_RECTANGLE_MARGIN + OPTION_RECTANGLE_HEIGHT) * i;
+				float screenWidth = ScreenUtils::getScreenWidth();
+
+				Rectangle optionRectangle = {
+				getHalf(screenWidth) - getHalf(OPTION_RECTANGLE_WIDTH),
+				yPosition,
+				OPTION_RECTANGLE_WIDTH,
+				OPTION_RECTANGLE_HEIGHT
+				};
+
+				menuOptions[i] = {
+					(Option)i,
+					optionToText((Option)i),
+					Buttons::createButton(optionRectangle)
+				};
+			}
+		}
+
+		void drawMenu() {
+			const char* title = "ASHHTEROIDS";
+			Vector2 titleSize = FontManager::measureText(title, TITLE_FONT_SIZE, TITLE_SPACING);
 			float screenWidth = ScreenUtils::getScreenWidth();
+			float asteroidsTitlePosX = getHalf(screenWidth) - getHalf(titleSize.x);
 
-			Rectangle optionRectangle = {
-			getHalf(screenWidth) - getHalf(OPTION_RECTANGLE_WIDTH),
-			yPosition,
-			OPTION_RECTANGLE_WIDTH,
-			OPTION_RECTANGLE_HEIGHT
-			};
+			DrawTextureEx(
+				AssetManager::getTexture(AssetManager::BACKGROUND),
+				{ 0.0f, 0.0f },
+				0,
+				2,
+				WHITE
+			);
 
-			menuOptions[i] = {
-				(Option)i,
-				optionToText((Option)i),
-				Buttons::createButton(optionRectangle)
-			};
+			FontManager::drawText(
+				title, { asteroidsTitlePosX, TITLE_TOP_MARGIN }, TITLE_FONT_SIZE, TITLE_SPACING, WHITE);
+
+			for (int i = 0; i < Option::OPTIONS_QUANTITY; i++) {
+				drawOptionBox(menuOptions[i]);
+				Buttons::drawCenteredTextInButton(menuOptions[i].optionButton, menuOptions[i].text.c_str());
+			}
+
+			std::string highScoreString = "HIGHSCORE: " + std::to_string(highScore);
+			const char* highScoreText = highScoreString.c_str();
+			Vector2 highScoreSize = FontManager::measureText(title, TITLE_FONT_SIZE, TITLE_SPACING);
+			float screenHeight = ScreenUtils::getScreenHeight();
+
+			FontManager::drawText(
+				highScoreText,
+				{ TITLE_TOP_MARGIN, screenHeight - TITLE_FONT_SIZE - TITLE_TOP_MARGIN },
+				TITLE_FONT_SIZE,
+				TITLE_SPACING,
+				WHITE
+			);
 		}
-	}
 
-	void drawMenu() {
-		const char* title = "ASHHTEROIDS";
-		Vector2 titleSize = FontManager::measureText(title, TITLE_FONT_SIZE, TITLE_SPACING);
-		float screenWidth = ScreenUtils::getScreenWidth();
-		float asteroidsTitlePosX = getHalf(screenWidth) - getHalf(titleSize.x);
-
-		DrawTextureEx(
-			AssetManager::getTexture(AssetManager::BACKGROUND),
-			{ 0.0f, 0.0f },
-			0,
-			2,
-			WHITE
-		);
-
-		FontManager::drawText(
-			title, { asteroidsTitlePosX, TITLE_TOP_MARGIN }, TITLE_FONT_SIZE, TITLE_SPACING, WHITE);
-
-		for (int i = 0; i < Option::OPTIONS_QUANTITY; i++) {
-			drawOptionBox(menuOptions[i]);
-			Buttons::drawCenteredTextInButton(menuOptions[i].optionButton, menuOptions[i].text.c_str());
-		}
-	}
-
-	void checkMenuInputAndCollision(bool& shouldClose) {
-		for (int i = 0; i < Option::OPTIONS_QUANTITY; i++) {
-			Buttons::updateButton(menuOptions[i].optionButton);
-
-			if (menuOptions[i].optionButton.isClicked) {
-				actionPerMenuOption(menuOptions[i].option, shouldClose);
+		void changeHighScore(int probablyNewHighScore) {
+			if (probablyNewHighScore > highScore) {
+				highScore = probablyNewHighScore;
 			}
 		};
+
+		void checkMenuInputAndCollision(bool& shouldClose) {
+			for (int i = 0; i < Option::OPTIONS_QUANTITY; i++) {
+				Buttons::updateButton(menuOptions[i].optionButton);
+
+				if (menuOptions[i].optionButton.isClicked) {
+					actionPerMenuOption(menuOptions[i].option, shouldClose);
+				}
+			};
+		}
 	}
 
 }

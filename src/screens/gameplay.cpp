@@ -9,6 +9,7 @@
 #include "managers/screenManager.h"
 #include "managers/uiManager.h"
 #include "managers/powerupsManager.h"
+#include "screens/menu.h"
 
 namespace Asteroids {
 	namespace Gameplay {
@@ -65,6 +66,7 @@ namespace Asteroids {
 				if (Timer::timerDone(deathTimer)) {
 					
 					if (gameplayEntities.lives <= 0) {
+						Menu::changeHighScore(gameplayEntities.totalPoints);
 						ScreensManager::changeScreenTo(ScreensManager::Screens::MENU, true);
 					}
 

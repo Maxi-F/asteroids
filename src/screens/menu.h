@@ -6,21 +6,24 @@
 #include "uiComponents/button.h"
 
 namespace Asteroids {
-	enum Option {
-		PLAY,
-		READ_RULES,
-		READ_CREDITS,
-		EXIT,
-		OPTIONS_QUANTITY
-	};
+	namespace Menu {
+		enum Option {
+			PLAY,
+			READ_RULES,
+			READ_CREDITS,
+			EXIT,
+			OPTIONS_QUANTITY
+		};
 
-	struct MenuOption {
-		Option option;
-		std::string text;
-		Buttons::Button optionButton;
-	};
+		struct MenuOption {
+			Option option;
+			std::string text;
+			Buttons::Button optionButton;
+		};
 
-	void drawMenu();
-	void initMenu();
-	void checkMenuInputAndCollision(bool& shouldClose);
+		void drawMenu();
+		void initMenu();
+		void changeHighScore(int probablyNewHighScore);
+		void checkMenuInputAndCollision(bool& shouldClose);
+	}
 }
