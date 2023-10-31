@@ -9,6 +9,7 @@
 #include "managers/asteroidsManager.h"
 #include "managers/bulletManager.h"
 #include "managers/powerupsManager.h"
+#include "managers/screenManager.h"
 
 namespace Asteroids {
 	namespace UiManager {
@@ -19,12 +20,15 @@ namespace Asteroids {
 		static const int PAUSE_BUTTON_HEIGHT = 50;
 		static const int RESUME_BUTTON_WIDTH = 200;
 		static const int RESUME_BUTTON_HEIGHT = 50;
+		static const int MENU_BUTTONS_MARGIN = 25;
 
 		static Buttons::Button pauseButton;
 		static Buttons::Button resumeButton;
+		static Buttons::Button backToMenuButton;
 
 		static void drawPause() {
 			Buttons::drawButton(resumeButton);
+			Buttons::drawButton(backToMenuButton);
 		}
 
 		static void drawPoints(int totalPoints) {
@@ -106,7 +110,19 @@ namespace Asteroids {
 			resumeButton = Buttons::createButtonWithColors(
 				{
 					getHalf(static_cast<float>(GetScreenWidth())) - getHalf(static_cast<float>(RESUME_BUTTON_WIDTH)),
-					getHalf(static_cast<float>(GetScreenHeight())) - getHalf(static_cast<float>(RESUME_BUTTON_HEIGHT)),
+					getHalf(static_cast<float>(GetScreenHeight())) - RESUME_BUTTON_HEIGHT - MENU_BUTTONS_MARGIN,
+					RESUME_BUTTON_WIDTH,
+					RESUME_BUTTON_HEIGHT
+				},
+				LIGHTGRAY,
+				GRAY,
+				DARKGRAY
+			);
+
+			backToMenuButton = Buttons::createButtonWithColors(
+				{
+					getHalf(static_cast<float>(GetScreenWidth())) - getHalf(static_cast<float>(RESUME_BUTTON_WIDTH)),
+					getHalf(static_cast<float>(GetScreenHeight())) + MENU_BUTTONS_MARGIN,
 					RESUME_BUTTON_WIDTH,
 					RESUME_BUTTON_HEIGHT
 				},
@@ -134,6 +150,7 @@ namespace Asteroids {
 				pauseButton.isHovered = false;
 
 				Buttons::updateButton(resumeButton);
+				Buttons::updateButton(backToMenuButton);
 
 				if (resumeButton.isClicked) {
 					isPaused = false;
@@ -142,7 +159,10 @@ namespace Asteroids {
 					BulletManager::unpauseTimers();
 					PowerupsManager::unpauseTimers();
 				}
-			}
+				else if (backToMenuButton.isClicked) {
+					ScreensManager::changeScreenTo(ScreensManager::MENU, true);
+				}
+			} 
 			else {
 				Buttons::updateButton(pauseButton);
 
