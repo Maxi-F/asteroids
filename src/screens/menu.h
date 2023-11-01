@@ -23,7 +23,6 @@ namespace Asteroids {
 
 		void drawMenu();
 		void initMenu();
-		void changeHighScore(int probablyNewHighScore);
 		void checkMenuInputAndCollision(bool& shouldClose);
 	}
 }

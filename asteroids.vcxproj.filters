@@ -132,6 +132,12 @@
     <ClCompile Include="src\assets\fontManager.cpp">
       <Filter>Archivos de origen\assets</Filter>
     </ClCompile>
+    <ClCompile Include="src\screens\youlost.cpp">
+      <Filter>Archivos de origen\screens</Filter>
+    </ClCompile>
+    <ClCompile Include="src\managers\gameManager.cpp">
+      <Filter>Archivos de origen\managers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game.h">
@@ -208,6 +214,12 @@
     </ClInclude>
     <ClInclude Include="src\assets\fontManager.h">
       <Filter>Archivos de encabezado\assets</Filter>
+    </ClInclude>
+    <ClInclude Include="src\screens\youlost.h">
+      <Filter>Archivos de encabezado\screens</Filter>
+    </ClInclude>
+    <ClInclude Include="src\managers\gameManager.h">
+      <Filter>Archivos de encabezado\managers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -6,6 +6,7 @@
 #include "managers/bulletManager.h"
 #include "managers/asteroidsManager.h"
 #include "managers/pointsManager.h"
+#include "managers/gameManager.h"
 #include "managers/screenManager.h"
 #include "managers/uiManager.h"
 #include "managers/powerupsManager.h"
@@ -66,8 +67,9 @@ namespace Asteroids {
 				if (Timer::timerDone(deathTimer)) {
 					
 					if (gameplayEntities.lives <= 0) {
-						Menu::changeHighScore(gameplayEntities.totalPoints);
-						ScreensManager::changeScreenTo(ScreensManager::Screens::MENU, true);
+						GameManager::setNewHighScore(gameplayEntities.totalPoints);
+						GameManager::setLastScore(gameplayEntities.totalPoints);
+						ScreensManager::changeScreenTo(ScreensManager::Screens::YOU_LOST, true);
 					}
 
 					gameplayEntities.isDeathPlaying = false;

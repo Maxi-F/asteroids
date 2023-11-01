@@ -6,6 +6,7 @@ namespace Asteroids {
             GAMEPLAY = 0,
             MENU,
             RULES,
+            YOU_LOST,
             CREDITS
         };
 

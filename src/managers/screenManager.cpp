@@ -4,6 +4,7 @@
 #include "screens/gameplay.h"
 #include "screens/rules.h"
 #include "screens/credits.h"
+#include "screens/youlost.h"
 #include "assets/sfxManager.h"
 
 namespace Asteroids {
@@ -34,6 +35,9 @@ namespace Asteroids {
 					Gameplay::initGameplay();
 					SfxManager::playMusic(SfxManager::GAMEPLAY);
 					break;
+				case Screens::YOU_LOST:
+					YouLost::initYouLost();
+					break;
 				case Screens::CREDITS:
 					Credits::initCredits();
 					break;
@@ -50,6 +54,9 @@ namespace Asteroids {
 					break;
 				case Screens::CREDITS:
 					Credits::drawCredits();
+					break;
+				case Screens::YOU_LOST:
+					YouLost::drawYouLost();
 					break;
 				case Screens::RULES:
 					Rules::drawRules();
@@ -77,6 +84,9 @@ namespace Asteroids {
 				case Screens::GAMEPLAY:
 					Gameplay::updateGameplay();
 					SfxManager::updateMusic(SfxManager::GAMEPLAY);
+					break;
+				case Screens::YOU_LOST:
+					YouLost::checkYouLostInputsAndCollision();
 					break;
 			};
 

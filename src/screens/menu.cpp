@@ -3,6 +3,7 @@
 #include "utils/math.h"
 #include "utils/screen.h"
 #include "managers/screenManager.h"
+#include "managers/gameManager.h"
 #include "assets/assetManager.h"
 #include "assets/fontManager.h"
 
@@ -16,8 +17,6 @@ namespace Asteroids {
 		static const float TITLE_TOP_MARGIN = 40.0f;
 		static const float TITLE_FONT_SIZE = 50.0f;
 		static const float TITLE_SPACING = 3.0f;
-
-		static int highScore = 0;
 
 		static MenuOption menuOptions[Option::OPTIONS_QUANTITY];
 
@@ -99,7 +98,7 @@ namespace Asteroids {
 				Buttons::drawCenteredTextInButton(menuOptions[i].optionButton, menuOptions[i].text.c_str());
 			}
 
-			std::string highScoreString = "HIGHSCORE: " + std::to_string(highScore);
+			std::string highScoreString = "HIGHSCORE: " + std::to_string(GameManager::getHighScore());
 			const char* highScoreText = highScoreString.c_str();
 			Vector2 highScoreSize = FontManager::measureText(title, TITLE_FONT_SIZE, TITLE_SPACING);
 			float screenHeight = ScreenUtils::getScreenHeight();
@@ -112,12 +111,6 @@ namespace Asteroids {
 				WHITE
 			);
 		}
-
-		void changeHighScore(int probablyNewHighScore) {
-			if (probablyNewHighScore > highScore) {
-				highScore = probablyNewHighScore;
-			}
-		};
 
 		void checkMenuInputAndCollision(bool& shouldClose) {
 			for (int i = 0; i < Option::OPTIONS_QUANTITY; i++) {
