@@ -91,7 +91,7 @@ namespace Asteroids {
 				},
 				{
 					assetsLinkRectangle,
-					"https://google.com"
+					"https://www.artstation.com/drkumalo1971"
 				},
 				{
 					sfxLinkRectangle,
