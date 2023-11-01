@@ -108,7 +108,7 @@ namespace Asteroids {
 				},
 				{
 					sfxLinkRectangle,
-					L"https://google.com"
+					L"https://www.instagram.com/_ii.v.i"
 				},
 				{
 					fontLinkRectangle,
