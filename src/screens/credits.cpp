@@ -1,21 +1,8 @@
 #include "credits.h"
 
 #include <string>
+
 #include "raylib.h"
-// The next preprocessor statements are made to fix
-// bugs that arise because raylib and windows.h libs have
-// some names that overlap each other.
-#if defined(_WIN32)           
-	#define NOGDI   
-	#define NOUSER
-#endif
-
-#include <Windows.h>
-
-#if defined(_WIN32)
-	#undef near
-	#undef far
-#endif
 
 #include "uiComponents/button.h"
 #include "assets/assetManager.h"
@@ -26,7 +13,7 @@ namespace Asteroids {
 	namespace Credits {
 		struct LinkRectangle {
 		    Rectangle rectangle;
-			LPCWSTR link;
+			const char* link;
 		};
 		
 		static const float SCREEN_MARGIN = 50.0f;
@@ -49,7 +36,7 @@ namespace Asteroids {
 			for (int i = 0; i < LINKS_COUNT; i++) {
 				DrawRectangleRec(linkRectangles[i].rectangle, RED);
 			};
-#endif // _DEBUG
+#endif
 		};
 
 		void initCredits() {
@@ -70,28 +57,28 @@ namespace Asteroids {
 			);
 
 			Rectangle developerLinkRectangle = {
-				getHalf(static_cast<float>(GetScreenWidth())) - getHalf(static_cast<float>(DEVELOPER_LINK_WIDTH)),
+				MathUtils::getHalf(static_cast<float>(GetScreenWidth())) - MathUtils::getHalf(static_cast<float>(DEVELOPER_LINK_WIDTH)),
 				START_LINK_Y_POSITION,
 				DEVELOPER_LINK_WIDTH,
 				LINK_RECTANGLE_HEIGHT
 			};
 
 			Rectangle assetsLinkRectangle = {
-				getHalf(static_cast<float>(GetScreenWidth())) - getHalf(static_cast<float>(ASSETS_LINK_WIDTH)),
+				MathUtils::getHalf(static_cast<float>(GetScreenWidth())) - MathUtils::getHalf(static_cast<float>(ASSETS_LINK_WIDTH)),
 				START_LINK_Y_POSITION + MARGIN_LINK_Y_POSITION,
 				ASSETS_LINK_WIDTH,
 				LINK_RECTANGLE_HEIGHT
 			};
 
 			Rectangle sfxLinkRectangle = {
-				getHalf(static_cast<float>(GetScreenWidth())) - getHalf(static_cast<float>(SFX_LINK_WIDTH)),
+				MathUtils::getHalf(static_cast<float>(GetScreenWidth())) - MathUtils::getHalf(static_cast<float>(SFX_LINK_WIDTH)),
 				START_LINK_Y_POSITION + MARGIN_LINK_Y_POSITION * 2,
 				SFX_LINK_WIDTH,
 				LINK_RECTANGLE_HEIGHT
 			};
 
 			Rectangle fontLinkRectangle = {
-				getHalf(static_cast<float>(GetScreenWidth())) - getHalf(static_cast<float>(FONT_LINK_WIDTH)),
+				MathUtils::getHalf(static_cast<float>(GetScreenWidth())) - MathUtils::getHalf(static_cast<float>(FONT_LINK_WIDTH)),
 				START_LINK_Y_POSITION + MARGIN_LINK_Y_POSITION * 3,
 				FONT_LINK_WIDTH,
 				LINK_RECTANGLE_HEIGHT
@@ -100,19 +87,19 @@ namespace Asteroids {
 			LinkRectangle auxLinkRectangles[LINKS_COUNT] = {
 				{
 					developerLinkRectangle,
-					L"https://github.com/Maxi-F/"
+					"https://github.com/Maxi-F/"
 				},
 				{
 					assetsLinkRectangle,
-					L"https://google.com"
+					"https://google.com"
 				},
 				{
 					sfxLinkRectangle,
-					L"https://www.instagram.com/_ii.v.i"
+					"https://www.instagram.com/_ii.v.i"
 				},
 				{
 					fontLinkRectangle,
-					L"https://fonts.google.com/specimen/VT323"
+					"https://fonts.google.com/specimen/VT323"
 				}
 			};
 
@@ -130,8 +117,8 @@ namespace Asteroids {
 			}
 
 			for (int i = 0; i < LINKS_COUNT; i++) {
-				if (checkPointToRectangleCollision(linkRectangles[i].rectangle, mousePosition) && IsMouseButtonReleased(MOUSE_BUTTON_LEFT)) {
-					ShellExecute(0, 0, linkRectangles[i].link, 0, 0, 5);
+				if (MathUtils::checkPointToRectangleCollision(linkRectangles[i].rectangle, mousePosition) && IsMouseButtonReleased(MOUSE_BUTTON_LEFT)) {
+					OpenURL(linkRectangles[i].link);
 				}
 			}
 		};

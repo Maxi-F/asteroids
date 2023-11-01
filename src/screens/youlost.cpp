@@ -1,7 +1,8 @@
 #include "youlost.h"
 
-#include "raylib.h"
 #include <string>
+
+#include "raylib.h"
 
 #include "assets/assetManager.h"
 #include "managers/screenManager.h"
@@ -21,6 +22,7 @@ namespace Asteroids {
 		static const float POINTS_FONT_SIZE = 36.0f;
 		static const float POINTS_SPACING = 3.0f;
 		static const float POINTS_MARGIN = 25.0f;
+		static const float TOP_SCREEN_MARGIN = 60.0f;
 		static const float SCREEN_MARGIN = 120.0f;
 
 		Buttons::Button backToMenuButton;
@@ -31,16 +33,13 @@ namespace Asteroids {
 
 			DrawTextureEx(AssetManager::getTexture(AssetManager::BACKGROUND), { 0.0f, 0.0f }, 0, 2, WHITE);
 
-			const char* youLostTitle = "You lost...";
-			Vector2 youLostSize = FontManager::measureText(youLostTitle, TITLE_FONT_SIZE, TITLE_SPACING);
-			FontManager::drawText(
-				youLostTitle,
-				{
-					getHalf(screenDimensions.x) - getHalf(youLostSize.x),
-					SCREEN_MARGIN
-				},
-				TITLE_FONT_SIZE,
-				TITLE_SPACING,
+			Texture2D youLostTexture = AssetManager::getTexture(AssetManager::YOU_LOST);
+
+			DrawTextureEx(
+				youLostTexture,
+				{ MathUtils::getHalf(screenDimensions.x) - MathUtils::getHalf(static_cast<float>(youLostTexture.width)), TOP_SCREEN_MARGIN },
+				0,
+				1,
 				WHITE
 			);
 			
@@ -56,7 +55,7 @@ namespace Asteroids {
 			FontManager::drawText(
 				highScoreText,
 				{
-					getHalf(screenDimensions.x) - getHalf(highScoreSize.x),
+					MathUtils::getHalf(screenDimensions.x) - MathUtils::getHalf(highScoreSize.x),
 					screenDimensions.y - SCREEN_MARGIN - highScoreSize.y
 				},
 				POINTS_FONT_SIZE,
@@ -70,7 +69,7 @@ namespace Asteroids {
 			FontManager::drawText(
 				lastPointsText,
 				{
-					getHalf(screenDimensions.x) - getHalf(lastPointsSize.x),
+					MathUtils::getHalf(screenDimensions.x) - MathUtils::getHalf(lastPointsSize.x),
 					screenDimensions.y - SCREEN_MARGIN - highScoreSize.y - POINTS_MARGIN - lastPointsSize.y
 				},
 				POINTS_FONT_SIZE,
@@ -83,15 +82,15 @@ namespace Asteroids {
 			Vector2 screenDimensions = { ScreenUtils::getScreenWidth(), ScreenUtils::getScreenHeight() };
 
 			backToMenuButton = Buttons::createButton({
-				getHalf(screenDimensions.x) - getHalf(static_cast<float>(BUTTON_WIDTH)),
-				getHalf(screenDimensions.y) + getHalf(static_cast<float>(BUTTON_HEIGHT)) + BUTTON_SPACING,
+				MathUtils::getHalf(screenDimensions.x) - MathUtils::getHalf(static_cast<float>(BUTTON_WIDTH)),
+				MathUtils::getHalf(screenDimensions.y) + MathUtils::getHalf(static_cast<float>(BUTTON_HEIGHT)) + BUTTON_SPACING,
 				BUTTON_WIDTH,
 				BUTTON_HEIGHT
 			});
 
 			playAgainButton = Buttons::createButton({
-				getHalf(screenDimensions.x) - getHalf(static_cast<float>(BUTTON_WIDTH)),
-				getHalf(screenDimensions.y) - getHalf(static_cast<float>(BUTTON_HEIGHT)) - BUTTON_SPACING,
+				MathUtils::getHalf(screenDimensions.x) - MathUtils::getHalf(static_cast<float>(BUTTON_WIDTH)),
+				MathUtils::getHalf(screenDimensions.y) - MathUtils::getHalf(static_cast<float>(BUTTON_HEIGHT)) - BUTTON_SPACING,
 				BUTTON_WIDTH,
 				BUTTON_HEIGHT
 			});

@@ -1,6 +1,7 @@
 #include "timer.h"
 
 #include <math.h>
+
 #include "raylib.h"
 
 namespace Asteroids {

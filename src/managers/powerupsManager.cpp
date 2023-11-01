@@ -2,7 +2,6 @@
 
 #include <vector>
 
-#include "utils/math.h"
 #include "assets/sfxManager.h"
 
 namespace Asteroids {
@@ -85,7 +84,7 @@ namespace Asteroids {
 			}
 
 			for (size_t i = 0; i < powerUpsInMap.size(); i++) {
-				if (checkCircleCollision({ ship.position, ship.shipRadius }, { powerUpsInMap[i].position, powerUpsInMap[i].radius })) {
+				if (MathUtils::checkCircleCollision({ ship.position, ship.shipRadius }, { powerUpsInMap[i].position, powerUpsInMap[i].radius })) {
 					activatePowerup(powerUpsInMap[i]);
 					powerUpsInMap.erase(powerUpsInMap.begin() + i);
 				} else if (Timer::timerDone(powerUpsInMap[i].lifetimeInMapTimer)) {

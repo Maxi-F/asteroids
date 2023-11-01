@@ -1,10 +1,10 @@
 #include "uiManager.h"
 
 #include <string>
+
 #include "raylib.h"
 
 #include "uiComponents/button.h"
-#include "utils/math.h"
 #include "assets/assetManager.h"
 #include "assets/fontManager.h"
 #include "managers/asteroidsManager.h"
@@ -65,7 +65,8 @@ namespace Asteroids {
 			
 			for (int i = 0; i < POWER_UPS_COUNT; i++) {
 				Vector2 position = { 
-					getHalf(static_cast<float>(GetScreenWidth())) - getHalf(emptyPowerTexture.width * SCALE) + (emptyPowerTexture.width * SCALE + SPACING) * (i - 1),
+					MathUtils::getHalf(static_cast<float>(GetScreenWidth())) - 
+						MathUtils::getHalf(emptyPowerTexture.width * SCALE) + (emptyPowerTexture.width * SCALE + SPACING) * (i - 1),
 					SCREEN_MARGIN
 				};
 				
@@ -146,8 +147,8 @@ namespace Asteroids {
 
 			resumeButton = Buttons::createButtonWithColors(
 				{
-					getHalf(static_cast<float>(GetScreenWidth())) - getHalf(static_cast<float>(RESUME_BUTTON_WIDTH)),
-					getHalf(static_cast<float>(GetScreenHeight())) - RESUME_BUTTON_HEIGHT - MENU_BUTTONS_MARGIN,
+					MathUtils::getHalf(static_cast<float>(GetScreenWidth())) - MathUtils::getHalf(static_cast<float>(RESUME_BUTTON_WIDTH)),
+					MathUtils::getHalf(static_cast<float>(GetScreenHeight())) - RESUME_BUTTON_HEIGHT - MENU_BUTTONS_MARGIN,
 					RESUME_BUTTON_WIDTH,
 					RESUME_BUTTON_HEIGHT
 				},
@@ -158,8 +159,8 @@ namespace Asteroids {
 
 			backToMenuButton = Buttons::createButtonWithColors(
 				{
-					getHalf(static_cast<float>(GetScreenWidth())) - getHalf(static_cast<float>(RESUME_BUTTON_WIDTH)),
-					getHalf(static_cast<float>(GetScreenHeight())) + MENU_BUTTONS_MARGIN,
+					MathUtils::getHalf(static_cast<float>(GetScreenWidth())) - MathUtils::getHalf(static_cast<float>(RESUME_BUTTON_WIDTH)),
+					MathUtils::getHalf(static_cast<float>(GetScreenHeight())) + MENU_BUTTONS_MARGIN,
 					RESUME_BUTTON_WIDTH,
 					RESUME_BUTTON_HEIGHT
 				},

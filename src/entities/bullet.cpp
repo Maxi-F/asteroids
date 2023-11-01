@@ -2,7 +2,6 @@
 
 #include "raymath.h"
 
-#include "utils/screen.h"
 #include "assets/assetManager.h"
 
 namespace Asteroids {

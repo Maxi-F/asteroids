@@ -1,4 +1,4 @@
-#include "utils/screen.h"
+#include "screen.h"
 
 namespace Asteroids {
 	namespace ScreenUtils {

@@ -10,19 +10,6 @@ namespace Asteroids {
 		static const double SHIELD_LIFETIME = 10.0;
 		static const double LIFETIME_IN_MAP = 5.0;
 
-		static Color getColorPerType(PowerUpType powerUpType) {
-			switch (powerUpType) {
-				case PowerUpType::MULTI_BULLET:
-					return GREEN;
-				case PowerUpType::SHIELD:
-					return VIOLET;
-				case PowerUpType::MORE_POINTS:
-					return BLUE;
-				default:
-					return BLACK;
-			}
-		}
-
 		static double getLifetimePerType(PowerUpType powerUpType) {
 			switch (powerUpType) {
 			case PowerUpType::MULTI_BULLET:
@@ -44,15 +31,6 @@ namespace Asteroids {
 		}
 
 		static void drawPowerUpInMap(PowerUp powerUp, Color color) {
-#ifdef _DEBUG
-			DrawCircle(
-				static_cast<int>(powerUp.position.x),
-				static_cast<int>(powerUp.position.y),
-				POWER_UP_RADIUS,
-				getColorPerType(powerUp.powerUpType)
-			);
-#endif
-
 			Texture2D texture = getTexturePerType(powerUp.powerUpType);
 
 			Rectangle srcRectangle = {

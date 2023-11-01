@@ -1,5 +1,4 @@
 #pragma once
-
 #include "entities/asteroid.h"
 #include "entities/spaceship.h"
 

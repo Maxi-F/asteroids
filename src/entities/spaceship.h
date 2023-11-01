@@ -1,5 +1,4 @@
 #pragma once
-
 #include "raylib.h"
 
 #include "utils/timer.h"
@@ -19,8 +18,8 @@ namespace Asteroids {
 		};
 
 		Ship createSpaceship();
-		void updateSpaceship(Ship &spaceShip);
 		void restartSpaceship(Ship &spaceShip);
+		void updateSpaceship(Ship &spaceShip);
 		void drawSpaceship(Ship spaceShip, bool isDeathPlaying, Timer::Timer deathTimer);
 	}
 }

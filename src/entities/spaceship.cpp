@@ -4,17 +4,15 @@
 
 #include "assets/assetManager.h"
 #include "assets/sfxManager.h"
-#include "utils/math.h"
 #include "utils/screen.h"
 #include "managers/bulletManager.h"
 #include "managers/powerupsManager.h"
-
-#include <iostream>
 
 namespace Asteroids {
 	namespace Spaceship {
 		static float SHIP_RADIUS = 30.0f;
 		static Vector2 MAX_VELOCITY = { 300.0f, 300.0f };
+		static float SHIP_ACCELERATION = 400.0f;
 
 		static void updatePosition(Ship& spaceShip) {
 			spaceShip.position = Vector2Add(spaceShip.position, Vector2Scale(spaceShip.velocity, GetFrameTime()));
@@ -61,8 +59,8 @@ namespace Asteroids {
 			return {
 				SHIP_RADIUS,
 				0.0f,
-				400.0f,
-				{ getHalf(screenDimensions.x), getHalf(screenDimensions.y) },
+				SHIP_ACCELERATION,
+				{ MathUtils::getHalf(screenDimensions.x), MathUtils::getHalf(screenDimensions.y) },
 				{ 0.0f, 0.0f },
 				{ 0.0f, 0.0f }
 			};
@@ -72,7 +70,7 @@ namespace Asteroids {
 			Vector2 screenDimensions = { ScreenUtils::getScreenWidth(), ScreenUtils::getScreenHeight() };
 
 			spaceShip.velocity = { 0.0f, 0.0f };
-			spaceShip.position = { getHalf(screenDimensions.x), getHalf(screenDimensions.y) };
+			spaceShip.position = { MathUtils::getHalf(screenDimensions.x), MathUtils::getHalf(screenDimensions.y) };
 		};
 
 		void updateSpaceship(Ship &spaceShip) {

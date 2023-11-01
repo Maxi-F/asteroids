@@ -1,5 +1,4 @@
 #pragma once
-
 #include "entities/bullet.h"
 #include "entities/spaceship.h"
 

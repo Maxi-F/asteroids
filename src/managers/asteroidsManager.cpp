@@ -1,15 +1,13 @@
 #include "asteroidsManager.h"
 
-#include "raylib.h"
 #include <vector>
+
+#include "raylib.h"
 
 #include "assets/sfxManager.h"
 #include "entities/asteroid.h"
-#include "entities/spaceship.h"
 #include "managers/pointsManager.h"
 #include "managers/powerupsManager.h"
-#include "utils/timer.h"
-#include "utils/math.h"
 
 namespace Asteroids {
 	namespace AsteroidsManager {
@@ -70,20 +68,20 @@ namespace Asteroids {
 				}
 
 				minAsteroidSpawns = static_cast<int>(
-					clamp(
+					MathUtils::clamp(
 						static_cast<float>(minAsteroidSpawns + 1),
 						static_cast<float>(minAsteroidSpawns),
 						static_cast<float>(MAX_MINIMUM_ASTEROID_SPAWNS)
 					));
 				maxAsteroidSpawns = static_cast<int>(
-					clamp(
+					MathUtils::clamp(
 						static_cast<float>(maxAsteroidSpawns + 1),
 						static_cast<float>(maxAsteroidSpawns),
 						static_cast<float>(MAX_MAXIMUM_ASTEROID_SPAWNS)
 					));
 
 				if (minAsteroidSpawns == MAX_MINIMUM_ASTEROID_SPAWNS && maxAsteroidSpawns == MAX_MAXIMUM_ASTEROID_SPAWNS) {
-					spawnTimer = clamp(spawnTimer - 0.5f, spawnTimer, MINIMUM_SPAWN_TIMER);
+					spawnTimer = MathUtils::clamp(spawnTimer - 0.5f, spawnTimer, MINIMUM_SPAWN_TIMER);
 				}
 
 				Timer::startTimer(&asteroidSpawnTimer, spawnTimer);
@@ -92,7 +90,7 @@ namespace Asteroids {
 
 		static void checkShipCollisions(Spaceship::Ship ship) {
 			for (size_t i = 0; i < asteroids.size(); i++) {
-				if (checkCircleCollision({ ship.position, ship.shipRadius }, { asteroids[i].position, asteroids[i].radius })) {
+				if (MathUtils::checkCircleCollision({ ship.position, ship.shipRadius }, { asteroids[i].position, asteroids[i].radius })) {
 					SfxManager::playSound(SfxManager::SHIELD_ASTEROID_COLLISION, true);
 					asteroids[i].shouldDivide = true;
 				}
@@ -125,7 +123,7 @@ namespace Asteroids {
 
 		void checkCollissionsWith(Bullets::Bullet& bullet) {
 			for (size_t i = 0; i < asteroids.size(); i++) {
-				if (checkCircleCollision({ bullet.position, bullet.radius }, { asteroids[i].position, asteroids[i].radius })) {
+				if (MathUtils::checkCircleCollision({ bullet.position, bullet.radius }, { asteroids[i].position, asteroids[i].radius })) {
 					SfxManager::playSound(getRandomCollisionSound(), true);
 					asteroids[i].shouldDivide = true;
 					bullet.shouldRemove = true;
@@ -135,7 +133,7 @@ namespace Asteroids {
 		
 		bool isPlayerCollidingWithAsteroid(Spaceship::Ship ship) {
 			for (size_t i = 0; i < asteroids.size(); i++) {
-				if (checkCircleCollision({ ship.position, ship.shipRadius }, { asteroids[i].position, asteroids[i].radius })) {
+				if (MathUtils::checkCircleCollision({ ship.position, ship.shipRadius }, { asteroids[i].position, asteroids[i].radius })) {
 					return true;
 				}
 			}

@@ -3,7 +3,6 @@
 #include <vector>
 
 #include "entities/point.h"
-#include "utils/math.h"
 #include "assets/sfxManager.h"
 #include "managers/powerupsManager.h"
 
@@ -37,7 +36,7 @@ namespace Asteroids {
 
 		void updatePoints(Spaceship::Ship ship, int &totalPoints) {
 			for (size_t i = 0; i < points.size(); i++) {
-				if (checkCircleCollision({ ship.position, ship.shipRadius }, { points[i].position, points[i].radius })) {
+				if (MathUtils::checkCircleCollision({ ship.position, ship.shipRadius }, { points[i].position, points[i].radius })) {
 					SfxManager::playSound(getRandomPointSound(), true);
 
 					if (PowerupsManager::isPowerUpActive(PowerUp::MORE_POINTS)) {

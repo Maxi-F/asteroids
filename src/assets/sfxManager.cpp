@@ -1,7 +1,5 @@
 #include "sfxManager.h"
 
-#include <vector>
-
 namespace Asteroids {
 	namespace SfxManager {
 		struct SfxWithName {
@@ -37,8 +35,10 @@ namespace Asteroids {
 			SfxWithName shieldCollision = { SHIELD_ASTEROID_COLLISION, LoadSound("res/sounds/shieldAsteroidCollision.wav") };
 			SfxWithName propulsion = { PROPULSION, LoadSound("res/sounds/propulsion.wav") };
 
-			SetSoundVolume(shoot1.sound, 0.5);
-			SetSoundVolume(shoot2.sound, 0.5);
+			const float SHOOT_SOUND_VOLUME = 0.5f;
+
+			SetSoundVolume(shoot1.sound, SHOOT_SOUND_VOLUME);
+			SetSoundVolume(shoot2.sound, SHOOT_SOUND_VOLUME);
 
 			SfxWithName auxSfxs[SFX_COUNT] = {
 				bulletCollision1,
@@ -63,8 +63,10 @@ namespace Asteroids {
 				sfxs[i] = auxSfxs[i];
 			}
 
-			MusicWithName gameplay = { GAMEPLAY, LoadMusicStream("res/sounds/gameplay.mp3"), 0.3f };
-			MusicWithName menu = { MENU, LoadMusicStream("res/sounds/menu.mp3"), 0.3f };
+			const float MUSIC_VOLUME = 0.3f;
+
+			MusicWithName gameplay = { GAMEPLAY, LoadMusicStream("res/sounds/gameplay.mp3"), MUSIC_VOLUME };
+			MusicWithName menu = { MENU, LoadMusicStream("res/sounds/menu.mp3"), MUSIC_VOLUME };
 			gameplay.music.looping = true;
 			menu.music.looping = true;
 

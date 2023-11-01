@@ -2,7 +2,7 @@
 
 int main(void)
 {
-    Asteroids::startGame();
+    Asteroids::Game::startGame();
 
     return 0;
 }

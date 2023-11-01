@@ -1,7 +1,5 @@
 #include "assetManager.h"
 
-#include <vector>
-
 namespace Asteroids {
 	namespace AssetManager {
 		struct AssetWithTexture {
@@ -35,6 +33,8 @@ namespace Asteroids {
 			AssetWithTexture shieldPowerUp = { Assets::SHIELD_POWER_UP, LoadTexture("res/images/shieldPowerup.png") };
 			AssetWithTexture emptyPowerUp = { Assets::EMPTY_POWER_UP, LoadTexture("res/images/emptyPowerUp.png") };
 
+			AssetWithTexture youLost = { Assets::YOU_LOST, LoadTexture("res/images/youLost.png") };
+
 			AssetWithTexture life = { Assets::LIFE, LoadTexture("res/images/life.png") };
 			AssetWithTexture point = { Assets::POINT, LoadTexture("res/images/point.png") };
 			AssetWithTexture pause = { Assets::PAUSE, LoadTexture("res/images/pause.png") };
@@ -60,6 +60,7 @@ namespace Asteroids {
 				emptyPowerUp,
 				life,
 				point,
+				youLost,
 				pause
 			};
 

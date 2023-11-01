@@ -24,7 +24,7 @@ namespace Asteroids {
 			bool shouldDivide = false;
 		};
 
-		Asteroid createAsteroid(AsteroidType type, Circle prohibitedInitRadius);
+		Asteroid createAsteroid(AsteroidType type, MathUtils::Circle prohibitedInitRadius);
 		Asteroid createDividedAsteroidFrom(Asteroid asteroid, bool clockWise);
 		void updateAsteroid(Asteroid& asteroid);
 		bool isIndivisible(Asteroid asteroid);

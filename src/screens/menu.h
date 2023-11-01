@@ -21,8 +21,8 @@ namespace Asteroids {
 			Buttons::Button optionButton;
 		};
 
-		void drawMenu();
 		void initMenu();
+		void drawMenu();
 		void checkMenuInputAndCollision(bool& shouldClose);
 	}
 }

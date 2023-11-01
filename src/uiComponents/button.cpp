@@ -15,10 +15,10 @@ namespace Asteroids {
 
 		static Rectangle getInsideRectangle(Rectangle rectangle) {
 			return {
-				rectangle.x + BOX_BORDER_WIDTH,
-				rectangle.y + BOX_BORDER_WIDTH,
-				rectangle.width - BOX_BORDER_WIDTH * 2,
-				rectangle.height - BOX_BORDER_WIDTH * 2,
+				rectangle.x + Dimensions::BOX_BORDER_WIDTH,
+				rectangle.y + Dimensions::BOX_BORDER_WIDTH,
+				rectangle.width - Dimensions::BOX_BORDER_WIDTH * 2,
+				rectangle.height - Dimensions::BOX_BORDER_WIDTH * 2,
 			};
 		}
 
@@ -35,8 +35,8 @@ namespace Asteroids {
 
 		void drawCenteredTextInButton(Button button, const char* text) {
 			Vector2 textSize = FontManager::measureText(text, BUTTON_TEXT_FONT_SIZE, BUTTON_TEXT_SPACING);
-			float optionTextPosX = button.outsideRectangle.x + getHalf(button.outsideRectangle.width) - getHalf(textSize.x);
-			float optionTextPosY = button.outsideRectangle.y + getHalf(button.outsideRectangle.height) - getHalf(BUTTON_TEXT_FONT_SIZE);
+			float optionTextPosX = button.outsideRectangle.x + MathUtils::getHalf(button.outsideRectangle.width) - MathUtils::getHalf(textSize.x);
+			float optionTextPosY = button.outsideRectangle.y + MathUtils::getHalf(button.outsideRectangle.height) - MathUtils::getHalf(BUTTON_TEXT_FONT_SIZE);
 
 			FontManager::drawText(
 				text,
@@ -60,7 +60,7 @@ namespace Asteroids {
 		void updateButton(Button& button) {
 			Vector2 mousePosition = GetMousePosition();
 
-			bool isMouseCollisioningWithButton = checkPointToRectangleCollision(button.outsideRectangle, mousePosition);
+			bool isMouseCollisioningWithButton = MathUtils::checkPointToRectangleCollision(button.outsideRectangle, mousePosition);
 
 			bool isClicking = IsMouseButtonPressed(MOUSE_BUTTON_LEFT);
 			bool isReleased = IsMouseButtonReleased(MOUSE_BUTTON_LEFT);
@@ -86,7 +86,7 @@ namespace Asteroids {
 				getInsideRectangle(rectangle),
 				rectangle,
 				RED,
-				FOCUS_COLOR,
+				Colors::FOCUS_COLOR,
 				PINK
 			};
 		}

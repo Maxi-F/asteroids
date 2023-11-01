@@ -1,5 +1,7 @@
 #pragma once
 
 namespace Asteroids {
-	void startGame();
+	namespace Game {
+		void startGame();
+	}
 }

@@ -62,7 +62,7 @@ namespace Asteroids {
 				float screenWidth = ScreenUtils::getScreenWidth();
 
 				Rectangle optionRectangle = {
-				getHalf(screenWidth) - getHalf(OPTION_RECTANGLE_WIDTH),
+				MathUtils::getHalf(screenWidth) - MathUtils::getHalf(OPTION_RECTANGLE_WIDTH),
 				yPosition,
 				OPTION_RECTANGLE_WIDTH,
 				OPTION_RECTANGLE_HEIGHT
@@ -80,7 +80,7 @@ namespace Asteroids {
 			const char* title = "ASHHTEROIDS";
 			Vector2 titleSize = FontManager::measureText(title, TITLE_FONT_SIZE, TITLE_SPACING);
 			float screenWidth = ScreenUtils::getScreenWidth();
-			float asteroidsTitlePosX = getHalf(screenWidth) - getHalf(titleSize.x);
+			float asteroidsTitlePosX = MathUtils::getHalf(screenWidth) - MathUtils::getHalf(titleSize.x);
 
 			DrawTextureEx(
 				AssetManager::getTexture(AssetManager::BACKGROUND),

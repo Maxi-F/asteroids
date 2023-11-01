@@ -3,7 +3,6 @@
 #include "raymath.h"
 
 #include "constants/dimensions.h"
-#include "utils/math.h"
 #include "utils/screen.h"
 #include "assets/assetManager.h"
 
@@ -65,21 +64,21 @@ namespace Asteroids {
 			}
 		}
 
-		static Vector2 getRandomStartPositionPerValue(ScreenPartPerValue value, Circle prohibitedInitRadius, float asteroidRadius) {
+		static Vector2 getRandomStartPositionPerValue(ScreenPartPerValue value, MathUtils::Circle prohibitedInitRadius, float asteroidRadius) {
 			Vector2 initPosition;
 
 			switch (value) {
 				case ScreenPartPerValue::TOP:
-					initPosition = { static_cast<float>(GetRandomValue(0, static_cast<int>(SCREEN_DIMENSIONS.x))), 0 };
+					initPosition = { static_cast<float>(GetRandomValue(0, static_cast<int>(Dimensions::SCREEN_DIMENSIONS.x))), 0 };
 					break;
 				case ScreenPartPerValue::BOTTOM:
-					initPosition = { static_cast<float>(GetRandomValue(0, static_cast<int>(SCREEN_DIMENSIONS.x))), SCREEN_DIMENSIONS.y };
+					initPosition = { static_cast<float>(GetRandomValue(0, static_cast<int>(Dimensions::SCREEN_DIMENSIONS.x))), Dimensions::SCREEN_DIMENSIONS.y };
 					break;
 				case ScreenPartPerValue::LEFT:
-					initPosition = { 0, static_cast<float>(GetRandomValue(0, static_cast<int>(SCREEN_DIMENSIONS.y))) };
+					initPosition = { 0, static_cast<float>(GetRandomValue(0, static_cast<int>(Dimensions::SCREEN_DIMENSIONS.y))) };
 					break;
 				case ScreenPartPerValue::RIGHT:
-					initPosition = { SCREEN_DIMENSIONS.x, static_cast<float>(GetRandomValue(0, static_cast<int>(SCREEN_DIMENSIONS.y))) };
+					initPosition = { Dimensions::SCREEN_DIMENSIONS.x, static_cast<float>(GetRandomValue(0, static_cast<int>(Dimensions::SCREEN_DIMENSIONS.y))) };
 					break;
 				default:
 					initPosition = { 0, 0 };
@@ -122,13 +121,13 @@ namespace Asteroids {
 			
 			switch (value) {
 			case ScreenPartPerValue::TOP:
-				return { getRandomNegativeOrPositive() * normalizedDirection.x, normalizedDirection.y };
+				return { MathUtils::getRandomNegativeOrPositive() * normalizedDirection.x, normalizedDirection.y };
 			case ScreenPartPerValue::BOTTOM:
-				return { getRandomNegativeOrPositive() * normalizedDirection.x, -normalizedDirection.y };
+				return { MathUtils::getRandomNegativeOrPositive() * normalizedDirection.x, -normalizedDirection.y };
 			case ScreenPartPerValue::LEFT:
-				return { normalizedDirection.x, getRandomNegativeOrPositive() * normalizedDirection.y };
+				return { normalizedDirection.x, MathUtils::getRandomNegativeOrPositive() * normalizedDirection.y };
 			case ScreenPartPerValue::RIGHT:
-				return { -normalizedDirection.x, getRandomNegativeOrPositive() * normalizedDirection.y };
+				return { -normalizedDirection.x, MathUtils::getRandomNegativeOrPositive() * normalizedDirection.y };
 			default:
 				return { 0, 0 };
 			}
@@ -141,7 +140,7 @@ namespace Asteroids {
 			asteroid.position = asteroidEntity.position;
 		}
 
-		Asteroid createAsteroid(AsteroidType type, Circle prohibitedInitRadius) {
+		Asteroid createAsteroid(AsteroidType type, MathUtils::Circle prohibitedInitRadius) {
 			ScreenPartPerValue screenPartInitPart = static_cast<ScreenPartPerValue>(GetRandomValue(0, 3));
 			float radius = getRadiusPerType(type);
 			

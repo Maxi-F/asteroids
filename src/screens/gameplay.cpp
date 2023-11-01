@@ -1,6 +1,5 @@
 #include "gameplay.h"
 
-#include "entities/spaceship.h"
 #include "assets/sfxManager.h"
 #include "assets/assetManager.h"
 #include "managers/bulletManager.h"

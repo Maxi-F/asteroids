@@ -1,5 +1,4 @@
 #pragma once
-
 #include "raylib.h"
 
 namespace Asteroids {
@@ -20,6 +19,7 @@ namespace Asteroids {
 			SHIELD_POWER_UP,
 			MULTI_BULLET,
 			LIFE,
+			YOU_LOST,
 			EMPTY_POWER_UP,
 			POINT,
 			PAUSE,

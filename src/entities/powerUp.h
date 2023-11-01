@@ -1,6 +1,6 @@
 #pragma once
-
 #include "raylib.h"
+
 #include "utils/timer.h"
 
 namespace Asteroids {
