@@ -2,7 +2,7 @@
 
 #include "raymath.h"
 
-#include <iostream>
+#include "assets/assetManager.h"
 
 namespace Asteroids {
 	namespace Point {
@@ -36,7 +36,38 @@ namespace Asteroids {
 		};
 		
 		void drawPoint(Point point) {
+#ifdef _DEBUG
 			DrawCircle(static_cast<int>(point.position.x), static_cast<int>(point.position.y), point.radius, PINK);
+#endif
+			Texture2D texture = AssetManager::getTexture(AssetManager::POINT);
+
+			Rectangle srcRectangle = {
+				0,
+				0,
+				static_cast<float>(texture.width),
+				static_cast<float>(texture.height)
+			};
+
+			Rectangle destRectangle = {
+				point.position.x,
+				point.position.y,
+				point.radius * 2,
+				point.radius * 2
+			};
+
+			Vector2 origin = {
+				static_cast<float>(point.radius),
+				static_cast<float>(point.radius)
+			};
+
+			DrawTexturePro(
+				texture,
+				srcRectangle,
+				destRectangle,
+				origin,
+				0,
+				WHITE
+			);
 		};
 	}
 }

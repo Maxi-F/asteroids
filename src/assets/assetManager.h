@@ -21,6 +21,8 @@ namespace Asteroids {
 			MULTI_BULLET,
 			LIFE,
 			EMPTY_POWER_UP,
+			POINT,
+			PAUSE,
 			BACKGROUND,
 			RULES,
 			CREDITS,

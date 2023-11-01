@@ -18,8 +18,8 @@ namespace Asteroids {
 		static const int FONT_SIZE = 30;
 		static const int SCREEN_MARGIN = 40;
 		static const int SPACING_MARGIN = 20;
-		static const int PAUSE_BUTTON_WIDTH = 50;
-		static const int PAUSE_BUTTON_HEIGHT = 50;
+		static const int PAUSE_BUTTON_WIDTH = 64;
+		static const int PAUSE_BUTTON_HEIGHT = 64;
 		static const int RESUME_BUTTON_WIDTH = 300;
 		static const int RESUME_BUTTON_HEIGHT = 50;
 		static const int MENU_BUTTONS_MARGIN = 25;
@@ -175,6 +175,7 @@ namespace Asteroids {
 			drawPowerUps();
 
 			Buttons::drawButton(pauseButton);
+			Buttons::drawTextureInButton(pauseButton, AssetManager::getTexture(AssetManager::PAUSE));
 
 			if (isPaused) {
 				drawPause();

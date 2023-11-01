@@ -9,7 +9,7 @@ namespace Asteroids {
 			Texture2D texture;
 		};
 
-		static std::vector<AssetWithTexture> textures;
+		static AssetWithTexture textures[ASSETS_COUNT];
 
 		void init() {
 			AssetWithTexture background = { Assets::BACKGROUND, LoadTexture("res/images/background.png") };
@@ -36,8 +36,10 @@ namespace Asteroids {
 			AssetWithTexture emptyPowerUp = { Assets::EMPTY_POWER_UP, LoadTexture("res/images/emptyPowerUp.png") };
 
 			AssetWithTexture life = { Assets::LIFE, LoadTexture("res/images/life.png") };
+			AssetWithTexture point = { Assets::POINT, LoadTexture("res/images/point.png") };
+			AssetWithTexture pause = { Assets::PAUSE, LoadTexture("res/images/pause.png") };
 
-			textures = { 
+			AssetWithTexture auxTextures[ASSETS_COUNT] = {
 				background,
 				rules,
 				credits,
@@ -56,12 +58,18 @@ namespace Asteroids {
 				pointsPowerUp,
 				shieldPowerUp,
 				emptyPowerUp,
-				life
+				life,
+				point,
+				pause
 			};
+
+			for (int i = 0; i < ASSETS_COUNT; i++) {
+				textures[i] = auxTextures[i];
+			}
 		}
 
 		Texture2D getTexture(Assets asset) {
-			for (size_t i = 0; i < textures.size(); i++) {
+			for (int i = 0; i < ASSETS_COUNT; i++) {
 				if (asset == textures[i].asset) {
 					return textures[i].texture;
 				}

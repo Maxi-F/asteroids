@@ -47,6 +47,16 @@ namespace Asteroids {
 			);
 		}
 
+		void drawTextureInButton(Button button, Texture2D texture) {
+			DrawTextureEx(
+				texture,
+				{ button.outsideRectangle.x, button.outsideRectangle.y },
+				0,
+				1,
+				WHITE
+			);
+		}
+
 		void updateButton(Button& button) {
 			Vector2 mousePosition = GetMousePosition();
 
